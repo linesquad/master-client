@@ -1,10 +1,10 @@
 import { header } from "@/lib/header";
 import { Link } from "@tanstack/react-router";
-import { useUser } from "../auth/hooks/useUser";
-import { useLogout } from "../auth/hooks/useLogout";
+import { useUserId } from "../hooks/useUserId";
+import { useLogout } from "../hooks/useLogout";
 
 function Header() {
-  const { data: user } = useUser();
+  const { data: user } = useUserId();
   const { mutate: logout } = useLogout();
   console.log(user);
   return (

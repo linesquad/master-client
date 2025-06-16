@@ -1,8 +1,7 @@
 import { getUserId } from "@/modules/auth/services/auth";
-import { Outlet, redirect } from "@tanstack/react-router";
+import { redirect } from "@tanstack/react-router";
 
-  export const Route = createFileRoute({
-  component: RouteComponent,
+export const Route = createFileRoute({
   beforeLoad: async () => {
     const user = await getUserId().catch(() => null);
     if (!user) {
@@ -12,6 +11,3 @@ import { Outlet, redirect } from "@tanstack/react-router";
   },
 })
 
-function RouteComponent() {
-  return <Outlet />
-}
