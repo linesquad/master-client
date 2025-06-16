@@ -12,16 +12,35 @@ export const signIn = async (email: string,password: string) => {
   }
 };
 
-export const signUp = async (fullname: string, email: string, password: string, phone: string) => {
+export const signUp = async (fullName: string, email: string, password: string, phone: string, role: string) => {
   try {
     const response = await instance.post("/api/auth/register", {
-      fullname,
+      fullName,
       email,
       password,
-      phone
-
+      phone,
+      role
     });
+    console.log(response.data);
     return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserId = async () => {
+  try {
+    const response = await instance.get("/api/auth/me");
+    return response.data.user.id;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUser = async () => {
+  try {
+    const response = await instance.get("/api/auth/me");
+    return response.data.user;
   } catch (error) {
     throw error;
   }
