@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import Header from "@/modules/auth/layouts/Header";
-import Footer from "@/modules/auth/layouts/Footer";
+import Header from "@/modules/layouts/Header";
+import Footer from "@/modules/layouts/Footer";
 
 export const Route = createRootRoute({
   component: RootComponent,
