@@ -1,15 +1,22 @@
-import { signUp } from "@/modules/auth/services/auth";
+import { getUserId, signUp } from "@/modules/auth/services/auth";
 import { useForm } from "@tanstack/react-form";
-import { useNavigate } from "@tanstack/react-router";
+import { redirect, useNavigate } from "@tanstack/react-router";
 import { toast } from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const Route = createFileRoute({
   component: Register,
+  beforeLoad: async () => {
+    const user = await getUserId().catch(() => null);
+    if (user) {
+      throw redirect({ to: "/" });
+    }
+  },
 });
 
 function Register() {
   const navigate = useNavigate();
-
+  const queryClient = useQueryClient();
   const form = useForm({
     defaultValues: {
       fullName: "",
@@ -30,6 +37,7 @@ function Register() {
         toast.success("User registered successfully");
         console.log(response);
         console.log(value);
+        queryClient.invalidateQueries({ queryKey: ["user"] });
         navigate({ to: "/" });
       } catch (error) {
         toast.error("Registration failed. Please try again.");

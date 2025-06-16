@@ -28,6 +28,15 @@ export const signUp = async (fullName: string, email: string, password: string, 
   }
 };
 
+export const signOut = async () => {
+  try {
+    const response = await instance.post("/api/auth/logout");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getUserId = async () => {
   try {
     const response = await instance.get("/api/auth/me");

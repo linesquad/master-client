@@ -1,15 +1,22 @@
-import { signIn } from "@/modules/auth/services/auth";
+import { getUserId, signIn } from "@/modules/auth/services/auth";
 import { useForm } from "@tanstack/react-form";
-import { useNavigate } from "@tanstack/react-router";
+import { redirect, useNavigate } from "@tanstack/react-router";
 import { toast } from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const Route = createFileRoute({
   component: Login,
+  beforeLoad: async () => {
+    const user = await getUserId().catch(() => null);
+    if (user) {
+      throw redirect({ to: "/" });
+    }
+  },
 });
 
 function Login() {
   const navigate = useNavigate();
-
+  const queryClient = useQueryClient();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -17,13 +24,11 @@ function Login() {
     },
     onSubmit: async ({ value }) => {
       try {
-        const response = await signIn(
-          value.email,
-          value.password
-        );
+        const response = await signIn(value.email, value.password);
         toast.success("User logged in successfully");
         console.log(response);
         console.log(value);
+        queryClient.invalidateQueries({ queryKey: ["user"] });
         navigate({ to: "/" });
       } catch (error) {
         toast.error("Login failed. Please try again.");
@@ -66,7 +71,10 @@ function Login() {
             >
               {(field) => (
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -79,7 +87,9 @@ function Login() {
                     placeholder="Enter your email"
                   />
                   {field.state.meta.errors && (
-                    <p className="mt-1 text-sm text-red-600">{field.state.meta.errors[0]}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {field.state.meta.errors[0]}
+                    </p>
                   )}
                 </div>
               )}
@@ -99,7 +109,10 @@ function Login() {
             >
               {(field) => (
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Password
                   </label>
                   <input
@@ -112,7 +125,9 @@ function Login() {
                     placeholder="Enter your password"
                   />
                   {field.state.meta.errors && (
-                    <p className="mt-1 text-sm text-red-600">{field.state.meta.errors[0]}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {field.state.meta.errors[0]}
+                    </p>
                   )}
                 </div>
               )}
