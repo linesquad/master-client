@@ -1,4 +1,4 @@
-
+import MostFamousCategories from "@/modules/home/ui/views/most-famous-categories";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -113,6 +113,8 @@ function RouteComponent() {
             </button>
           </div>
         </section>
+
+        <MostFamousCategories />
 
     </div>
   );
