@@ -6,9 +6,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <SidebarProvider>
       <SideBar /> 
       <SidebarInset>
-
         <main>
-          <SidebarTrigger />
+          {/* <SidebarTrigger /> */}
           {children}
         </main>
       </SidebarInset>

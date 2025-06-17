@@ -2,6 +2,7 @@ import { header } from "@/lib/header";
 import { Link } from "@tanstack/react-router";
 import { useUser } from "../auth/hooks/useUser";
 import { useLogout } from "../auth/hooks/useLogout";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 function Header() {
   const { data: user } = useUser();
@@ -9,12 +10,17 @@ function Header() {
   console.log(user);
   return (
     <header className="bg-white shadow-lg border-b border-gray-200">
-      <div className=" px-4 sm:px-6 lg:px-8">
+      <div className=" px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center">
-              <img className="h-10 w-10" src="/vite.svg" alt="Logo" />
-              <span className="ml-3 text-xl font-bold text-gray-900">Irkle</span>
+            <div className="flex-shrink-0 flex items-center gap-4">
+              <SidebarTrigger className="cursor-pointer"/>
+              <div className="flex items-center">
+                <img className="h-10 w-10" src="/vite.svg" alt="Logo" />
+                <span className="ml-3 text-xl font-bold text-gray-900">
+                  Irkle
+                </span>
+              </div>
             </div>
           </div>
 
@@ -66,8 +72,18 @@ function Header() {
               className="text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 p-2 rounded-md"
             >
               <span className="sr-only">Open main menu</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
           </div>

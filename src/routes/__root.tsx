@@ -10,13 +10,13 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
       <SideBarLayout>
+      <Header />
         <main className="flex-1">
           <Outlet />
         </main>
-      </SideBarLayout>
       <Footer />
+      </SideBarLayout>
     </div>
   );
 }

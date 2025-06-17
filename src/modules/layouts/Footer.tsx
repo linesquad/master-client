@@ -4,11 +4,11 @@ import MainWrapper from "@/components/ui/MainWrapper";
 
 function Footer() {
   return (
-    <footer className="bg-white border-gray-200 w-full border-t">
+    <footer className="bg-white border-gray-200 w-full border-t px-2 sm:px-6 lg:px-8">
       <MainWrapper> 
       <div className=" py-12 bg-white border-gray-200 w-full flex flex-col items-center justify-between">
-        <div className="flex flex-wrap justify-between gap-8 w-full">
-          <div className="">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center mb-4">
               <svg
                 width="40"
@@ -51,7 +51,7 @@ function Footer() {
             </p>
           </div>
           
-          <div className="flex-1 min-w-[140px]">
+          <div className="">
             <h3 className="text-lg font-bold text-gray-900 mb-2">
               Important Links
             </h3>
@@ -70,7 +70,7 @@ function Footer() {
             </ul>
           </div>
           
-          <div className="flex-1 min-w-[140px]">
+          <div className="">
             <h3 className="text-lg font-bold text-gray-900 mb-2">
               Community
             </h3>
@@ -89,7 +89,7 @@ function Footer() {
             </ul>
           </div>
           
-          <div className="flex-1 min-w-[140px]">
+          <div className="">
             <h3 className="text-lg font-bold text-gray-900 mb-2">
               Followers
             </h3>
@@ -109,7 +109,7 @@ function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-200 mt-8 pt-6 text-center">
+        <div className="border-t border-gray-200 mt-8 pt-6 text-center w-full">
           <p className="text-sm text-gray-500">
             Copyright © 2025 Linedev.
           </p>
