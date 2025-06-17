@@ -4,7 +4,7 @@ import MainWrapper from "@/components/ui/MainWrapper";
 
 function Footer() {
   return (
-    <footer className="bg-white border-gray-200 w-full">
+    <footer className="bg-white border-gray-200 w-full border-t">
       <MainWrapper> 
       <div className=" py-12 bg-white border-gray-200 w-full flex flex-col items-center justify-between">
         <div className="flex flex-wrap justify-between gap-8 w-full">
