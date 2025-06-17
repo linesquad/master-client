@@ -39,11 +39,11 @@ function Login() {
   });
 
   return (
-    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-300" style={{backgroundImage: "url('/authbg.png')", backgroundSize: "cover", backgroundPosition: "center"}}>
+    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300" style={{backgroundImage: "url('/authbg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
       <div className="max-w-md w-full space-y-8">
         <div className="flex items-center justify-center mr-10">
-          <img className="h-10 w-10" src="/vite.svg" alt="Logo" />
-          <span className=" text-3xl font-bold text-white">Irkle</span>
+          <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
+          <span className=" text-3xl font-bold text-white">IRKLE</span>
         </div>
         <div className="relative">
           <Link to="/login">

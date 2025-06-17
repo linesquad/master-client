@@ -11,8 +11,8 @@ export const useLogout = () => {
     mutationFn: signOut,
     onSuccess: () => {
       queryClient.removeQueries({ queryKey: ["user"] });
-      navigate({ to: "/" });
       toast.success("Logged out successfully");
-    },
+      navigate({ to: "/" });
+    }
   });
 };
