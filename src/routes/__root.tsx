@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import Header from "@/modules/layouts/Header";
 import Footer from "@/modules/layouts/Footer";
@@ -9,12 +8,12 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <React.Fragment>
+    <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
         <Outlet />
       </main>
       <Footer />
-    </React.Fragment>
+    </div>
   );
 }

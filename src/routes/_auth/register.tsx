@@ -83,7 +83,10 @@ function Register() {
             >
               {(field) => (
                 <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="fullName"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Full Name
                   </label>
                   <input
@@ -96,7 +99,9 @@ function Register() {
                     placeholder="Enter your full name"
                   />
                   {field.state.meta.errors && (
-                    <p className="mt-1 text-sm text-red-600">{field.state.meta.errors[0]}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {field.state.meta.errors[0]}
+                    </p>
                   )}
                 </div>
               )}
@@ -119,7 +124,10 @@ function Register() {
             >
               {(field) => (
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -132,7 +140,9 @@ function Register() {
                     placeholder="Enter your email"
                   />
                   {field.state.meta.errors && (
-                    <p className="mt-1 text-sm text-red-600">{field.state.meta.errors[0]}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {field.state.meta.errors[0]}
+                    </p>
                   )}
                 </div>
               )}
@@ -167,7 +177,10 @@ function Register() {
             >
               {(field) => (
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Password
                   </label>
                   <input
@@ -180,7 +193,9 @@ function Register() {
                     placeholder="Enter your password"
                   />
                   {field.state.meta.errors && (
-                    <p className="mt-1 text-sm text-red-600">{field.state.meta.errors[0]}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {field.state.meta.errors[0]}
+                    </p>
                   )}
                 </div>
               )}
@@ -206,7 +221,10 @@ function Register() {
             >
               {(field) => (
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Phone
                   </label>
                   <input
@@ -219,7 +237,9 @@ function Register() {
                     placeholder="Enter your phone number"
                   />
                   {field.state.meta.errors && (
-                    <p className="mt-1 text-sm text-red-600">{field.state.meta.errors[0]}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {field.state.meta.errors[0]}
+                    </p>
                   )}
                 </div>
               )}
