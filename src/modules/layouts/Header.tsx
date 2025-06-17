@@ -9,16 +9,18 @@ function Header() {
   const { mutate: logout } = useLogout();
   console.log(user);
   return (
-    <header className="bg-white shadow-lg border-b border-gray-200">
+    <header className="bg-[#2C5BE3] shadow-lg ">
       <div className=" px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center gap-4">
-              <SidebarTrigger className="cursor-pointer"/>
+              <div className="flex items-center p-1 bg-gray-100 rounded-md transition-all duration-300 hover:bg-gray-200 cursor-pointer">
+                <SidebarTrigger className="transition-all duration-300 hover:bg-gray-200 cursor-pointer" />
+              </div>
               <div className="flex items-center">
-                <img className="h-10 w-10" src="/vite.svg" alt="Logo" />
-                <span className="ml-3 text-xl font-bold text-gray-900">
-                  Irkle
+                <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
+                <span className="ml-3 text-xl font-bold text-white">
+                  IRKLE
                 </span>
               </div>
             </div>
@@ -30,7 +32,7 @@ function Header() {
                 <Link
                   to={item.to}
                   key={item.name}
-                  className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-gray-50 rounded-md"
+                  className="text-white hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-gray-50 rounded-md"
                 >
                   {item.name}
                 </Link>
@@ -39,27 +41,36 @@ function Header() {
 
             <div className="flex items-center space-x-4">
               {user ? (
-                <div className="flex items-center space-x-3">
-                  <button
-                    onClick={() => logout()}
-                    className="bg-indigo-600 text-white px-4 py-2 text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Logout
-                  </button>
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <span className="text-white text-sm font-semibold">
+                          {user.image || user.fullName?.charAt(0).toUpperCase()}
+                        </span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => logout()}
+                      className="bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 text-sm font-medium rounded-lg border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] shadow-lg hover:shadow-xl cursor-pointer"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <div className="flex items-center space-x-3">
                   <Link
                     to="/login"
-                    className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-gray-50 rounded-md"
+                    className="text-white/90 hover:text-white px-4 py-2.5 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-white/10 rounded-lg border border-transparent hover:border-white/20 backdrop-blur-sm cursor-pointer"
                   >
-                    Login
+                    Sign In
                   </Link>
                   <Link
                     to="/register"
-                    className="bg-indigo-600 text-white px-4 py-2 text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="bg-white text-[#2C5BE3] px-5 py-2.5 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] shadow-lg hover:shadow-xl hover:scale-105 transform cursor-pointer"
                   >
-                    Register
+                    Get Started
                   </Link>
                 </div>
               )}

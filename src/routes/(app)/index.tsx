@@ -1,3 +1,5 @@
+
+
 export const Route = createFileRoute({
   component: RouteComponent,
 });
@@ -5,7 +7,6 @@ export const Route = createFileRoute({
 function RouteComponent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-
         <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
           <div className="text-center px-4 sm:px-6 lg:px-8">
             <div className="mb-6 sm:mb-8">
