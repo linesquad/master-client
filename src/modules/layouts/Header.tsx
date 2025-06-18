@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { useUser } from "../auth/hooks/useUser";
 import { useLogout } from "../auth/hooks/useLogout";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { BurgerMenu } from "../home/ui/components/burger-menu/BurgerMenu";
 
 function Header() {
   const { data: user } = useUser();
@@ -78,25 +79,7 @@ function Header() {
           </div>
 
           <div className="md:hidden">
-            <button
-              type="button"
-              className="text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 p-2 rounded-md"
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+            <BurgerMenu />
           </div>
         </div>
       </div>
