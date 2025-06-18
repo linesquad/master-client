@@ -1,5 +1,6 @@
 import FullyResponsiveCircle from "@/modules/home/ui/views/fully-responsive-circle";
 import MostFamousCategories from "@/modules/home/ui/views/most-famous-categories";
+import SubscribeNewsletter from "@/modules/home/ui/views/subscribe-newsletter";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -174,6 +175,7 @@ function RouteComponent() {
 
       <FullyResponsiveCircle />
       <MostFamousCategories />
+      <SubscribeNewsletter />
     </div>
   );
 }

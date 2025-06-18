@@ -1,11 +1,11 @@
-import LeftTexts from "../components/leftTexts";
-import RightImage from "../components/rightImage";
+import LeftTexts from "../components/famous-categories/leftTexts";
+import RightImage from "../components/famous-categories/rightImage";
 
 function FullyResponsiveCircle() {
   return (
     <div className="relative bg-gray-50 w-full flex items-center justify-center min-h-[500px] overflow-hidden">
       <svg
-        className="absolute left-0 top-1/4 w-1/3 opacity-10 animate-pulse"
+        className="absolute left-0 top-1/4 w-1/3 opacity-10"
         viewBox="0 0 300 300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
