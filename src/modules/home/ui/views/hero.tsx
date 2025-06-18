@@ -4,7 +4,7 @@ import MainWrapper from "@/components/MainWrapper";
 function hero() {
   return (
     <div
-      className="relative min-h-[30vh] lg:min-h-[50vh] lg:h-[80vh] "
+      className="relative min-h-[50vh] lg:min-h-[50vh] lg:h-[80vh] "
       style={{
         backgroundImage: "url(/authbg.jpg)",
         backgroundSize: "cover",
@@ -12,7 +12,7 @@ function hero() {
       }}
     >
       <MainWrapper className="relative h-full">
-        <div className="flex items-center justify-between h-full px-8 py-12">
+        <div className="flex items-center justify-between h-full px-8  py-24 lg:py-12">
           <div className="flex flex-col items-start justify-center text-white space-y-6 max-w-md z-10">
             <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight break-words">
               Cirkle Community
@@ -44,7 +44,7 @@ function hero() {
           </div>
         </div>
         <div
-          className="absolute bottom-0 -left-40 w-full h-[300px]"
+          className="absolute -bottom-50 lg:bottom-0  -left-40 w-full h-[300px]"
           style={{
             backgroundImage: "url(/herolocations.png)",
             backgroundSize: "cover",
