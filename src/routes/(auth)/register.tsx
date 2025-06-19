@@ -48,36 +48,45 @@ function Register() {
   });
 
   return (
-    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300" style={{backgroundImage: "url('/authbg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
+    <div
+      className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
+      style={{
+        backgroundImage: "url('/authbg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-md w-full space-y-8">
         <div className="flex items-center justify-center mr-10">
           <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
           <span className=" text-3xl font-bold text-white">IRKLE</span>
         </div>
         <div className="relative">
-          <Link to="/login">  
-          <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1]  px-12 py-4 rotate-270 cursor-pointer group  hover:bg-[#34B1EB] hover:text-white transition-all duration-300">
-            <FaPeopleArrows className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-            <span className="text-sm text-black font-semibold group-hover:text-white transition-all duration-300">Sign in</span>
-          </div>
+          <Link to="/login">
+            <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer group  hover:bg-[#34B1EB] hover:text-white transition-all duration-300">
+              <FaPeopleArrows className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+              <span className="text-sm text-black dark:text-white font-semibold group-hover:text-white transition-all duration-300">
+                Sign in
+              </span>
+            </div>
           </Link>
           <Link to="/register">
-          <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB]  px-12 py-4 rotate-270 cursor-pointer">
-            <FaUserPlus className="text-2xl text-white" />
-            <span className="text-sm font-semibold text-white">
-              Registration
-            </span>
-          </div>
+            <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB]  px-12 py-4 rotate-270 cursor-pointer">
+              <FaUserPlus className="text-2xl text-white" />
+              <span className="text-sm font-semibold text-white">
+                Registration
+              </span>
+            </div>
           </Link>
           <form
-            className="mt-8 space-y-6 rounded-xl rounded-tl-none py-6 px-12 bg-white pt-12"
+            className="mt-8 space-y-6 rounded-xl rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
               form.handleSubmit();
             }}
           >
-            <h2 className="mt-6 text-start text-xl text-black font-semibold">
+            <h2 className="mt-6 text-start text-xl text-black dark:text-white font-semibold">
               Sign In Your Account
             </h2>
             <div className="flex items-start justify-start gap-1">
@@ -107,7 +116,7 @@ function Register() {
                   <div>
                     <label
                       htmlFor="fullName"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Full Name
                     </label>
@@ -117,11 +126,11 @@ function Register() {
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
-                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
                       placeholder="Enter your full name"
                     />
                     {field.state.meta.errors && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                         {field.state.meta.errors[0]}
                       </p>
                     )}
@@ -148,7 +157,7 @@ function Register() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Email
                     </label>
@@ -158,11 +167,11 @@ function Register() {
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
-                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
                       placeholder="Enter your email"
                     />
                     {field.state.meta.errors && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                         {field.state.meta.errors[0]}
                       </p>
                     )}
@@ -201,7 +210,7 @@ function Register() {
                   <div>
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Password
                     </label>
@@ -211,11 +220,11 @@ function Register() {
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
-                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
                       placeholder="Enter your password"
                     />
                     {field.state.meta.errors && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                         {field.state.meta.errors[0]}
                       </p>
                     )}
@@ -245,7 +254,7 @@ function Register() {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Phone
                     </label>
@@ -255,11 +264,11 @@ function Register() {
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
-                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
                       placeholder="Enter your phone number"
                     />
                     {field.state.meta.errors && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                         {field.state.meta.errors[0]}
                       </p>
                     )}
@@ -270,7 +279,10 @@ function Register() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input type="checkbox" id="remember" className="mr-2" />
-                <label htmlFor="remember" className="text-sm text-gray-700">
+                <label
+                  htmlFor="remember"
+                  className="text-sm text-gray-700 dark:text-gray-300"
+                >
                   Remember me
                 </label>
               </div>

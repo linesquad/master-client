@@ -39,7 +39,14 @@ function Login() {
   });
 
   return (
-    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300" style={{backgroundImage: "url('/authbg.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
+    <div
+      className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
+      style={{
+        backgroundImage: "url('/authbg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-md w-full space-y-8">
         <div className="flex items-center justify-center mr-10">
           <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
@@ -53,22 +60,22 @@ function Login() {
             </div>
           </Link>
           <Link to="/register">
-            <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+            <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
               <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-              <span className="text-sm font-semibold text-black group-hover:text-white transition-all duration-300">
+              <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
                 Registration
               </span>
             </div>
           </Link>
           <form
-            className="mt-8 space-y-6 rounded-xl rounded-tl-none py-6 px-12 bg-white pt-12"
+            className="mt-8 space-y-6 rounded-xl rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
               form.handleSubmit();
             }}
           >
-            <h2 className="mt-6 text-start text-xl text-black font-semibold">
+            <h2 className="mt-6 text-start text-xl text-black dark:text-white font-semibold">
               Sign In Your Account
             </h2>
             <div className="flex items-start justify-start gap-1">
@@ -95,7 +102,7 @@ function Login() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Email
                     </label>
@@ -105,11 +112,11 @@ function Login() {
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
-                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
                       placeholder="Enter your email"
                     />
                     {field.state.meta.errors && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                         {field.state.meta.errors[0]}
                       </p>
                     )}
@@ -133,7 +140,7 @@ function Login() {
                   <div>
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Password
                     </label>
@@ -143,11 +150,11 @@ function Login() {
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
-                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
                       placeholder="Enter your password"
                     />
                     {field.state.meta.errors && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-red-600 dark:text-red-400">
                         {field.state.meta.errors[0]}
                       </p>
                     )}
@@ -158,7 +165,10 @@ function Login() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input type="checkbox" id="remember" className="mr-2" />
-                <label htmlFor="remember" className="text-sm text-gray-700">
+                <label
+                  htmlFor="remember"
+                  className="text-sm text-gray-700 dark:text-gray-300"
+                >
                   Remember me
                 </label>
               </div>
@@ -170,7 +180,7 @@ function Login() {
               {([canSubmit, isSubmitting]) => (
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
                   disabled={!canSubmit || isSubmitting}
                 >
                   {isSubmitting ? "Signing in..." : "Sign In"}
@@ -180,15 +190,15 @@ function Login() {
             <div className="flex items-center justify-between">
               <Link
                 to="/_auth/register"
-                className="text-sm text-[#2C5BE3] hover:text-[#2C5BE3]/80"
+                className="text-sm text-[#2C5BE3] dark:text-blue-400 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 transition-colors duration-300"
               >
                 Lost your password?
               </Link>
-              <div className="flex items-center justify-center gap-2 hover:text-[#2C5BE3]/80 group">
-                <FaArrowLeft className="text-xs text-[#2C5BE3] font-extralight group-hover:text-[#2C5BE3]/80" />
+              <div className="flex items-center justify-center gap-2 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 group">
+                <FaArrowLeft className="text-xs text-[#2C5BE3] dark:text-blue-400 font-extralight group-hover:text-[#2C5BE3]/80 dark:group-hover:text-blue-300 transition-colors duration-300" />
                 <Link
                   to="/"
-                  className="text-sm text-[#2C5BE3] group-hover:text-[#2C5BE3]/80"
+                  className="text-sm text-[#2C5BE3] dark:text-blue-400 group-hover:text-[#2C5BE3]/80 dark:group-hover:text-blue-300 transition-colors duration-300"
                 >
                   Back to Home
                 </Link>

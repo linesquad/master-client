@@ -4,10 +4,10 @@ import { groups } from "@/lib/popularCategories";
 function MostFamousCategories() {
   return (
     <section className="py-12 sm:py-16 md:py-20 text-center px-4 sm:px-6 lg:px-8">
-      <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-3 sm:mb-4 px-2">
+      <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground mb-3 sm:mb-4 px-2">
         Most Popular Groups
       </h3>
-      <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-xl mx-auto mb-10 px-2">
+      <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-10 px-2">
         When an unknown printer took a galley of type and meeting fari scrambled
         it to make a type of specimen book.
       </p>
@@ -24,7 +24,7 @@ function MostFamousCategories() {
           </div>
         ))}
       </div>
-      <HomeButton>See All Groups</HomeButton> 
+      <HomeButton>See All Groups</HomeButton>
     </section>
   );
 }

@@ -4,7 +4,7 @@ import MainWrapper from "@/components/MainWrapper";
 function hero() {
   return (
     <div
-      className="relative min-h-[50vh] lg:min-h-[50vh] lg:h-[80vh] "
+      className="relative min-h-[50vh] lg:min-h-[50vh] lg:h-[80vh] overflow-hidden"
       style={{
         backgroundImage: "url(/authbg.jpg)",
         backgroundSize: "cover",
