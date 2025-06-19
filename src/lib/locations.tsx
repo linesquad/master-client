@@ -60,3 +60,27 @@ export const locationsFeatures = [
     hasHover: true
   }
 ];
+
+
+export const locations = [
+  {
+    location: "California, United States (US)",
+    imageUrl: "/city.jpg",
+  },
+  {
+    location: "Queensland, Australia",
+    imageUrl: "/city.jpg",
+  },
+  {
+    location: "Ontario, Canada",
+    imageUrl: "/city.jpg",
+  },
+  {
+    location: "Alessandria, Italy",
+    imageUrl: "/city.jpg",
+  },
+  {
+    location: "West Greece, Greece",
+    imageUrl: "/city.jpg",
+  },
+];
