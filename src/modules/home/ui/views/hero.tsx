@@ -2,14 +2,16 @@ import HomeButton from "@/components/HomeButton";
 import MainWrapper from "@/components/MainWrapper";
 
 function hero() {
+  const dark = localStorage.getItem("theme");
+  console.log(dark)
   return (
     <div
-      className="relative min-h-[50vh] lg:min-h-[50vh] lg:h-[80vh] overflow-hidden"
-      style={{
-        backgroundImage: "url(/authbg.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="relative min-h-[50vh] lg:min-h-[50vh] lg:h-[80vh] overflow-hidden bg-[#4846F8] dark:bg-[#242526]"
+      // style={{
+      //   backgroundImage: "url(/authbg.jpg)",
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
     >
       <MainWrapper className="relative h-full">
         <div className="flex items-center justify-between h-full px-8  py-24 lg:py-12">

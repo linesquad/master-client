@@ -40,9 +40,6 @@ function Header() {
             </nav>
 
             <div className="flex items-center space-x-4">
-              {/* Theme Toggle */}
-              <ThemeToggle />
-
               {user ? (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-3">
