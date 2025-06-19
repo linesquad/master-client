@@ -4,7 +4,8 @@ import MostFamousCategories from "@/modules/home/ui/views/most-famous-categories
 import SubscribeNewsletter from "@/modules/home/ui/views/subscribe-newsletter";
 import SocialNetwork from "@/modules/home/ui/views/social-network";
 import LocationsHero from "@/modules/home/ui/views/locations-hero";
-  
+import ActiveMembers from "@/modules/home/ui/views/active-members";
+
 export const Route = createFileRoute({
   component: RouteComponent,
 });
@@ -15,6 +16,7 @@ function RouteComponent() {
       <Hero />
       <SocialNetwork />
       <LocationsHero />
+      <ActiveMembers />
       <FullyResponsiveCircle />
       <MostFamousCategories />
       <SubscribeNewsletter />

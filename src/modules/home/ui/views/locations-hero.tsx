@@ -20,7 +20,7 @@ function LocationsHero() {
             </p>
           </div>
         </div>
-        <div className="absolute flex items-center justify-center -bottom-10 right-0">
+        <div className="absolute flex items-center justify-center bottom-0 right-0">
           <img src="/locationsdecoration.png" alt="Locations decoration" className="w-auto h-auto " />
         </div>
       </MainWrapper>
