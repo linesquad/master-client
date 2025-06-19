@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./components/ThemeProvider";
+import "./lib/i18n"; 
 
 const queryClient = new QueryClient();
 

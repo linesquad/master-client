@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import { items } from "@/lib/sidebar";
+import Languages from "@/modules/home/ui/views/languages";
 
 export function SideBar() {
   return (
@@ -33,6 +34,7 @@ export function SideBar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <Languages />
     </Sidebar>
   );
 }

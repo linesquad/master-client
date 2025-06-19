@@ -6,6 +6,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { BurgerMenu } from "../home/ui/components/burger-menu/BurgerMenu";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
+
 function Header() {
   const { data: user } = useUser();
   const { mutate: logout } = useLogout();
