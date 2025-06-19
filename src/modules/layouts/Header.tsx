@@ -11,7 +11,7 @@ function Header() {
   const { mutate: logout } = useLogout();
   console.log(user);
   return (
-    <header className="bg-[#2C5BE3] dark:bg-[#1a365d] shadow-lg transition-colors duration-300">
+    <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300">
       <div className=" px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">

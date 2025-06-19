@@ -5,7 +5,7 @@ import DesktopImages from "../components/avtive-members/desktop/desktopImages";
 
 function ActiveMembers() {
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-4">
+    <div className="flex flex-col items-center justify-center py-20 px-4 dark:bg-[#18191A]">
       <h1 className="text-3xl md:text-4xl font-semibold mb-4 text-center text-foreground">
         Our Active Members
       </h1>

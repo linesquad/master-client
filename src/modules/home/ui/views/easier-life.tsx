@@ -2,7 +2,7 @@ import HomeButton from "@/components/HomeButton";
 
 function EasierLife() {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center py-20">
+    <div className="flex flex-col lg:flex-row items-center justify-center ">
       <div 
         className="flex flex-col items-center justify-center flex-1 h-[400px] lg:h-[500px] xl:h-[600px] w-full p-8 lg:p-12" 
         style={{

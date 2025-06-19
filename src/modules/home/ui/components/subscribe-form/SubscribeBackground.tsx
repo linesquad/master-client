@@ -1,6 +1,6 @@
 function SubscribeBackground() {
   return (
-    <div className="relative py-12 sm:py-16 md:py-20 text-center px-4 sm:px-6 lg:px-8 bg-[#F0F4F6] overflow-hidden">
+    <div className="relative py-12 sm:py-16 md:py-20 text-center px-4 sm:px-6 lg:px-8 bg-[#F0F4F6] dark:bg-[#18191A] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 right-1/3 w-4 h-4 bg-blue-400 rounded-full opacity-30 animate-bounce-slow" />
         <div className="absolute top-3/4 left-1/4 w-6 h-6 bg-purple-400 rounded-full opacity-25 animate-bounce-medium" />
@@ -12,7 +12,7 @@ function SubscribeBackground() {
       </div>
 
       <div className="relative z-10">
-        <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-3 sm:mb-4 px-2">
+        <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4 px-2">
           Subscribe to our newsletter
         </h3>
         <p className="text-base sm:text-md md:text-lg text-gray-400 max-w-xl mx-auto mb-10 px-2">
