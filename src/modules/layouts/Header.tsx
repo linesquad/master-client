@@ -4,8 +4,7 @@ import { useUser } from "../auth/hooks/useUser";
 import { useLogout } from "../auth/hooks/useLogout";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { BurgerMenu } from "../home/ui/components/burger-menu/BurgerMenu";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-
+import SearchNav from "../home/ui/views/search-nav";
 
 function Header() {
   const { data: user } = useUser();
@@ -28,7 +27,8 @@ function Header() {
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <nav className="flex space-x-6">
+          <SearchNav />
+            <nav className="flex space-x-2">
               {header.map((item) => (
                 <Link
                   to={item.to}
@@ -38,6 +38,7 @@ function Header() {
                   {item.name}
                 </Link>
               ))}
+               
             </nav>
 
             <div className="flex items-center space-x-4">
@@ -63,13 +64,13 @@ function Header() {
                 <div className="flex items-center space-x-3">
                   <Link
                     to="/login"
-                    className="text-white/90 hover:text-white px-4 py-2.5 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-white/10 dark:hover:bg-white/5 rounded-lg border border-transparent hover:border-white/20 dark:hover:border-white/10 backdrop-blur-sm cursor-pointer"
+                    className="text-white/90 hover:text-white px-2 py-1.5 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-white/10 dark:hover:bg-white/5 rounded-sm border border-transparent hover:border-white/20 dark:hover:border-white/10 backdrop-blur-sm cursor-pointer"
                   >
                     Sign In
                   </Link>
                   <Link
                     to="/register"
-                    className="bg-white dark:bg-gray-100 text-[#2C5BE3] dark:text-[#1a365d] px-5 py-2.5 text-sm font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-200 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] dark:focus:ring-offset-[#1a365d] shadow-lg hover:shadow-xl hover:scale-105 transform cursor-pointer"
+                    className="bg-white dark:bg-gray-100 text-[#2C5BE3] dark:text-[#1a365d] px-3 py-1.5 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-200 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] dark:focus:ring-offset-[#1a365d] shadow-lg hover:shadow-xl hover:scale-105 transform cursor-pointer"
                   >
                     Get Started
                   </Link>
@@ -77,9 +78,9 @@ function Header() {
               )}
             </div>
           </div>
-
           <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
+            <SearchNav />
             <BurgerMenu />
           </div>
         </div>
