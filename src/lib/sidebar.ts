@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Home, Info, Mail } from "lucide-react";
 
 export const items = [
   {
@@ -7,23 +7,13 @@ export const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "/inbox",
-    icon: Inbox,
+    title: "About",
+    url: "/about",
+    icon: Info,
   },
   {
-    title: "Calendar",
-    url: "/calendar",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "/search",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings,
-  },
+    title: "Contact",
+    url: "/contact",
+    icon: Mail,
+  }
 ];

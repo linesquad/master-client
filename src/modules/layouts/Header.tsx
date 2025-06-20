@@ -1,4 +1,3 @@
-import { header } from "@/lib/header";
 import { Link } from "@tanstack/react-router";
 import { useUser } from "../auth/hooks/useUser";
 import { useLogout } from "../auth/hooks/useLogout";
@@ -19,16 +18,18 @@ function Header() {
               <div className="flex items-center p-1 bg-gray-100 dark:bg-gray-800 rounded-md transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
                 <SidebarTrigger className="transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer" />
               </div>
-              <div className="flex items-center">
-                <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
-                <span className="ml-3 text-xl font-bold text-white">IRKLE</span>
-              </div>
+              <Link to="/">
+                <div className="flex items-center">
+                  <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
+                  <span className="ml-3 text-xl font-bold text-white">IRKLE</span>
+                </div>
+              </Link>
             </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
           <SearchNav />
-            <nav className="flex space-x-2">
+            {/* <nav className="flex space-x-2">
               {header.map((item) => (
                 <Link
                   to={item.to}
@@ -39,7 +40,7 @@ function Header() {
                 </Link>
               ))}
                
-            </nav>
+            </nav> */}
 
             <div className="flex items-center space-x-4">
               {user ? (
@@ -80,7 +81,7 @@ function Header() {
           </div>
           <div className="md:hidden flex items-center space-x-2">
             {/* <ThemeToggle /> */}
-            <SearchNav />
+            {/* <SearchNav /> */}
             <BurgerMenu />
           </div>
         </div>

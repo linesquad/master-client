@@ -14,17 +14,19 @@ L.Icon.Default.mergeOptions({
 
 function MyMap() {
   return (
-    <MapContainer center={[41.7283231, 44.7714563]} zoom={13} style={{ height: '400px', width: '100%' }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; OpenStreetMap contributors"
-      />
-      <Marker position={[41.7283231, 44.7714563]}>
-        <Popup>
-          Tbilisi, Georgia
-        </Popup>
-      </Marker>
-    </MapContainer>
+    <div style={{ zIndex: 1 }}>
+      <MapContainer center={[41.7283231, 44.7714563]} zoom={13} style={{ height: '600px', width: '100%', zIndex: 1 }}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap contributors"
+        />
+        <Marker position={[41.7283231, 44.7714563]}>
+          <Popup>
+            Tbilisi, Georgia
+          </Popup>
+        </Marker>
+      </MapContainer>
+    </div>
   );
 }
 
