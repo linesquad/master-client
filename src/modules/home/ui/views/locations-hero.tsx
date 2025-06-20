@@ -6,7 +6,7 @@ function LocationsHero() {
       <MainWrapper>
         <div className="flex flex-col lg:flex-row items-center justify-around w-full gap-12 lg:gap-16">
           <div className=" flex items-center justify-center">
-            <img src="/whitelocations.png" className="absolute w-[60%] h-[30%] lg:h-[70%] object-cover" />
+            <img src="/whitelocations.png" className="absolute top-0 lg:bottom-0 lg:top-auto w-full sm:w-[70%] h-[30%] lg:h-[70%] object-cover" />
           </div>
           <div className=" flex flex-col items-start justify-center max-w-xl  px-6 z-10 gap-4">
             <h2 className="text-3xl font-semibold text-[#2C5BE3] dark:text-white">

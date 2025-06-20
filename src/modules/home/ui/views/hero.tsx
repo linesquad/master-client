@@ -6,7 +6,7 @@ function hero() {
   console.log(dark)
   return (
     <div
-      className="relative min-h-[50vh] lg:min-h-[50vh] lg:h-[80vh] overflow-hidden bg-[#4846F8] dark:bg-[#242526]"
+      className="relative py-20 overflow-hidden bg-[#4846F8] dark:bg-[#242526]"
       // style={{
       //   backgroundImage: "url(/authbg.jpg)",
       //   backgroundSize: "cover",
@@ -41,12 +41,12 @@ function hero() {
                 backgroundSize: "cover",
                 backgroundPosition: "top",
               }}
-              className="w-full h-[400px]"
+              className="w-full h-[400px] opacity-100"
             />
           </div>
         </div>
         <div
-          className="absolute -bottom-50 lg:bottom-0  -left-40 w-full h-[300px]"
+          className="absolute -bottom-50 lg:-bottom-30 lg:-left-30 w-full h-[300px]"
           style={{
             backgroundImage: "url(/herolocations.png)",
             backgroundSize: "cover",
