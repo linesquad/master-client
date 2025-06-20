@@ -18,6 +18,7 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as appContactRouteImport } from './routes/(app)/contact'
+import { Route as appFindRouteImport } from './routes/(app)/Find'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -52,10 +53,16 @@ const appContactRoute = appContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => appRouteRoute,
 } as any)
+const appFindRoute = appFindRouteImport.update({
+  id: '/Find',
+  path: '/Find',
+  getParentRoute: () => appRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof appIndexRoute
   '': typeof AuthenticatedRouteWithChildren
+  '/Find': typeof appFindRoute
   '/contact': typeof appContactRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
@@ -63,6 +70,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '': typeof AuthenticatedRouteWithChildren
+  '/Find': typeof appFindRoute
   '/contact': typeof appContactRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
@@ -73,6 +81,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(app)': typeof appRouteRouteWithChildren
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/(app)/Find': typeof appFindRoute
   '/(app)/contact': typeof appContactRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
@@ -81,13 +90,21 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/contact' | '/login' | '/register' | '/profile'
+  fullPaths:
+    | '/'
+    | ''
+    | '/Find'
+    | '/contact'
+    | '/login'
+    | '/register'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/contact' | '/login' | '/register' | '/profile' | '/'
+  to: '' | '/Find' | '/contact' | '/login' | '/register' | '/profile' | '/'
   id:
     | '__root__'
     | '/(app)'
     | '/_authenticated'
+    | '/(app)/Find'
     | '/(app)/contact'
     | '/(auth)/login'
     | '/(auth)/register'
@@ -117,6 +134,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(app)/Find': {
+      id: '/(app)/Find'
+      path: '/Find'
+      fullPath: '/Find'
+      preLoaderRoute: typeof appFindRouteImport
+      parentRoute: typeof appRouteRoute
     }
     '/(app)/contact': {
       id: '/(app)/contact'
@@ -174,6 +198,15 @@ declare module './routes/_authenticated' {
     FileRoutesByPath['/_authenticated']['fullPath']
   >
 }
+declare module './routes/(app)/Find' {
+  const createFileRoute: CreateFileRoute<
+    '/(app)/Find',
+    FileRoutesByPath['/(app)/Find']['parentRoute'],
+    FileRoutesByPath['/(app)/Find']['id'],
+    FileRoutesByPath['/(app)/Find']['path'],
+    FileRoutesByPath['/(app)/Find']['fullPath']
+  >
+}
 declare module './routes/(app)/contact' {
   const createFileRoute: CreateFileRoute<
     '/(app)/contact',
@@ -221,11 +254,13 @@ declare module './routes/(app)/index' {
 }
 
 interface appRouteRouteChildren {
+  appFindRoute: typeof appFindRoute
   appContactRoute: typeof appContactRoute
   appIndexRoute: typeof appIndexRoute
 }
 
 const appRouteRouteChildren: appRouteRouteChildren = {
+  appFindRoute: appFindRoute,
   appContactRoute: appContactRoute,
   appIndexRoute: appIndexRoute,
 }
