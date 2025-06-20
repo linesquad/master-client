@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "@tanstack/react-router"
+import { useState } from "react"
 
 import {
   Sheet,
@@ -13,8 +14,14 @@ import { MenuIcon } from "lucide-react"
 import { burgerPaths } from "@/lib/burgerPaths"
 
   export function BurgerMenu() {
+  const [open, setOpen] = useState(false)
+
+  const handleLinkClick = () => {
+    setOpen(false)
+  }
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="outline">
           <MenuIcon className="w-6 h-6" />
@@ -33,7 +40,7 @@ import { burgerPaths } from "@/lib/burgerPaths"
         <div className="grid flex-1 auto-rows-min gap-6 px-4">
           <div className="grid gap-6">
             {burgerPaths.map((path) => (
-              <Link to={path.path} key={path.name}>
+              <Link to={path.path} key={path.name} onClick={handleLinkClick}>
                 <span className="text-lg font-medium transition-all duration-300 hover:text-indigo-600">{path.name}</span>
               </Link>
             ))}

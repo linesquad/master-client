@@ -4,15 +4,11 @@ export const burgerPaths = [
     path: "/",
   },
   {
-    name: "Community",
-    path: "/community",
+    name: "About",
+    path: "/about",
   },
   {
-    name: "Pages",
-    path: "/pages",
-  },
-  {
-    name: "Shop",
-    path: "/shop",
+    name: "Contact",
+    path: "/contact",
   },
 ];
