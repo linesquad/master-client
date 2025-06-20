@@ -4,6 +4,7 @@ import { useLogout } from "../auth/hooks/useLogout";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { BurgerMenu } from "../home/ui/components/burger-menu/BurgerMenu";
 import SearchNav from "../home/ui/views/search-nav";
+import { DrawerDemo } from "./search/Drawer";
 
 function Header() {
   const { data: user } = useUser();
@@ -82,6 +83,7 @@ function Header() {
           <div className="md:hidden flex items-center space-x-2">
             {/* <ThemeToggle /> */}
             {/* <SearchNav /> */}
+            <DrawerDemo />
             <BurgerMenu />
           </div>
         </div>
