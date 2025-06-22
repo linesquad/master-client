@@ -10,7 +10,7 @@ function FindBanner() {
     <div className="flex items-center">
       <div className="p-3 rounded-full mr-4">
         <Megaphone
-          className="w-30 h-30 text-white"
+          className="w-20 h-20 sm:w-30 sm:h-30 text-white"
         />
       </div>
       <div>
