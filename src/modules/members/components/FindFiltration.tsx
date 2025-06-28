@@ -39,15 +39,24 @@ function FindFiltration() {
   const [serviceDialogOpen, setServiceDialogOpen] = useState(false);
 
   const { data: categories, isLoading } = useCategory();
+
+  // Find the selected category by name to get its ID for API call
+  const selectedCategoryName = searchParams.category || null;
+  const selectedCategoryData = categories?.data?.find((cat: Category) => 
+    cat.name.en.toLowerCase().replace(/\s+/g, '-') === selectedCategoryName?.toLowerCase()
+  ) || null;
+
   const { data: jobs, isLoading: isJobsLoading } = useJobByCategoryId(
-    searchParams.category || ""
+    selectedCategoryData?.id || ""
   );
 
-  // Get selected items from URL
+  // Get selected items from URL using names
   const selectedLocation = searchParams.location || null;
-  const selectedCategory = searchParams.category || null;
-  const selectedJobId = searchParams.job || null;
-  const selectedJob = jobs?.data?.find((job: Job) => job.id === selectedJobId) || null;
+  const selectedCategory = selectedCategoryName;
+  const selectedJobName = searchParams.job || null;
+  const selectedJob = jobs?.data?.find((job: Job) => 
+    job.title.en.toLowerCase().replace(/\s+/g, '-') === selectedJobName?.toLowerCase()
+  ) || null;
 
   if (isLoading) {
     return <FindFiltrationSkeleton />;
@@ -93,14 +102,20 @@ function FindFiltration() {
   };
 
   const handleServiceClick = (serviceId: string) => {
-    updateSearchParams({ category: serviceId, job: undefined }); // Clear job when category changes
+    // Find the category by ID to get its name
+    const category = categoriesArray.find((cat: Category) => cat.id === serviceId);
+    const categoryName = category ? category.name.en.toLowerCase().replace(/\s+/g, '-') : serviceId;
+    
+    updateSearchParams({ category: categoryName, job: undefined }); // Clear job when category changes
     setShowJobs(true);
     setShowServices(false);
     setServiceDialogOpen(false);
   };
 
   const handleJobClick = (job: Job) => {
-    updateSearchParams({ job: job.id });
+    // Convert job title to URL-friendly format
+    const jobName = job.title.en.toLowerCase().replace(/\s+/g, '-');
+    updateSearchParams({ job: jobName });
     setShowJobs(false);
   };
 
@@ -152,7 +167,7 @@ function FindFiltration() {
             <button
               key={item.id}
               className={`cursor-pointer group flex items-center justify-between p-4 text-left rounded-lg transition-all duration-200 hover:shadow-md ${
-                selectedCategory === item.id
+                selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, '-')
                   ? "bg-indigo-100 dark:bg-indigo-900/30 border-indigo-300 dark:border-indigo-600"
                   : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
               }`}
@@ -162,12 +177,12 @@ function FindFiltration() {
             >
               <div className="flex items-center gap-3">
                 <div className={`w-2 h-2 rounded-full transition-opacity ${
-                  selectedCategory === item.id
+                  selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, '-')
                     ? "bg-indigo-600 opacity-100"
                     : "bg-indigo-500 opacity-60 group-hover:opacity-100"
                 }`}></div>
                 <span className={`font-medium transition-colors ${
-                  selectedCategory === item.id
+                  selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, '-')
                     ? "text-indigo-700 dark:text-indigo-300"
                     : "text-gray-900 dark:text-white group-hover:text-indigo-700 dark:group-hover:text-indigo-300"
                 }`}>
@@ -175,7 +190,7 @@ function FindFiltration() {
                 </span>
               </div>
               <ChevronRight className={`w-4 h-4 transition-colors ${
-                selectedCategory === item.id
+                selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, '-')
                   ? "text-indigo-600"
                   : "text-gray-400 group-hover:text-indigo-500"
               }`} />
@@ -236,40 +251,47 @@ function FindFiltration() {
           </div>
         ) : (
           <div className="space-y-3">
-            {jobs?.data?.map((job: Job, index: number) => (
-              <div
-                key={job.id}
-                className="cursor-pointer group p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/10 transition-all duration-200 hover:shadow-md"
-                onClick={() => handleJobClick(job)}
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="inline-flex items-center justify-center w-6 h-6 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full">
-                        {index + 1}
-                      </span>
-                      <h4 className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors truncate">
-                        {job.title.en}
-                      </h4>
-                    </div>
-                    {job.description && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2 leading-relaxed">
-                        {job.description.en}
-                      </p>
-                    )}
-                    {job.location && (
-                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                        <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
-                        <span className="truncate">{job.location}</span>
+            {jobs?.data?.map((job: Job, index: number) => {
+              const isSelected = selectedJob?.title.en.toLowerCase().replace(/\s+/g, '-') === job.title.en.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <div
+                  key={job.id}
+                  className={`cursor-pointer group p-4 border rounded-lg transition-all duration-200 hover:shadow-md ${
+                    isSelected
+                      ? "bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-600"
+                      : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/10"
+                  }`}
+                  onClick={() => handleJobClick(job)}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="inline-flex items-center justify-center w-6 h-6 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full">
+                          {index + 1}
+                        </span>
+                        <h4 className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors truncate">
+                          {job.title.en}
+                        </h4>
                       </div>
-                    )}
-                  </div>
-                  <div className="ml-4 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1">
-                    <ChevronRight className="w-5 h-5 text-green-500" />
+                      {job.description && (
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2 leading-relaxed">
+                          {job.description.en}
+                        </p>
+                      )}
+                      {job.location && (
+                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                          <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
+                          <span className="truncate">{job.location}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="ml-4 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-1">
+                      <ChevronRight className="w-5 h-5 text-green-500" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -305,7 +327,7 @@ function FindFiltration() {
                 {selectedCategory && (
                   <span className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 dark:bg-indigo-800 text-indigo-800 dark:text-indigo-200 text-xs font-medium rounded-md sm:rounded-lg">
                     <Briefcase className="w-3 h-3 flex-shrink-0" />
-                    <span className="truncate max-w-[80px] sm:max-w-none">{categoriesArray.find((cat: Category) => cat.id === selectedCategory)?.name.en || 'Service'}</span>
+                    <span className="truncate max-w-[80px] sm:max-w-none">{selectedCategoryData?.name.en || selectedCategory.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
                   </span>
                 )}
                 {selectedJob && (
@@ -372,7 +394,7 @@ function FindFiltration() {
                       Type of Service
                     </p>
                     <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm truncate">
-                      {selectedJob ? selectedJob.title.en : selectedCategory ? categoriesArray.find((cat: Category) => cat.id === selectedCategory)?.name.en : "Add Service"}
+                      {selectedJob ? selectedJob.title.en : selectedCategoryData ? selectedCategoryData.name.en : selectedCategory ? selectedCategory.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : "Add Service"}
                     </p>
                   </div>
                 </div>
