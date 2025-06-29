@@ -4,6 +4,8 @@ import {
   AlertDialog,
   AlertDialogContent,
   AlertDialogTrigger,
+  AlertDialogTitle,
+  AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
 import {
   Drawer,
@@ -80,6 +82,8 @@ export function ResponsiveModal({
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent className={`bg-white dark:bg-gray-900 ${maxWidthClasses[maxWidth]} h-[80vh] p-0 gap-0 ${className}`}>
+        <AlertDialogTitle className="sr-only">{title}</AlertDialogTitle>
+        <AlertDialogDescription className="sr-only">{description}</AlertDialogDescription>
         {showCloseButton && onOpenChange && (
           <button
             onClick={() => onOpenChange(false)}

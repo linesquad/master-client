@@ -37,6 +37,12 @@ export const LocationSelectionContent = ({
     (event.target as HTMLButtonElement).blur();
     setTimeout(() => onCityPartClick(cityPartName), 10);
   };
+
+  const handleBackClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    (event.target as HTMLButtonElement).blur();
+    setTimeout(() => onBackToCities(), 10);
+  };
+
   if (showCityParts || shouldShowCityParts) {
     // Show city parts view
     return (
@@ -45,7 +51,7 @@ export const LocationSelectionContent = ({
         <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <div className="flex items-center gap-3">
             <button
-              onClick={onBackToCities}
+              onClick={handleBackClick}
               className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
             >
               <ChevronRight className="w-5 h-5 text-blue-600 dark:text-blue-400 rotate-180" />
