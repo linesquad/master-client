@@ -47,10 +47,14 @@ function FindCardData({
             <div className="flex items-center gap-1">
               <Star className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 fill-current" />
               <span className="text-sm font-medium text-gray-900 dark:text-white">
-                {parseFloat(master.avgRating).toFixed(1)}
+                {master.reviewCount === "0" || !master.avgRating 
+                  ? "New" 
+                  : parseFloat(master.avgRating).toFixed(1)}
               </span>
               <span className="text-xs text-gray-500 dark:text-gray-400">
-                ({master.reviewCount} reviews)
+                {master.reviewCount === "0" 
+                  ? "(No reviews yet)" 
+                  : `(${master.reviewCount} reviews)`}
               </span>
             </div>
           </div>

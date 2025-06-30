@@ -1,6 +1,6 @@
 function FindFiltrationSkeleton() {
   return (
-    <div className="sticky top-5 z-50 mb-8">
+    <div className="mb-8">
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl border border-gray-200 dark:border-gray-700 animate-pulse">
         <div className="flex items-center">
           <div className="flex-1 rounded-l-3xl p-6">

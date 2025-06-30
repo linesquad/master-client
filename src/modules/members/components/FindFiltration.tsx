@@ -136,44 +136,37 @@ function FindFiltration() {
     setTempSelectedCityId(null);
   };
 
-  // Focus management handlers
+  // Click handlers (removed unnecessary focus management)
   const handleServiceClickWithFocus = (
     serviceId: string,
-    event: React.MouseEvent<HTMLButtonElement>
+    
   ) => {
-    (event.target as HTMLButtonElement).blur();
-    setTimeout(() => handleServiceClick(serviceId), 10);
+    handleServiceClick(serviceId);
   };
 
   const handleCityClickWithFocus = (
     cityId: string,
-    event: React.MouseEvent<HTMLButtonElement>
+  
   ) => {
-    (event.target as HTMLButtonElement).blur();
-    setTimeout(() => handleCityClick(cityId), 10);
+    handleCityClick(cityId);
   };
 
   const handleCityPartClickWithFocus = (
     cityPartId: string,
-    event: React.MouseEvent<HTMLButtonElement>
+   
   ) => {
-    (event.target as HTMLButtonElement).blur();
-    setTimeout(() => handleCityPartClick(cityPartId), 10);
+    handleCityPartClick(cityPartId);
   };
 
   const handleJobClickWithFocus = (
     job: Job,
-    event: React.MouseEvent<HTMLButtonElement>
+ 
   ) => {
-    (event.target as HTMLButtonElement).blur();
-    setTimeout(() => handleJobClick(job), 10);
+    handleJobClick(job);
   };
 
-  const handleBackClickWithFocus = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    (event.target as HTMLButtonElement).blur();
-    setTimeout(() => handleBackToCities(), 10);
+  const handleBackClickWithFocus = () => {
+    handleBackToCities();
   };
 
   // Check if any filters are active
@@ -199,7 +192,7 @@ function FindFiltration() {
   };
 
   return (
-    <div className="sticky top-2 sm:top-5 z-40 mb-4 sm:mb-8">
+    <div className="mb-4 sm:mb-8">
       {/* Active Filters Display */}
       {hasActiveFilters && (
         <ActiveFilters
@@ -248,11 +241,7 @@ function FindFiltration() {
                     cityPartsArray={cityPartsArray}
                     isCityPartsLoading={isCityPartsLoading}
                     selectedCityPartId={selectedCityPartId || ""}
-                    handleBackClickWithFocus={() =>
-                      handleBackClickWithFocus(
-                        null as unknown as React.MouseEvent<HTMLButtonElement>
-                      )
-                    }
+                    handleBackClickWithFocus={handleBackClickWithFocus}
                     handleCityPartClickWithFocus={handleCityPartClickWithFocus}
                   />
                 </>

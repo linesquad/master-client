@@ -9,7 +9,10 @@ function CityFilterSection({
 }: {
   citiesArray: City[];
   isCitiesLoading: boolean;
-  handleCityClickWithFocus: (cityId: string, event: React.MouseEvent<HTMLButtonElement>) => void;
+  handleCityClickWithFocus: (
+    cityId: string,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void;
 }) {
   return (
     <>
@@ -53,10 +56,11 @@ function CityFilterSection({
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-3">
-            {citiesArray.map((city: any) => {
+            {citiesArray.map((city: City) => {
               const cityName = city.name || `city-${city.id}`;
               return (
                 <CityFilterButton
+                  key={city.id}
                   city={city}
                   cityName={cityName}
                   handleCityClickWithFocus={handleCityClickWithFocus}
@@ -74,7 +78,7 @@ function CityFilterSection({
             Scroll to view more options • {citiesArray.length} cities available
           </p>
         </div>
-      )} 
+      )}
     </>
   );
 }
