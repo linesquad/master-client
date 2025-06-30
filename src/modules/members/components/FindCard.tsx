@@ -17,7 +17,11 @@ function FindCard() {
     city: searchParams.cityId,
     cityPart: searchParams.cityPartId,
     categoryId: searchParams.categoryId,
+    jobId: searchParams.jobId,
     availability: searchParams.availability,
+    hasReviews: searchParams.hasReviews,
+    minPrice: searchParams.minPrice ? parseFloat(searchParams.minPrice) : undefined,
+    maxPrice: searchParams.maxPrice ? parseFloat(searchParams.maxPrice) : undefined,
     minRating: searchParams.minRating
       ? parseFloat(searchParams.minRating)
       : undefined,

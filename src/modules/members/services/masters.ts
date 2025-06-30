@@ -5,7 +5,11 @@ interface SearchMasterParams {
   city?: string;
   cityPart?: string;
   categoryId?: string;
+  jobId?: string;
   availability?: string;
+  hasReviews?: string;
+  minPrice?: number;
+  maxPrice?: number;
   minRating?: number;
   sortBy?: string;
   page?: number;
@@ -31,7 +35,11 @@ export const searchMasters = async (params?: SearchMasterParams) => {
     if (params?.city) queryParams.append('city', params.city);
     if (params?.cityPart) queryParams.append('cityPart', params.cityPart);
     if (params?.categoryId) queryParams.append('categoryId', params.categoryId);
+    if (params?.jobId) queryParams.append('jobId', params.jobId);
     if (params?.availability) queryParams.append('availability', params.availability);
+    if (params?.hasReviews) queryParams.append('hasReviews', params.hasReviews);
+    if (params?.minPrice) queryParams.append('minPrice', params.minPrice.toString());
+    if (params?.maxPrice) queryParams.append('maxPrice', params.maxPrice.toString());
     if (params?.minRating) queryParams.append('minRating', params.minRating.toString());
     if (params?.sortBy) queryParams.append('sortBy', params.sortBy);
     if (params?.page) queryParams.append('page', params.page.toString());

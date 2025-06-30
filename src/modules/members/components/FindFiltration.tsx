@@ -10,6 +10,9 @@ import ResponsiveModal from "@/components/ResponsiveModal";
 import { type SearchParams, type Category, type Job } from "../types/member";
 import JobsFiltration from "./findFiltrations/JobsFiltration";
 import ServiceFiltraiton from "./findFiltrations/ServiceFiltraiton";
+import AvailabilityFilter from "./findFiltrations/AvailabilityFilter";
+import PriceRangeFilter from "./findFiltrations/PriceRangeFilter";
+import ReviewsFilter from "./findFiltrations/ReviewsFilter";
 
 import CityPartSection from "./findFiltrations/CityPartSection";
 
@@ -23,6 +26,9 @@ function FindFiltration() {
   const [showJobs, setShowJobs] = useState(false);
   const [serviceDialogOpen, setServiceDialogOpen] = useState(false);
   const [locationDialogOpen, setLocationDialogOpen] = useState(false);
+  const [availabilityDialogOpen, setAvailabilityDialogOpen] = useState(false);
+  const [priceDialogOpen, setPriceDialogOpen] = useState(false);
+  const [reviewsDialogOpen, setReviewsDialogOpen] = useState(false);
   const [tempSelectedCityId, setTempSelectedCityId] = useState<string | null>(
     null
   );
@@ -45,6 +51,10 @@ function FindFiltration() {
   const selectedCityPartId = searchParams.cityPartId || null;
   const selectedCityId = searchParams.cityId || null;
   const selectedJobId = searchParams.jobId || null;
+  const availability = searchParams.availability || null;
+  const hasReviews = searchParams.hasReviews || null;
+  const minPrice = searchParams.minPrice || null;
+  const maxPrice = searchParams.maxPrice || null;
 
   // Prepare data arrays
   const categoriesArray = categories?.data || [];
@@ -132,6 +142,9 @@ function FindFiltration() {
     setShowJobs(false);
     setServiceDialogOpen(false);
     setLocationDialogOpen(false);
+    setAvailabilityDialogOpen(false);
+    setPriceDialogOpen(false);
+    setReviewsDialogOpen(false);
     setShowCityParts(false);
     setTempSelectedCityId(null);
   };
@@ -169,9 +182,21 @@ function FindFiltration() {
     handleBackToCities();
   };
 
+  const handleAvailabilityChange = (availability?: string) => {
+    updateSearchParams({ availability });
+  };
+
+  const handlePriceChange = (minPrice?: string, maxPrice?: string) => {
+    updateSearchParams({ minPrice, maxPrice });
+  };
+
+  const handleReviewsChange = (hasReviews?: string) => {
+    updateSearchParams({ hasReviews });
+  };
+
   // Check if any filters are active
   const hasActiveFilters =
-    selectedCityPartId || selectedCityId || selectedCategoryId || selectedJobId;
+    selectedCityPartId || selectedCityId || selectedCategoryId || selectedJobId || availability || hasReviews || minPrice || maxPrice;
 
   const getLocationDisplayText = () => {
     if (selectedCityPartData && selectedCityData) {
@@ -202,13 +227,18 @@ function FindFiltration() {
           selectedCityData={selectedCityData}
           selectedCategoryData={selectedCategoryData}
           selectedJob={selectedJob}
+          availability={availability || undefined}
+          hasReviews={hasReviews || undefined}
+          minPrice={minPrice || undefined}
+          maxPrice={maxPrice || undefined}
           handleResetFilters={handleResetFilters}
         />
       )}
 
       <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl hover:shadow-xl sm:hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-700">
-        <div className="flex flex-col sm:flex-row sm:items-center">
-          {/* Location - Responsive Modal */}
+        {/* Main Filters Row */}
+        <div className="flex flex-col 2xl:flex-row 2xl:items-center">
+          {/* Location */}
           <ResponsiveModal
             open={locationDialogOpen}
             onOpenChange={setLocationDialogOpen}
@@ -216,50 +246,45 @@ function FindFiltration() {
             description="Choose from available cities to filter your search"
             maxWidth="3xl"
             trigger={
-              <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 rounded-t-2xl sm:rounded-l-3xl sm:rounded-tr-none p-4 sm:p-6 transition-all duration-300 group">
-                <div className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0">
-                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500 group-hover:text-blue-600 transition-colors duration-200" />
+              <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 rounded-t-2xl 2xl:rounded-l-3xl 2xl:rounded-tr-none p-3 sm:p-4 lg:p-6 transition-all duration-300 group">
+                                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="flex-shrink-0">
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-200" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors duration-200">
+                        Where
+                      </p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs truncate">
+                        {getLocationDisplayText()}
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors duration-200">
-                      Where
-                    </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm truncate">
-                      {getLocationDisplayText()}
-                    </p>
-                  </div>
-                </div>
               </div>
             }
           >
-            {/* Location Selection Content */}
             <div className="flex flex-col h-full">
               {showCityParts || shouldShowCityParts ? (
-                <>
-                  <CityPartSection
-                    cityPartsArray={cityPartsArray}
-                    isCityPartsLoading={isCityPartsLoading}
-                    selectedCityPartId={selectedCityPartId || ""}
-                    handleBackClickWithFocus={handleBackClickWithFocus}
-                    handleCityPartClickWithFocus={handleCityPartClickWithFocus}
-                  />
-                </>
+                <CityPartSection
+                  cityPartsArray={cityPartsArray}
+                  isCityPartsLoading={isCityPartsLoading}
+                  selectedCityPartId={selectedCityPartId || ""}
+                  handleBackClickWithFocus={handleBackClickWithFocus}
+                  handleCityPartClickWithFocus={handleCityPartClickWithFocus}
+                />
               ) : (
-                <>
-                  <CityFilterSection
-                    citiesArray={citiesArray}
-                    isCitiesLoading={isCitiesLoading}
-                    handleCityClickWithFocus={handleCityClickWithFocus}
-                  />
-                </>
+                <CityFilterSection
+                  citiesArray={citiesArray}
+                  isCitiesLoading={isCitiesLoading}
+                  handleCityClickWithFocus={handleCityClickWithFocus}
+                />
               )}
             </div>
           </ResponsiveModal>
 
-          <div className="h-px sm:h-16 sm:w-px bg-gradient-to-r sm:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-          {/* Type of Service - Responsive Modal */}
+          {/* Type of Service */}
           <ServiceFiltraiton
             serviceDialogOpen={serviceDialogOpen}
             setServiceDialogOpen={setServiceDialogOpen}
@@ -269,11 +294,42 @@ function FindFiltration() {
             getServiceDisplayText={getServiceDisplayText}
           />
 
-          <div className="flex flex-col sm:flex-row items-center gap-2 p-3 sm:p-0">
+          <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+
+          {/* Availability Filter */}
+          <AvailabilityFilter
+            availability={availability || undefined}
+            onAvailabilityChange={handleAvailabilityChange}
+            availabilityDialogOpen={availabilityDialogOpen}
+            setAvailabilityDialogOpen={setAvailabilityDialogOpen}
+          />
+
+          <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+
+          {/* Price Range Filter */}
+          <PriceRangeFilter
+            minPrice={minPrice || undefined}
+            maxPrice={maxPrice || undefined}
+            onPriceChange={handlePriceChange}
+            priceDialogOpen={priceDialogOpen}
+            setPriceDialogOpen={setPriceDialogOpen}
+          />
+
+          <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+
+          {/* Reviews Filter */}
+          <ReviewsFilter
+            hasReviews={hasReviews || undefined}
+            onReviewsChange={handleReviewsChange}
+            reviewsDialogOpen={reviewsDialogOpen}
+            setReviewsDialogOpen={setReviewsDialogOpen}
+          />
+
+          <div className="flex flex-col 2xl:flex-row items-center gap-2 p-3 2xl:p-0">
             {hasActiveFilters && (
               <button
                 onClick={handleResetFilters}
-                className="cursor-pointer flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg sm:rounded-xl transition-all duration-200 w-full sm:w-auto justify-center sm:justify-start"
+                className="cursor-pointer flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg 2xl:rounded-xl transition-all duration-200 w-full 2xl:w-auto justify-center 2xl:justify-start"
                 title="Reset all filters"
               >
                 <RotateCcw className="w-4 h-4" />

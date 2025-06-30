@@ -26,16 +26,16 @@ function ServiceFiltraiton({
       description="Choose from available service categories to filter your search"
       maxWidth="3xl"
       trigger={
-        <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 rounded-b-2xl sm:rounded-r-3xl sm:rounded-bl-none p-4 sm:p-6 transition-all duration-300 group">
-          <div className="flex items-center space-x-3 sm:space-x-4">
+        <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 p-3 sm:p-4 lg:p-6 transition-all duration-300 group">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <div className="flex-shrink-0">
-              <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-500 group-hover:text-indigo-600 transition-colors duration-200" />
+              <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-500 group-hover:text-indigo-600 transition-colors duration-200" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-900 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                Type of Service
+              <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-900 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                Service
               </p>
-              <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm truncate">
+              <p className="text-gray-500 dark:text-gray-400 text-xs truncate">
                 {getServiceDisplayText()}
               </p>
             </div>

@@ -5,6 +5,9 @@ export interface SearchParams {
   categoryId?: string;
   jobId?: string;
   availability?: string;
+  hasReviews?: string;
+  minPrice?: string;
+  maxPrice?: string;
   minRating?: string;
   sortBy?: string;
   page?: string;
