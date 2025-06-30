@@ -1,31 +1,136 @@
+import { useSearchMaster } from "../hooks/useSearchMaster";
+import { useSearch } from "@tanstack/react-router";
+import type { Master, SearchParams } from "../types/member";
+import FindCardData from "./findcard/FindCardData";
+import FindCardLoading from "./findcard/FindCardLoading";
+import FindCardError from "./findcard/FindCardError";
+import FindCardNoData from "./findcard/FindCardNoData";
 
 function FindCard() {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-    <div className="flex items-center mb-4">
-      <img
-        src="https://i.pravatar.cc/48?u=1"
-        alt="avatar"
-        className="w-12 h-12 rounded-full mr-4"
-      />
-      <div>
-        <p className="font-semibold dark:text-white">
-          Rebeca Powel <span className="text-blue-500">✔</span>{" "}
-          posted an update
-        </p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          4 Years Ago
-        </p>
-      </div>
-    </div>
+  const searchParams = useSearch({ strict: false }) as SearchParams;
 
-    <p className="text-gray-700 dark:text-gray-300 mb-4">
-      Sed ut perspiciatis unde omnis natus error sit voluptatem
-      accusantium der doloremque laudantium Sed ut perspicia tisery.
-      I'll be uploading new content every day, improving the quality.
-    </p>
-  </div>
-  )
+  const searchMasterParams = {
+    search: searchParams.search,
+    city: searchParams.cityId,
+    cityPart: searchParams.cityPartId,
+    categoryId: searchParams.categoryId,
+    availability: searchParams.availability,
+    minRating: searchParams.minRating
+      ? parseFloat(searchParams.minRating)
+      : undefined,
+    sortBy: searchParams.sortBy || "relevance",
+    page: searchParams.page ? parseInt(searchParams.page) : 1,
+    limit: searchParams.limit ? parseInt(searchParams.limit) : 20,
+  };
+
+  const {
+    data: searchMasters,
+    isLoading,
+    isError,
+    error,
+  } = useSearchMaster(searchMasterParams);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - date.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 1) return "1 day ago";
+    if (diffDays < 30) return `${diffDays} days ago`;
+    if (diffDays < 365) {
+      const months = Math.floor(diffDays / 30);
+      return months === 1 ? "1 month ago" : `${months} months ago`;
+    }
+    const years = Math.floor(diffDays / 365);
+    return years === 1 ? "1 year ago" : `${years} years ago`;
+  };
+
+  const getAvailabilityColor = (availability: string) => {
+    switch (availability.toLowerCase()) {
+      case "now":
+        return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400";
+      case "tomorrow":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400";
+      case "next_week":
+        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400";
+      case "on_holiday":
+        return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400";
+      default:
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400";
+    }
+  };
+
+  const getAvailabilityText = (availability: string) => {
+    switch (availability.toLowerCase()) {
+      case "now":
+        return "Available Now";
+      case "tomorrow":
+        return "Tomorrow";
+      case "next_week":
+        return "Next Week";
+      case "on_holiday":
+        return "On Holiday";
+      default:
+        return availability;
+    }
+  };
+
+  const masters = searchMasters?.masters?.masters || [];
+
+  if (isLoading) {
+    return <FindCardLoading />;
+  }
+
+  if (isError) {
+    return <FindCardError error={error as Error} />;
+  }
+
+  if (masters.length === 0) {
+    return <FindCardNoData />;
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            Available Masters
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {masters.length} {masters.length === 1 ? "master" : "masters"} found
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Sort by relevance
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {masters.map((master: Master) => (
+          <FindCardData
+            key={master.id}
+            master={master}
+            getAvailabilityColor={getAvailabilityColor}
+            getAvailabilityText={getAvailabilityText}
+            formatDate={formatDate}
+          />
+        ))}
+      </div>
+
+      {searchMasters?.masters?.pagination && (
+        <div className="text-center py-4">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Showing {masters.length} of {searchMasters.masters.pagination.total}{" "}
+            results
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default FindCard
+export default FindCard;

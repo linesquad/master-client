@@ -9,10 +9,10 @@ import FindFiltrationSkeleton from "../skeletons/FindFiltrationSkeleton";
 import ResponsiveModal from "@/components/ResponsiveModal";
 
 interface SearchParams {
-  location?: string;
-  city?: string;
-  category?: string;
-  job?: string;
+  cityPartId?: string;
+  cityId?: string;
+  categoryId?: string;
+  jobId?: string;
 }
 
 interface Category {
@@ -60,46 +60,39 @@ function FindFiltration() {
   const [showJobs, setShowJobs] = useState(false);
   const [serviceDialogOpen, setServiceDialogOpen] = useState(false);
   const [locationDialogOpen, setLocationDialogOpen] = useState(false);
-  const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
+  const [tempSelectedCityId, setTempSelectedCityId] = useState<string | null>(null);
   const [showCityParts, setShowCityParts] = useState(false);
 
   const { data: categories, isLoading } = useCategory();
   const { data: cities, isLoading: isCitiesLoading } = useGetCities();
 
-  // Find the selected category by name to get its ID for API call
-  const selectedCategoryName = searchParams.category || null;
+  // Find the selected category by ID
+  const selectedCategoryId = searchParams.categoryId || null;
   const selectedCategoryData =
     categories?.data?.find(
-      (cat: Category) =>
-        cat.name.en.toLowerCase().replace(/\s+/g, "-") ===
-        selectedCategoryName?.toLowerCase()
+      (cat: Category) => cat.id === selectedCategoryId
     ) || null;
 
   const { data: jobs, isLoading: isJobsLoading } = useJobByCategoryId(
-    selectedCategoryData?.id || ""
+    selectedCategoryId || ""
   );
 
-  // Get selected items from URL using names
-  const selectedLocation = searchParams.location || null;
-  const selectedCityName = searchParams.city || null;
-  const selectedCategory = selectedCategoryName;
-  const selectedJobName = searchParams.job || null;
+  // Get selected items from URL
+  const selectedCityPartId = searchParams.cityPartId || null;
+  const selectedCityId = searchParams.cityId || null;
+  const selectedJobId = searchParams.jobId || null;
 
   // Prepare data arrays
   const categoriesArray = categories?.data || [];
   const citiesArray = cities?.data || [];
 
-  // Find the selected city data
-  const selectedCityData = selectedCityName
-    ? citiesArray.find((city: any) => {
-        const cityName =
-          city.name?.en || city.name || city.title?.en || city.title || `city-${city.id}`;
-        return cityName.toLowerCase().replace(/\s+/g, "-") === selectedCityName;
-      })
+  // Find the selected city data by ID
+  const selectedCityData = selectedCityId
+    ? citiesArray.find((city: any) => city.id === selectedCityId)
     : null;
 
-  // Always call the hook but determine city ID from URL first, then state
-  const activeCityId = selectedCityData?.id || selectedCityId || "";
+  // Always call the hook but determine city ID from URL first, then temp state
+  const activeCityId = selectedCityId || tempSelectedCityId || "";
 
   const { data: cityParts, isLoading: isCityPartsLoading } = useGetCityParts(activeCityId);
 
@@ -110,14 +103,19 @@ function FindFiltration() {
 
   const selectedJob =
     jobs?.data?.find(
-      (job: Job) =>
-        job.title.en.toLowerCase().replace(/\s+/g, "-") === selectedJobName?.toLowerCase()
+      (job: Job) => job.id === selectedJobId
     ) || null;
 
-  // Determine if we should show city parts based on URL state
-  const shouldShowCityParts = selectedCityData && selectedLocation && !showCityParts;
-
+  // Prepare data arrays
   const cityPartsArray = cityParts?.data || [];
+
+  // Find the selected city part data by ID
+  const selectedCityPartData = selectedCityPartId
+    ? cityPartsArray.find((cityPart: any) => cityPart.id === selectedCityPartId)
+    : null;
+
+  // Determine if we should show city parts based on URL state
+  const shouldShowCityParts = selectedCityData && selectedCityPartId && !showCityParts;
 
   const updateSearchParams = (updates: Record<string, string | undefined>) => {
     const newSearch = { ...searchParams };
@@ -134,55 +132,31 @@ function FindFiltration() {
   };
 
   const handleCityClick = (cityId: string) => {
-    const selectedCity = citiesArray.find((city: any) => city.id === cityId);
-    const cityName =
-      selectedCity?.name?.en ||
-      selectedCity?.name ||
-      selectedCity?.title?.en ||
-      selectedCity?.title ||
-      `city-${cityId}`;
-    const cityUrlName = cityName.toLowerCase().replace(/\s+/g, "-");
-
-    updateSearchParams({ city: cityUrlName, location: undefined });
-    setSelectedCityId(cityId);
+    updateSearchParams({ cityId: cityId, cityPartId: undefined });
+    setTempSelectedCityId(cityId);
     setShowCityParts(true);
   };
 
-  const handleCityPartClick = (cityPartName: string) => {
-    const selectedCity = citiesArray.find((city: any) => city.id === selectedCityId);
-    const cityName =
-      selectedCity?.name?.en ||
-      selectedCity?.name ||
-      selectedCity?.title?.en ||
-      selectedCity?.title ||
-      `city-${selectedCityId}`;
-    const cityUrlName = cityName.toLowerCase().replace(/\s+/g, "-");
-
-    updateSearchParams({ city: cityUrlName, location: cityPartName });
+  const handleCityPartClick = (cityPartId: string) => {
+    updateSearchParams({ cityId: tempSelectedCityId || selectedCityId || undefined, cityPartId: cityPartId });
     setLocationDialogOpen(false);
     setShowCityParts(false);
-    setSelectedCityId(null);
+    setTempSelectedCityId(null);
   };
 
   const handleBackToCities = () => {
     setShowCityParts(false);
-    setSelectedCityId(null);
+    setTempSelectedCityId(null);
   };
 
   const handleServiceClick = (serviceId: string) => {
-    const category = categoriesArray.find((cat: Category) => cat.id === serviceId);
-    const categoryName = category
-      ? category.name.en.toLowerCase().replace(/\s+/g, "-")
-      : serviceId;
-
-    updateSearchParams({ category: categoryName, job: undefined });
+    updateSearchParams({ categoryId: serviceId, jobId: undefined });
     setShowJobs(true);
     setServiceDialogOpen(false);
   };
 
   const handleJobClick = (job: Job) => {
-    const jobName = job.title.en.toLowerCase().replace(/\s+/g, "-");
-    updateSearchParams({ job: jobName });
+    updateSearchParams({ jobId: job.id });
     setShowJobs(false);
   };
 
@@ -192,7 +166,7 @@ function FindFiltration() {
     setServiceDialogOpen(false);
     setLocationDialogOpen(false);
     setShowCityParts(false);
-    setSelectedCityId(null);
+    setTempSelectedCityId(null);
   };
 
   // Focus management handlers
@@ -206,9 +180,9 @@ function FindFiltration() {
     setTimeout(() => handleCityClick(cityId), 10);
   };
 
-  const handleCityPartClickWithFocus = (cityPartName: string, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCityPartClickWithFocus = (cityPartId: string, event: React.MouseEvent<HTMLButtonElement>) => {
     (event.target as HTMLButtonElement).blur();
-    setTimeout(() => handleCityPartClick(cityPartName), 10);
+    setTimeout(() => handleCityPartClick(cityPartId), 10);
   };
 
   const handleJobClickWithFocus = (job: Job, event: React.MouseEvent<HTMLButtonElement>) => {
@@ -222,18 +196,20 @@ function FindFiltration() {
   };
 
   // Check if any filters are active
-  const hasActiveFilters = selectedLocation || selectedCityName || selectedCategory || selectedJobName;
+  const hasActiveFilters = selectedCityPartId || selectedCityId || selectedCategoryId || selectedJobId;
 
   const getLocationDisplayText = () => {
-    if (selectedLocation && selectedCityData) {
+    if (selectedCityPartData && selectedCityData) {
       const cityDisplayName =
         selectedCityData.name?.en ||
         selectedCityData.name ||
         selectedCityData.title?.en ||
         selectedCityData.title;
-      const areaDisplayName = selectedLocation
-        .replace(/-/g, " ")
-        .replace(/\b\w/g, (l) => l.toUpperCase());
+      const areaDisplayName = 
+        selectedCityPartData.name?.en ||
+        selectedCityPartData.name ||
+        selectedCityPartData.title?.en ||
+        selectedCityPartData.title;
       return `${cityDisplayName}, ${areaDisplayName}`;
     } else if (selectedCityData) {
       return (
@@ -242,8 +218,6 @@ function FindFiltration() {
         selectedCityData.title?.en ||
         selectedCityData.title
       );
-    } else if (selectedLocation) {
-      return selectedLocation.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
     }
     return "Search Destinations";
   };
@@ -253,8 +227,6 @@ function FindFiltration() {
       return selectedJob.title.en;
     } else if (selectedCategoryData) {
       return selectedCategoryData.name.en;
-    } else if (selectedCategory) {
-      return selectedCategory.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
     }
     return "Add Service";
   };
@@ -290,7 +262,7 @@ function FindFiltration() {
               key={item.id}
               className={`cursor-pointer group flex items-center justify-between p-4 text-left rounded-lg transition-all duration-200
                  hover:shadow-md ${
-                selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, "-")
+                selectedCategoryId === item.id
                   ? "bg-indigo-100 dark:bg-indigo-900/30 border-indigo-300 dark:border-indigo-600"
                   : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
               }`}
@@ -299,14 +271,14 @@ function FindFiltration() {
               <div className="flex items-center gap-3">
                 <div
                   className={`w-2 h-2 rounded-full transition-opacity ${
-                    selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, "-")
+                    selectedCategoryId === item.id
                       ? "bg-indigo-600 opacity-100"
                       : "bg-indigo-500 opacity-60 group-hover:opacity-100"
                   }`}
                 ></div>
                 <span
                   className={`font-medium transition-colors ${
-                    selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, "-")
+                    selectedCategoryId === item.id
                       ? "text-indigo-700 dark:text-indigo-300"
                       : "text-gray-900 dark:text-white group-hover:text-indigo-700 dark:group-hover:text-indigo-300"
                   }`}
@@ -316,7 +288,7 @@ function FindFiltration() {
               </div>
               <ChevronRight
                 className={`w-4 h-4 transition-colors ${
-                  selectedCategory === item.name.en.toLowerCase().replace(/\s+/g, "-")
+                  selectedCategoryId === item.id
                     ? "text-indigo-600"
                     : "text-gray-400 group-hover:text-indigo-500"
                 }`}
@@ -391,7 +363,7 @@ function FindFiltration() {
                 {cityPartsArray.map((cityPart: any) => {
                   const cityPartName = cityPart.name?.en || cityPart.name || cityPart.title?.en || cityPart.title || `area-${cityPart.id}`;
                   const cityPartUrlName = cityPartName.toLowerCase().replace(/\s+/g, '-');
-                  const isSelected = selectedLocation === cityPartUrlName;
+                  const isSelected = selectedCityPartId === cityPart.id;
                   return (
                     <button
                       key={cityPart.id}
@@ -400,7 +372,7 @@ function FindFiltration() {
                           ? "bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-600"
                           : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20"
                       }`}
-                      onClick={(event) => handleCityPartClickWithFocus(cityPartUrlName, event)}
+                      onClick={(event) => handleCityPartClickWithFocus(cityPart.id, event)}
                     >
                       <div className="flex items-center gap-3">
                         <div
@@ -572,9 +544,7 @@ function FindFiltration() {
         ) : (
           <div className="space-y-3">
             {jobs?.data?.map((job: Job, index: number) => {
-              const isSelected =
-                selectedJob?.title.en.toLowerCase().replace(/\s+/g, "-") ===
-                job.title.en.toLowerCase().replace(/\s+/g, "-");
+              const isSelected = selectedJob?.id === job.id;
               return (
                 <button
                   key={job.id}
@@ -643,44 +613,38 @@ function FindFiltration() {
               </span>
             </div>
             <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
-              {(selectedCityName || selectedLocation) && (
+              {(selectedCityId || selectedCityPartId) && (
                 <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200 text-xs font-medium rounded-md sm:rounded-lg">
                   <MapPin className="w-3 h-3 flex-shrink-0" />
                   <span className="truncate max-w-[80px] sm:max-w-none">
                     {(() => {
-                      if (selectedLocation && selectedCityData) {
+                      if (selectedCityPartData && selectedCityData) {
                         // Show "City, Area" format when both are selected
                         const cityDisplayName = selectedCityData.name?.en || selectedCityData.name || selectedCityData.title?.en || selectedCityData.title;
-                        const areaDisplayName = selectedLocation.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                        const areaDisplayName = selectedCityPartData.name?.en || selectedCityPartData.name || selectedCityPartData.title?.en || selectedCityPartData.title;
                         return `${cityDisplayName}, ${areaDisplayName}`;
                       } else if (selectedCityData) {
                         // Show just city name when only city is selected
                         return selectedCityData.name?.en || selectedCityData.name || selectedCityData.title?.en || selectedCityData.title;
-                      } else if (selectedLocation) {
-                        // Fallback to location only
-                        return selectedLocation.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
                       }
                       return '';
                     })()}
                   </span>
                 </span>
               )}
-              {selectedCategory && (
+              {selectedCategoryData && (
                 <span className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 dark:bg-indigo-800 text-indigo-800 dark:text-indigo-200 text-xs font-medium rounded-md sm:rounded-lg">
                   <Briefcase className="w-3 h-3 flex-shrink-0" />
                   <span className="truncate max-w-[80px] sm:max-w-none">
-                    {selectedCategoryData?.name.en ||
-                      selectedCategory
-                        .replace(/-/g, " ")
-                        .replace(/\b\w/g, (l) => l.toUpperCase())}
+                    {selectedCategoryData.name.en}
                   </span>
                 </span>
               )}
-              {selectedJobName && (
+              {selectedJob && (
                 <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs font-medium rounded-md sm:rounded-lg">
                   <Briefcase className="w-3 h-3 flex-shrink-0" />
                   <span className="truncate max-w-[80px] sm:max-w-none">
-                    {selectedJob?.title.en}
+                    {selectedJob.title.en}
                   </span>
                 </span>
               )}
