@@ -10,5 +10,9 @@ export const header = [
   {
     name: "Contact",
     to: "/contact",
-  }
-]
+  },
+  {
+    name: "Find",
+    to: "/find",
+  },
+];
