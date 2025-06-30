@@ -5,9 +5,12 @@ import FindCardData from "./findcard/FindCardData";
 import FindCardLoading from "./findcard/FindCardLoading";
 import FindCardError from "./findcard/FindCardError";
 import FindCardNoData from "./findcard/FindCardNoData";
+import MainPagination from "@/components/MainPagination";
+import { useNavigate } from "@tanstack/react-router";
 
 function FindCard() {
   const searchParams = useSearch({ strict: false }) as SearchParams;
+  const navigate = useNavigate();
 
   const searchMasterParams = {
     search: searchParams.search,
@@ -29,6 +32,7 @@ function FindCard() {
     isError,
     error,
   } = useSearchMaster(searchMasterParams);
+  console.log(searchMasters);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -90,6 +94,16 @@ function FindCard() {
     return <FindCardNoData />;
   }
 
+  const handlePageChange = (page: number) => {
+    navigate({
+      to: "/Find",
+      search: {
+        ...searchParams,
+        page: page.toString(),
+      },
+    });
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -109,7 +123,7 @@ function FindCard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
         {masters.map((master: Master) => (
           <FindCardData
             key={master.id}
@@ -122,12 +136,12 @@ function FindCard() {
       </div>
 
       {searchMasters?.masters?.pagination && (
-        <div className="text-center py-4">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Showing {masters.length} of {searchMasters.masters.pagination.total}{" "}
-            results
-          </p>
-        </div>
+        <MainPagination
+          totalcount={parseInt(searchMasters.masters.pagination.total)}
+          limit={parseInt(searchMasters.masters.pagination.limit)}
+          currentPage={parseInt(searchMasters.masters.pagination.page)}
+          onPageChange={handlePageChange}
+        />
       )}
     </div>
   );

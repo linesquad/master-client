@@ -25,7 +25,6 @@ export const getPopularMasters = async (limit: number) => {
 
 export const searchMasters = async (params?: SearchMasterParams) => {
   try {
-    // Build query string from parameters
     const queryParams = new URLSearchParams();
     
     if (params?.search) queryParams.append('search', params.search);
