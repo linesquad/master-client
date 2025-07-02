@@ -80,11 +80,21 @@
   "contact": {
     "title": "Contact Us",
     "subtitle": "Get in touch with us",
+    "breadcrumb": "Cirkle / Contact Us",
     "form": {
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "send": "Send Message"
+      "title": "Get In Touch",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Your Message",
+      "send": "Send Us Message"
+    },
+    "info": {
+      "title": "Contact Info.",
+      "address": "598 Kazi Avenue, New York, NY23598",
+      "email": "info@radiustheme.net",
+      "phone": "(+123) 456 789 101"
     }
   },
   "auth": {

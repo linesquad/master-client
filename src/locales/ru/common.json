@@ -80,11 +80,21 @@
   "contact": {
     "title": "Свяжитесь с нами",
     "subtitle": "Свяжитесь с нашей командой",
+    "breadcrumb": "Cirkle / Контакты",
     "form": {
-      "name": "Имя",
-      "email": "Email",
-      "message": "Сообщение",
+      "title": "Связаться с нами",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "email": "Адрес электронной почты",
+      "subject": "Тема",
+      "message": "Ваше сообщение",
       "send": "Отправить сообщение"
+    },
+    "info": {
+      "title": "Контактная информация",
+      "address": "598 Авеню Кази, Нью-Йорк, NY23598",
+      "email": "info@radiustheme.net",
+      "phone": "(+123) 456 789 101"
     }
   },
   "auth": {
