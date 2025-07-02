@@ -1,7 +1,9 @@
 import HomeButton from "@/components/HomeButton";
 import MainWrapper from "@/components/MainWrapper";
+import { useTranslation } from "react-i18next";
 
 function hero() {
+  const { t } = useTranslation("common");
   const dark = localStorage.getItem("theme");
   console.log(dark)
   return (
@@ -17,17 +19,16 @@ function hero() {
         <div className="flex items-center justify-between h-full px-8  py-24 lg:py-12">
           <div className="flex flex-col items-start justify-center text-white space-y-6 max-w-md z-10">
             <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight break-words">
-              Cirkle Community
+              {t("hero.title")}
             </h2>
             <p className="text-lg text-gray-100 leading-relaxed">
-              Having real social contacts can sometimes be difficult FUN,
-              everything becomes much simpler!
+              {t("hero.subtitle")}
             </p>
             <div className="space-y-2">
               <p className="text-3xl font-bold text-white">10,95,219</p>
-              <p className="text-lg text-gray-200">Connected People</p>
+              <p className="text-lg text-gray-200">{t("hero.connectedPeople")}</p>
             </div>
-            <HomeButton>Discover Now</HomeButton>
+            <HomeButton>{t("hero.discoverNow")}</HomeButton>
           </div>
           <div className="items-center justify-center hidden lg:flex">
             <img

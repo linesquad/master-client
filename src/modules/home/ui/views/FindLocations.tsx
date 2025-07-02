@@ -1,18 +1,20 @@
 import { locations } from "@/lib/locations";
 import MainWrapper from "@/components/MainWrapper";
 import LocationCard from "../components/find-locations/LocationCard";
+import { useTranslation } from "react-i18next";
 
 function FindLocations() {
+  const { t } = useTranslation("common");
+  
   return (
     <MainWrapper>
       <section className="container mx-auto px-4 py-20 dark:bg-[#18191A]">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 text-foreground">
-            Find People Near You
+            {t("findLocations.title")}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            When an unknown printer took a galley of type and meeting fari
-            scrambled it to make a type of specific specimen book.
+            {t("findLocations.description")}
           </p>
         </div>
 

@@ -1,7 +1,9 @@
-import { locationsFeatures } from "@/lib/locations";
+import { getLocationsFeatures } from "@/lib/locations";
+import { useTranslation } from "react-i18next";
 
 function RightDesign() {
-  const features = locationsFeatures;
+  const { t } = useTranslation("common");
+  const features = getLocationsFeatures(t);
 
   return (
     <div className="flex-1 flex flex-col items-start w-full max-w-none lg:max-w-2xl">

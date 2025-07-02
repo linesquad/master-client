@@ -1,8 +1,8 @@
-export const locationsFeatures = [
+export const getLocationsFeatures = (t: (key: string) => string) => [
   {
     id: 1,
-    title: "Meet Great People",
-    description: "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only.",
+    title: t("socialNetwork.features.meetPeople.title"),
+    description: t("socialNetwork.features.meetPeople.description"),
     icon: (
       <svg
         width="32"
@@ -21,8 +21,8 @@ export const locationsFeatures = [
   },
   {
     id: 2,
-    title: "Forum Discussion",
-    description: "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only.",
+    title: t("socialNetwork.features.forumDiscussion.title"),
+    description: t("socialNetwork.features.forumDiscussion.description"),
     icon: (
       <svg
         width="32"
@@ -41,8 +41,8 @@ export const locationsFeatures = [
   },
   {
     id: 3,
-    title: "Active Groups",
-    description: "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only.",
+    title: t("socialNetwork.features.activeGroups.title"),
+    description: t("socialNetwork.features.activeGroups.description"),
     icon: (
       <svg
         width="32"

@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 function SubscribeBackground() {
+  const { t } = useTranslation("common");
+  
   return (
     <div className="relative py-12 sm:py-16 md:py-20 text-center px-4 sm:px-6 lg:px-8 bg-[#F0F4F6] dark:bg-[#18191A] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -13,11 +17,10 @@ function SubscribeBackground() {
 
       <div className="relative z-10">
         <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4 px-2">
-          Subscribe to our newsletter
+          {t("newsletter.title")}
         </h3>
         <p className="text-base sm:text-md md:text-lg text-gray-400 max-w-xl mx-auto mb-10 px-2">
-          Subscribe to be the first one to know about updates, new features and
-          much more! Enter your email
+          {t("newsletter.description")}
         </p>
       </div>
     </div>

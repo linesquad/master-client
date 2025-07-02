@@ -1,6 +1,9 @@
 import HomeButton from "@/components/HomeButton";
+import { useTranslation } from "react-i18next";
 
 function EasierLife() {
+  const { t } = useTranslation("common");
+  
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center ">
       <div 
@@ -14,14 +17,12 @@ function EasierLife() {
       >
         <div className="max-w-md text-center lg:text-left">
           <p className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 lg:mb-6 text-white">
-            Cirkle Makes Your Life Easier & Simple
+            {t("easierLife.title")}
           </p>
           <p className="text-gray-200 text-sm md:text-base mb-6 lg:mb-8">
-            Aliquam lorem ante dapibus in viverra quis feugiat atellu Peaselus
-            vierra nullaut metus varius laoreet unknown printer took scrambled
-            make.
+            {t("easierLife.description")}
           </p>
-          <HomeButton>Discover All Member</HomeButton>
+          <HomeButton>{t("easierLife.discoverMembers")}</HomeButton>
         </div>
       </div>
 

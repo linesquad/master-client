@@ -8,19 +8,66 @@
     "profile": "Profile"
   },
   "hero": {
-    "title": "Find Professional Services",
-    "subtitle": "Connect with verified professionals in your area",
-    "searchPlaceholder": "Search for services..."
+    "title": "Cirkle Community",
+    "subtitle": "Having real social contacts can sometimes be difficult FUN, everything becomes much simpler!",
+    "searchPlaceholder": "Search for services...",
+    "connectedPeople": "Connected People",
+    "discoverNow": "Discover Now"
+  },
+  "socialNetwork": {
+    "tagline": "What We Do",
+    "title": "Why Join Our Cirkle from Social Network ?",
+    "description": "Social hen an unknown printer took a galley of type and scrambled make type specimen book. It has survived not only five centuries but also the leap into electronic typesetting of the remaining essential unchanged they popularised with release.",
+    "joinCommunity": "Join Our Community",
+    "features": {
+      "meetPeople": {
+        "title": "Meet Great People",
+        "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
+      },
+      "forumDiscussion": {
+        "title": "Forum Discussion", 
+        "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
+      },
+      "activeGroups": {
+        "title": "Active Groups",
+        "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
+      }
+    }
   },
   "locations": {
     "title": "129 Countries We Build Our Largest Community in",
     "subtitle": "Cirkle Network",
     "description": "When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also leap electronic typesetting, remaining essentially."
   },
+  "activeMembers": {
+    "title": "Our Active Members",
+    "description": "When an unknown printer took a galley of type and meeting fari scrambled it to make a type of specific specimen book.",
+    "discoverAll": "Discover All Member"
+  },
+  "easierLife": {
+    "title": "Cirkle Makes Your Life Easier & Simple",
+    "description": "Aliquam lorem ante dapibus in viverra quis feugiat atellu Peaselus vierra nullaut metus varius laoreet unknown printer took scrambled make.",
+    "discoverMembers": "Discover All Member"
+  },
+  "findLocations": {
+    "title": "Find People Near You",
+    "description": "When an unknown printer took a galley of type and meeting fari scrambled it to make a type of specific specimen book."
+  },
   "categories": {
     "title": "Fully Responsive Cirkle WordPress Theme",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed does the eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
     "purchaseNow": "Purchase Now"
+  },
+  "popularGroups": {
+    "title": "Most Popular Groups",
+    "description": "When an unknown printer took a galley of type and meeting fari scrambled it to make a type of specimen book.",
+    "seeAll": "See All Groups"
+  },
+  "newsletter": {
+    "title": "Subscribe to Our Newsletter",
+    "description": "Stay updated with the latest news and updates from our community.",
+    "placeholder": "Enter your email",
+    "subscribe": "Subscribe"
   },
   "search": {
     "searchMasters": "Search masters...",
