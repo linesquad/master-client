@@ -1,4 +1,4 @@
-import { Home, Info, Mail } from "lucide-react";
+import { Home, Info, Mail, Search } from "lucide-react";
 
 export const items = [
   {
@@ -15,5 +15,10 @@ export const items = [
     title: "Contact",
     url: "/contact",
     icon: Mail,
-  }
+  },
+  {
+    title: "Find",
+    url: "/find",
+    icon: Search,
+  },
 ];
