@@ -1,0 +1,77 @@
+{
+  "navigation": {
+    "home": "Home",
+    "find": "Find",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile"
+  },
+  "hero": {
+    "title": "Find Professional Services",
+    "subtitle": "Connect with verified professionals in your area",
+    "searchPlaceholder": "Search for services..."
+  },
+  "locations": {
+    "title": "129 Countries We Build Our Largest Community in",
+    "subtitle": "Cirkle Network",
+    "description": "When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also leap electronic typesetting, remaining essentially."
+  },
+  "categories": {
+    "title": "Fully Responsive Cirkle WordPress Theme",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed does the eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "purchaseNow": "Purchase Now"
+  },
+  "search": {
+    "searchMasters": "Search masters...",
+    "searching": "Searching...",
+    "noMastersFound": "No masters found.",
+    "typeToSearch": "Type at least 2 characters to search",
+    "availableNow": "Available now",
+    "showingResults": "Masters (showing {{count}})"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with us",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved",
+    "company": "Company",
+    "about": "About",
+    "careers": "Careers",
+    "support": "Support",
+    "help": "Help",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+} 

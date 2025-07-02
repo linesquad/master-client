@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { useUser } from "../auth/hooks/useUser";
 import { useLogout } from "../auth/hooks/useLogout";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -7,6 +8,7 @@ import SearchNav from "../home/ui/views/search-nav";
 import { DrawerDemo } from "./search/Drawer";
 
 function Header() {
+  const { t } = useTranslation("common");
   const { data: user } = useUser();
   const { mutate: logout } = useLogout();
   console.log(user);
@@ -58,7 +60,7 @@ function Header() {
                       onClick={() => logout()}
                       className="bg-white/10 dark:bg-white/5 backdrop-blur-sm text-white px-5 py-2.5 text-sm font-medium rounded-lg border border-white/20 dark:border-white/10 hover:bg-white/20 dark:hover:bg-white/10 hover:border-white/30 dark:hover:border-white/20 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] dark:focus:ring-offset-[#1a365d] shadow-lg hover:shadow-xl cursor-pointer"
                     >
-                      Sign Out
+                      {t("auth.logout")}
                     </button>
                   </div>
                 </div>
@@ -68,13 +70,13 @@ function Header() {
                     to="/login"
                     className="text-white/90 hover:text-white px-2 py-1.5 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-white/10 dark:hover:bg-white/5 rounded-sm border border-transparent hover:border-white/20 dark:hover:border-white/10 backdrop-blur-sm cursor-pointer"
                   >
-                    Sign In
+                    {t("auth.login")}
                   </Link>
                   <Link
                     to="/register"
                     className="bg-white dark:bg-gray-100 text-[#2C5BE3] dark:text-[#1a365d] px-3 py-1.5 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-200 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] dark:focus:ring-offset-[#1a365d] shadow-lg hover:shadow-xl hover:scale-105 transform cursor-pointer"
                   >
-                    Get Started
+                    {t("auth.register")}
                   </Link>
                 </div>
               )}

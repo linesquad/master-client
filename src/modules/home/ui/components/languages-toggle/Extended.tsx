@@ -1,6 +1,7 @@
 import { Globe, Check } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { languages } from "@/lib/languages";
+import { useLanguage } from "@/hooks/useLanguage";
+import type { Language } from "@/lib/i18n";
 
 function Extended({
   isOpen,
@@ -9,16 +10,15 @@ function Extended({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
-  const { i18n } = useTranslation();
+  const { currentLanguage, changeLanguage } = useLanguage();
 
   const handleLanguageChange = (languageCode: string) => {
-    i18n.changeLanguage(languageCode);
-    localStorage.setItem("language", languageCode);
+    changeLanguage(languageCode as Language);
     setIsOpen(false);
   };
 
-  const currentLanguage =
-    languages.find((lang) => lang.code === i18n.language) || languages[0];
+  const currentLanguageData =
+    languages.find((lang) => lang.code === currentLanguage) || languages[0];
 
   return (
     <div className="p-4 border-t border-gray-200 dark:border-gray-700">
@@ -30,9 +30,9 @@ function Extended({
           <div className="flex items-center space-x-3">
             <Globe className="h-4 w-4 text-gray-600 dark:text-gray-400" />
             <div className="flex items-center space-x-2">
-              <span className="text-lg">{currentLanguage.flag}</span>
+              <span className="text-lg">{currentLanguageData.flag}</span>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                {currentLanguage.name}
+                {currentLanguageData.name}
               </span>
             </div>
           </div>
@@ -62,13 +62,13 @@ function Extended({
               : "opacity-0 scale-95 translate-y-2 pointer-events-none"
           }`}
         >
-          <div className="p-2 space-y-1">
+          <div className="p-2">
             {languages.map((language) => (
               <button
                 key={language.code}
                 onClick={() => handleLanguageChange(language.code)}
                 className={`w-full flex items-center justify-between p-3 rounded-md transition-all duration-200 cursor-pointer ${
-                  i18n.language === language.code
+                  currentLanguage === language.code
                     ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
                     : "hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                 }`}
@@ -77,7 +77,7 @@ function Extended({
                   <span className="text-lg">{language.flag}</span>
                   <span className="text-sm font-medium">{language.name}</span>
                 </div>
-                {i18n.language === language.code && (
+                {currentLanguage === language.code && (
                   <Check className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 )}
               </button>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   CommandDialog,
@@ -25,6 +26,7 @@ export function Searchbutton({
   open: boolean;
   setOpen: (open: boolean) => void;
 }) {
+  const { t } = useTranslation("common");
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data, isLoading, isError, error } = useFindMasterByName(
     searchQuery,
@@ -71,29 +73,29 @@ export function Searchbutton({
       </p>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder="Search masters..."
+          placeholder={t("search.searchMasters")}
           value={searchQuery}
           onValueChange={setSearchQuery}
         />
         <CommandList className="max-h-[320px] overflow-y-auto">
           {isLoading && searchQuery.length >= 2 && (
-            <div className="py-6 text-center text-sm">Searching...</div>
+            <div className="py-6 text-center text-sm">{t("search.searching")}</div>
           )}
           {isError && (
             <div className="py-6 text-center text-sm text-red-500">
-              Error: {error?.message || "Something went wrong"}
+              {t("common.error")}: {error?.message || "Something went wrong"}
             </div>
           )}
           {searchQuery.length < 2 && (
             <div className="py-6 text-center text-sm text-muted-foreground">
-              Type at least 2 characters to search
+              {t("search.typeToSearch")}
             </div>
           )}
           {searchQuery.length >= 2 && !isLoading && masters.length === 0 && (
-            <CommandEmpty>No masters found.</CommandEmpty>
+            <CommandEmpty>{t("search.noMastersFound")}</CommandEmpty>
           )}
           {masters.length > 0 && (
-            <CommandGroup heading={`Masters (showing ${masters.length})`}>
+            <CommandGroup heading={t("search.showingResults", { count: masters.length })}>
               <div className="space-y-1">
                 {masters.map((master) => (
                   <CommandItem
@@ -129,7 +131,7 @@ export function Searchbutton({
                             }
                           >
                             {master.availability === "now"
-                              ? "Available now"
+                              ? t("search.availableNow")
                               : master.availability}
                           </span>
                         </div>

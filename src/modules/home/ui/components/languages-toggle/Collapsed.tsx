@@ -1,26 +1,26 @@
-import { useTranslation } from "react-i18next";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Check } from "lucide-react";
 import { languages } from "@/lib/languages";
+import { useLanguage } from "@/hooks/useLanguage";
+import type { Language } from "@/lib/i18n";
 
-function Colapsed({
+function Collapsed({
   isOpen,
   setIsOpen,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
-  const { i18n } = useTranslation();
+  const { currentLanguage, changeLanguage } = useLanguage();
   const { state } = useSidebar();
 
   const handleLanguageChange = (languageCode: string) => {
-    i18n.changeLanguage(languageCode);
-    localStorage.setItem("language", languageCode);
+    changeLanguage(languageCode as Language);
     setIsOpen(false);
   };
 
-  const currentLanguage =
-    languages.find((lang) => lang.code === i18n.language) || languages[0];
+  const currentLanguageData =
+    languages.find((lang) => lang.code === currentLanguage) || languages[0];
 
   if (state === "collapsed") {
     return (
@@ -28,10 +28,10 @@ function Colapsed({
         <div className="relative">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-center p-2  bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 border border-gray-200 dark:border-gray-600 cursor-pointer"
-            title={`${currentLanguage.name} (${currentLanguage.flag})`}
+            className="w-full flex items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 border border-gray-200 dark:border-gray-600 cursor-pointer"
+            title={`${currentLanguageData.name} (${currentLanguageData.flag})`}
           >
-            <span className="text-lg">{currentLanguage.flag}</span>
+            <span className="text-lg">{currentLanguageData.flag}</span>
           </button>
 
           <div
@@ -41,13 +41,13 @@ function Colapsed({
                 : "opacity-0 scale-95 translate-y-2 pointer-events-none"
             }`}
           >
-            <div className="p-2 space-y-1">
+            <div className="p-2">
               {languages.map((language) => (
                 <button
                   key={language.code}
                   onClick={() => handleLanguageChange(language.code)}
                   className={`w-full flex items-center justify-between p-3 rounded-md transition-all duration-200 cursor-pointer ${
-                    i18n.language === language.code
+                    currentLanguage === language.code
                       ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
                       : "hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
                   }`}
@@ -56,7 +56,7 @@ function Colapsed({
                     <span className="text-lg">{language.flag}</span>
                     <span className="text-sm font-medium">{language.name}</span>
                   </div>
-                  {i18n.language === language.code && (
+                  {currentLanguage === language.code && (
                     <Check className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                   )}
                 </button>
@@ -67,6 +67,8 @@ function Colapsed({
       </div>
     );
   }
+
+  return null;
 }
 
-export default Colapsed;
+export default Collapsed;

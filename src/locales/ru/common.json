@@ -1,0 +1,77 @@
+{
+  "navigation": {
+    "home": "Главная",
+    "find": "Найти",
+    "contact": "Контакты",
+    "login": "Войти",
+    "register": "Регистрация",
+    "profile": "Профиль"
+  },
+  "hero": {
+    "title": "Найти профессиональные услуги",
+    "subtitle": "Свяжитесь с проверенными профессионалами в вашем регионе",
+    "searchPlaceholder": "Поиск услуг..."
+  },
+  "locations": {
+    "title": "129 стран, где мы строим наше крупнейшее сообщество",
+    "subtitle": "Сеть Cirkle",
+    "description": "Когда неизвестный печатник взял гранку шрифта и смешал её, чтобы сделать образец книги. Она выжила не только пять веков, но и переход на электронную верстку, оставаясь по существу неизменной."
+  },
+  "categories": {
+    "title": "Полностью адаптивная тема WordPress Cirkle",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed does the eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "purchaseNow": "Купить сейчас"
+  },
+  "search": {
+    "searchMasters": "Поиск мастеров...",
+    "searching": "Поиск...",
+    "noMastersFound": "Мастера не найдены.",
+    "typeToSearch": "Введите минимум 2 символа для поиска",
+    "availableNow": "Доступен сейчас",
+    "showingResults": "Мастера (показано {{count}})"
+  },
+  "contact": {
+    "title": "Свяжитесь с нами",
+    "subtitle": "Свяжитесь с нашей командой",
+    "form": {
+      "name": "Имя",
+      "email": "Электронная почта",
+      "message": "Сообщение",
+      "send": "Отправить сообщение"
+    }
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "forgotPassword": "Забыли пароль?",
+    "noAccount": "Нет аккаунта?",
+    "hasAccount": "Уже есть аккаунт?"
+  },
+  "footer": {
+    "allRightsReserved": "Все права защищены",
+    "company": "Компания",
+    "about": "О нас",
+    "careers": "Карьера",
+    "support": "Поддержка",
+    "help": "Помощь",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия обслуживания"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успех",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "close": "Закрыть",
+    "back": "Назад",
+    "next": "Далее",
+    "previous": "Предыдущий"
+  }
+} 

@@ -1,0 +1,77 @@
+{
+  "navigation": {
+    "home": "მთავარი",
+    "find": "ძიება",
+    "contact": "კონტაქტი",
+    "login": "შესვლა",
+    "register": "რეგისტრაცია",
+    "profile": "პროფილი"
+  },
+  "hero": {
+    "title": "იპოვე პროფესიონალური სერვისები",
+    "subtitle": "დაუკავშირდი გადამოწმებულ პროფესიონალებს შენს რეგიონში",
+    "searchPlaceholder": "მოძებნე სერვისები..."
+  },
+  "locations": {
+    "title": "129 ქვეყანაში ჩვენ ვშენებთ ჩვენს უდიდეს საზოგადოებას",
+    "subtitle": "Cirkle ქსელი",
+    "description": "როდესაც უცნობმა პრინტერმა აიღო ტიპების მოედანი და შეურია ის ტიპის ნიმუშის წიგნის გასაკეთებლად. ის გადარჩა არა მხოლოდ ხუთი საუკუნის განმავლობაში, არამედ ელექტრონული წერის ასევე, შეთანადად რჩება."
+  },
+  "categories": {
+    "title": "სრულად ადაპტირებადი Cirkle WordPress თემა",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed does the eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "purchaseNow": "ახლავე ყიდვა"
+  },
+  "search": {
+    "searchMasters": "მოძებნე მასტერები...",
+    "searching": "იძებნება...",
+    "noMastersFound": "მასტერები ვერ მოიძებნა.",
+    "typeToSearch": "ძიებისთვის აკრიფე მინიმუმ 2 სიმბოლო",
+    "availableNow": "ახლა ხელმისაწვდომია",
+    "showingResults": "მასტერები (ნაჩვენებია {{count}})"
+  },
+  "contact": {
+    "title": "დაგვიკავშირდი",
+    "subtitle": "დაუკავშირდი ჩვენს გუნდს",
+    "form": {
+      "name": "სახელი",
+      "email": "ელ-ფოსტა",
+      "message": "შეტყობინება",
+      "send": "გაგზავნა"
+    }
+  },
+  "auth": {
+    "login": "შესვლა",
+    "register": "რეგისტრაცია",
+    "logout": "გასვლა",
+    "email": "ელ-ფოსტა",
+    "password": "პაროლი",
+    "confirmPassword": "პაროლის დადასტურება",
+    "forgotPassword": "დაგავიწყდა პაროლი?",
+    "noAccount": "არ გაქვს ანგარიში?",
+    "hasAccount": "უკვე გაქვს ანგარიში?"
+  },
+  "footer": {
+    "allRightsReserved": "ყველა უფლება დაცულია",
+    "company": "კომპანია",
+    "about": "ჩვენ შესახებ",
+    "careers": "კარიერა",
+    "support": "მხარდაჭერა",
+    "help": "დახმარება",
+    "privacy": "კონფიდენციალურობის პოლიტიკა",
+    "terms": "მომსახურების პირობები"
+  },
+  "common": {
+    "loading": "იტვირთება...",
+    "error": "შეცდომა",
+    "success": "წარმატება",
+    "cancel": "გაუქმება",
+    "save": "შენახვა",
+    "edit": "რედაქტირება",
+    "delete": "წაშლა",
+    "close": "დახურვა",
+    "back": "უკან",
+    "next": "შემდეგი",
+    "previous": "წინა"
+  }
+} 

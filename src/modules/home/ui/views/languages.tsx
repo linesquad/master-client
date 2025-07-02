@@ -1,4 +1,4 @@
-import Colapsed from "../components/languages-toggle/Collapsed";
+import Collapsed from "../components/languages-toggle/Collapsed";
 import Extended from "../components/languages-toggle/Extended";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useState } from "react";
@@ -10,7 +10,7 @@ function Languages() {
   return state === "expanded" ? (
     <Extended isOpen={isOpen} setIsOpen={setIsOpen} />
   ) : (
-    <Colapsed isOpen={isOpen} setIsOpen={setIsOpen} />
+    <Collapsed isOpen={isOpen} setIsOpen={setIsOpen} />
   );
 }
 
