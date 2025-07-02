@@ -117,5 +117,42 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Georgian text optimizations */
+  [lang="ka"], .georgian-text {
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.5;
+  }
+  
+  /* Better text wrapping for all languages in buttons and small containers */
+  .text-wrap-improved {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: normal;
+  }
+  
+  /* Improved line clamping for Georgian text */
+  .line-clamp-2-improved {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .line-clamp-3-improved {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 }
 

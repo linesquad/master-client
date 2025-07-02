@@ -73,7 +73,7 @@ export function Searchbutton({
       </p>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder={t("search.searchMasters")}
+          placeholder=""
           value={searchQuery}
           onValueChange={setSearchQuery}
         />
@@ -108,27 +108,37 @@ export function Searchbutton({
                       setOpen(false);
                     }}
                   >
-                    <div className="flex items-center gap-3 p-3 w-full cursor-pointer hover:bg-accent rounded-lg">
+                    <div className="flex items-start gap-3 p-3 w-full cursor-pointer hover:bg-accent rounded-lg min-h-[60px]">
                       {master.imageUrl && (
                         <img
                           src={master.imageUrl}
                           alt={master.fullName}
-                          className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                          className="w-10 h-10 rounded-full object-cover flex-shrink-0 mt-1"
                         />
                       )}
                       <div className="flex flex-col flex-1 min-w-0">
-                        <span className="font-medium text-sm truncate">
+                        <span className="font-medium text-sm leading-snug break-words" 
+                              style={{
+                                display: '-webkit-box',
+                                WebkitLineClamp: 2,
+                                WebkitBoxOrient: 'vertical',
+                                overflow: 'hidden',
+                                wordBreak: 'break-word',
+                                overflowWrap: 'break-word'
+                              }}>
                           {master.fullName}
                         </span>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <span className="truncate">{master.city}</span>
-                          <span>•</span>
+                        <div className="flex items-start gap-2 text-xs text-muted-foreground mt-1">
+                          <span className="break-words leading-relaxed" style={{ wordBreak: 'break-word' }}>
+                            {master.city}
+                          </span>
+                          <span className="flex-shrink-0">•</span>
                           <span
-                            className={
+                            className={`flex-shrink-0 ${
                               master.availability === "now"
                                 ? "text-green-600"
                                 : "text-yellow-600"
-                            }
+                            }`}
                           >
                             {master.availability === "now"
                               ? t("search.availableNow")

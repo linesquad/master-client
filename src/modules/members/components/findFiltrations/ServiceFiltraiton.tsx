@@ -35,7 +35,12 @@ function ServiceFiltraiton({
               <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-900 dark:group-hover:text-indigo-400 transition-colors duration-200">
                 Service
               </p>
-              <p className="text-gray-500 dark:text-gray-400 text-xs truncate">
+              <p className="text-gray-500 dark:text-gray-400 text-xs leading-tight break-words overflow-hidden" 
+                 style={{ 
+                   display: '-webkit-box',
+                   WebkitLineClamp: 2,
+                   WebkitBoxOrient: 'vertical'
+                 }}>
                 {getServiceDisplayText()}
               </p>
             </div>
