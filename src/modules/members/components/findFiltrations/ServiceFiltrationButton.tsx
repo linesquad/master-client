@@ -1,5 +1,6 @@
 import { type Category } from "../../types/member";
 import { ChevronRight } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 function ServiceFiltrationButton({
   item,
@@ -13,6 +14,8 @@ function ServiceFiltrationButton({
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
 }) {
+  const { currentLanguage } = useLanguage();
+  
   return (
     <button
       className={`cursor-pointer group flex items-center justify-between p-4 text-left rounded-lg transition-all duration-200
@@ -38,7 +41,7 @@ function ServiceFiltrationButton({
               : "text-gray-900 dark:text-white group-hover:text-indigo-700 dark:group-hover:text-indigo-300"
           }`}
         >
-          {item.name.en}
+          {item.name[currentLanguage as keyof typeof item.name]}
         </span>
       </div>
       <ChevronRight

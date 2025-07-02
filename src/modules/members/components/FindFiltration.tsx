@@ -13,13 +13,13 @@ import ServiceFiltraiton from "./findFiltrations/ServiceFiltraiton";
 import AvailabilityFilter from "./findFiltrations/AvailabilityFilter";
 import PriceRangeFilter from "./findFiltrations/PriceRangeFilter";
 import ReviewsFilter from "./findFiltrations/ReviewsFilter";
-
 import CityPartSection from "./findFiltrations/CityPartSection";
-
 import CityFilterSection from "./findFiltrations/CityFilterSection";
 import ActiveFilters from "./activeFilters/ActiveFilters";
+import { useLanguage } from "@/hooks/useLanguage";
 
 function FindFiltration() {
+  const { currentLanguage } = useLanguage();
   const navigate = useNavigate();
   const searchParams = useSearch({ strict: false }) as SearchParams;
 
@@ -209,9 +209,9 @@ function FindFiltration() {
 
   const getServiceDisplayText = () => {
     if (selectedJob) {
-      return selectedJob.title.en;
+      return selectedJob.title[currentLanguage] || selectedJob.title.en;
     } else if (selectedCategoryData) {
-      return selectedCategoryData.name.en;
+      return selectedCategoryData.name[currentLanguage] || selectedCategoryData.name.en;
     }
     return "Add Service";
   };

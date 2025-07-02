@@ -1,6 +1,7 @@
 import { type Job } from "@/modules/members/types/member";
 import { MapPin } from "lucide-react";
 import { ChevronRight } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 function JobFiltrationButton({
   job,
@@ -13,6 +14,8 @@ function JobFiltrationButton({
   handleJobClickWithFocus: (job: Job, event: React.MouseEvent<HTMLButtonElement>) => void;
   index: number;
 }) {
+  const { currentLanguage } = useLanguage();
+  
   return (
     <button
       key={job.id}
@@ -30,12 +33,12 @@ function JobFiltrationButton({
               {index + 1}
             </span>
             <h4 className="text-base font-semibold text-gray-900 dark:text-white group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors truncate">
-              {job.title.en}
+              {job.title[currentLanguage as keyof typeof job.title] || job.title.en}
             </h4>
           </div>
           {job.description && (
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2 leading-relaxed">
-              {job.description.en}
+              {job.description[currentLanguage as keyof typeof job.description] || job.description.en}
             </p>
           )}
           {job.location && (

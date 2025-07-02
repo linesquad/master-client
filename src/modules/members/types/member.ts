@@ -35,6 +35,8 @@ export interface Category {
   id: string;
   name: {
     en: string;
+    ka: string;
+    ru: string;
   };
 }
 
@@ -42,9 +44,13 @@ export interface Job {
   id: string;
   title: {
     en: string;
+    ka: string;
+    ru: string;
   };
   description?: {
     en: string;
+    ka: string;
+    ru: string;
   };
   location?: string;
 }
