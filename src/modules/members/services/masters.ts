@@ -54,3 +54,28 @@ export const searchMasters = async (params?: SearchMasterParams) => {
     throw error;
   }
 };
+
+export const createLead = async (
+  masterJobId: string,
+  message: string | undefined,
+  location: string,
+  requestedTime?: string
+) => {
+  try {
+    const payload: any = {
+      masterJobId,
+      message,
+      location,
+    };
+    
+    // Only include requestedTime if it's provided, and format it as ISO string
+    if (requestedTime) {
+      payload.requestedTime = new Date(requestedTime).toISOString();
+    }
+    
+    const response = await instance.post(`/api/leads`, payload);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

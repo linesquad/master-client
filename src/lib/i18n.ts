@@ -10,101 +10,55 @@ import ruCommon from "../locales/ru/common.json";
 export const availableLanguages = ["en", "ka", "ru"] as const;
 export type Language = (typeof availableLanguages)[number];
 
-// Get language from URL, localStorage, or default
-const getInitialLanguage = (): Language => {
-  // Check URL parameters first (e.g., ?lang=ka)
+// Function to get initial language from URL or localStorage
+const getInitialLanguage = (): string => {
+  // Check URL first
   const urlParams = new URLSearchParams(window.location.search);
-  const urlLang = urlParams.get('lang');
+  const urlLang = urlParams.get("lang");
+  
   if (urlLang && availableLanguages.includes(urlLang as Language)) {
-    return urlLang as Language;
+    return urlLang;
   }
   
-  // Check URL path prefix (e.g., /ka/home)
-  const pathLang = window.location.pathname.split('/')[1];
-  if (availableLanguages.includes(pathLang as Language)) {
-    return pathLang as Language;
-  }
-  
-  // Fallback to localStorage
-  const savedLanguage = localStorage.getItem("language");
-  if (savedLanguage && availableLanguages.includes(savedLanguage as Language)) {
-    return savedLanguage as Language;
+  // Check localStorage
+  const storedLang = localStorage.getItem("language");
+  if (storedLang && availableLanguages.includes(storedLang as Language)) {
+    return storedLang;
   }
   
   // Default to English
   return "en";
 };
 
-// Update URL with language parameter
-export const updateUrlWithLanguage = (language: Language) => {
-  const url = new URL(window.location.href);
-  
-  // Update or add the lang parameter
-  url.searchParams.set('lang', language);
-  
-  // Use replaceState to update URL without adding to history
-  window.history.replaceState(null, '', url.toString());
-};
-
-// Get current language from URL
-export const getCurrentLanguageFromUrl = (): Language => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const urlLang = urlParams.get('lang');
-  if (urlLang && availableLanguages.includes(urlLang as Language)) {
-    return urlLang as Language;
-  }
-  
-  const pathLang = window.location.pathname.split('/')[1];
-  if (availableLanguages.includes(pathLang as Language)) {
-    return pathLang as Language;
-  }
-  
-  return "en";
-};
-
-const initialLanguage = getInitialLanguage();
-
-i18n.use(initReactI18next).init({
-  lng: initialLanguage,
-  fallbackLng: "en",
-  debug: false,
-  
-  // Define namespaces
-  ns: ["common"],
-  defaultNS: "common",
-  
-  // Translation resources
-  resources: {
-    en: {
-      common: enCommon,
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        common: enCommon,
+      },
+      ka: {
+        common: kaCommon,
+      },
+      ru: {
+        common: ruCommon,
+      },
     },
-    ka: {
-      common: kaCommon,
+    lng: getInitialLanguage(),
+    fallbackLng: "en",
+    defaultNS: "common",
+    debug: false,
+    interpolation: {
+      escapeValue: false,
     },
-    ru: {
-      common: ruCommon,
-    },
-  },
-  
-  interpolation: {
-    escapeValue: false,
-  },
-  
-  // React i18next options
-  react: {
-    useSuspense: false,
-  },
-});
+  });
 
-// Listen for language changes and update URL and localStorage
+// Listen for language changes and update localStorage
 i18n.on('languageChanged', (language: string) => {
   const lang = language as Language;
   
   // Update localStorage
   localStorage.setItem("language", lang);
-  
-  // Update URL with language parameter
-  updateUrlWithLanguage(lang);
 });
 
 export default i18n;

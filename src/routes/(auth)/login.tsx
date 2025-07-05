@@ -189,7 +189,7 @@ function Login() {
             </form.Subscribe>
             <div className="flex items-center justify-between">
               <Link
-                to="/_auth/register"
+                to="/register"
                 className="text-sm text-[#2C5BE3] dark:text-blue-400 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 transition-colors duration-300"
               >
                 Lost your password?
@@ -208,5 +208,5 @@ function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }
