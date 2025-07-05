@@ -1,12 +1,6 @@
 import { Clock } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import ResponsiveModal from "@/components/ResponsiveModal";
-
-const AVAILABILITY_OPTIONS = [
-  { value: "now", label: "Available Now", color: "text-green-600 dark:text-green-400" },
-  { value: "tomorrow", label: "Tomorrow", color: "text-blue-600 dark:text-blue-400" },
-  { value: "next_week", label: "Next Week", color: "text-yellow-600 dark:text-yellow-400" },
-  { value: "on_holiday", label: "On Holiday", color: "text-red-600 dark:text-red-400" },
-];
 
 function AvailabilityFilter({
   availability,
@@ -19,14 +13,23 @@ function AvailabilityFilter({
   availabilityDialogOpen: boolean;
   setAvailabilityDialogOpen: (open: boolean) => void;
 }) {
+  const { t } = useTranslation();
+
+  const AVAILABILITY_OPTIONS = [
+    { value: "now", label: t("find.filters.availability.now"), color: "text-green-600 dark:text-green-400" },
+    { value: "tomorrow", label: t("find.filters.availability.tomorrow"), color: "text-blue-600 dark:text-blue-400" },
+    { value: "next_week", label: t("find.filters.availability.nextWeek"), color: "text-yellow-600 dark:text-yellow-400" },
+    { value: "on_holiday", label: t("find.filters.availability.onHoliday"), color: "text-red-600 dark:text-red-400" },
+  ];
+
   const selectedOption = AVAILABILITY_OPTIONS.find(option => option.value === availability);
 
   return (
     <ResponsiveModal
       open={availabilityDialogOpen}
       onOpenChange={setAvailabilityDialogOpen}
-      title="Filter by Availability"
-      description="Select availability status to filter masters"
+      title={t("find.filters.filterByAvailability")}
+      description={t("find.filters.selectAvailabilityStatus")}
       maxWidth="2xl"
       trigger={
         <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 dark:hover:from-orange-900/20 dark:hover:to-red-900/20 p-3 sm:p-4 lg:p-6 transition-all duration-300 group">
@@ -36,10 +39,10 @@ function AvailabilityFilter({
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-orange-900 dark:group-hover:text-orange-400 transition-colors duration-200">
-                When
+                {t("find.filters.when")}
               </p>
               <p className="text-gray-500 dark:text-gray-400 text-xs truncate">
-                {selectedOption ? selectedOption.label : "Any time"}
+                {selectedOption ? selectedOption.label : t("find.filters.anyTime")}
               </p>
             </div>
           </div>
@@ -61,7 +64,7 @@ function AvailabilityFilter({
           >
             <div className="flex items-center justify-between">
               <span className="font-medium text-gray-900 dark:text-white">
-                Any availability
+                {t("find.filters.anyAvailability")}
               </span>
               {!availability && (
                 <div className="w-3 h-3 bg-blue-500 rounded-full" />

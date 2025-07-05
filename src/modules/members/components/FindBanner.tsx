@@ -1,7 +1,10 @@
 import { Megaphone } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 
 function FindBanner() {
+  const { t } = useTranslation()
+
   return (
     <div
       className="bg-yellow-500 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 flex justify-between items-center mb-4 sm:mb-6 lg:mb-8"
@@ -15,11 +18,11 @@ function FindBanner() {
       </div>
         <div className="min-w-0 flex-1">
           <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-white leading-tight">
-          Members Newsfeed
-        </h1>
+            {t("find.banner.title")}
+          </h1>
           <p className="text-white text-sm sm:text-base opacity-90 leading-tight">
-          Check what your friends have been up to!
-        </p>
+            {t("find.banner.subtitle")}
+          </p>
       </div>
     </div>
       <div className="hidden lg:block flex-shrink-0">

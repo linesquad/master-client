@@ -1,5 +1,6 @@
 import { useSearchMaster } from "../hooks/useSearchMaster";
 import { useSearch } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import type { Master, SearchParams } from "../types/member";
 import FindCardData from "./findcard/FindCardData";
 import FindCardLoading from "./findcard/FindCardLoading";
@@ -9,6 +10,7 @@ import MainPagination from "@/components/MainPagination";
 import { useNavigate } from "@tanstack/react-router";
 
 function FindCard() {
+  const { t } = useTranslation();
   const searchParams = useSearch({ strict: false }) as SearchParams;
   const navigate = useNavigate();
 
@@ -44,14 +46,14 @@ function FindCard() {
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 1) return "1 day ago";
-    if (diffDays < 30) return `${diffDays} days ago`;
+    if (diffDays === 1) return t("find.results.timeAgo.dayAgo");
+    if (diffDays < 30) return t("find.results.timeAgo.daysAgo", { count: diffDays });
     if (diffDays < 365) {
       const months = Math.floor(diffDays / 30);
-      return months === 1 ? "1 month ago" : `${months} months ago`;
+      return months === 1 ? t("find.results.timeAgo.monthAgo") : t("find.results.timeAgo.monthsAgo", { count: months });
     }
     const years = Math.floor(diffDays / 365);
-    return years === 1 ? "1 year ago" : `${years} years ago`;
+    return years === 1 ? t("find.results.timeAgo.yearAgo") : t("find.results.timeAgo.yearsAgo", { count: years });
   };
 
   const getAvailabilityColor = (availability: string) => {
@@ -72,13 +74,13 @@ function FindCard() {
   const getAvailabilityText = (availability: string) => {
     switch (availability.toLowerCase()) {
       case "now":
-        return "Available Now";
+        return t("find.filters.availability.now");
       case "tomorrow":
-        return "Tomorrow";
+        return t("find.filters.availability.tomorrow");
       case "next_week":
-        return "Next Week";
+        return t("find.filters.availability.nextWeek");
       case "on_holiday":
-        return "On Holiday";
+        return t("find.filters.availability.onHoliday");
       default:
         return availability;
     }
@@ -113,16 +115,19 @@ function FindCard() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Available Masters
+            {t("find.results.availableMasters")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {masters.length} {masters.length === 1 ? "master" : "masters"} found
+            {t("find.results.mastersFound", { 
+              count: masters.length, 
+              text: masters.length === 1 ? t("find.results.master") : t("find.results.masters")
+            })}
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-500 dark:text-gray-400">
-            Sort by relevance
+            {t("find.results.sortByRelevance")}
           </span>
         </div>
       </div>

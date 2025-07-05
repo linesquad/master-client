@@ -97,6 +97,100 @@
       "phone": "(+123) 456 789 101"
     }
   },
+  "find": {
+    "banner": {
+      "title": "Members Newsfeed",
+      "subtitle": "Check what your friends have been up to!"
+    },
+    "filters": {
+      "where": "Where",
+      "searchDestinations": "Search Destinations",
+      "selectLocation": "Select Location",
+      "chooseFromCities": "Choose from available cities to filter your search",
+      "what": "What",
+      "addService": "Add Service",
+      "when": "When",
+      "anyTime": "Any time",
+      "filterByAvailability": "Filter by Availability",
+      "selectAvailabilityStatus": "Select availability status to filter masters",
+      "anyAvailability": "Any availability",
+      "price": "Price",
+      "anyPrice": "Any price",
+      "priceRange": "Price Range",
+      "setPriceRange": "Set your preferred price range",
+      "reviews": "Reviews",
+      "anyReviews": "Any reviews",
+      "filterByReviews": "Filter by Reviews",
+      "selectReviewsFilter": "Select reviews filter to find masters",
+      "anyReviewsFilter": "Any reviews",
+      "reset": "Reset",
+      "availability": {
+        "now": "Available Now",
+        "tomorrow": "Tomorrow",
+        "nextWeek": "Next Week",
+        "onHoliday": "On Holiday"
+      },
+      "reviewsOptions": {
+        "withReviews": "With Reviews",
+        "withoutReviews": "Without Reviews"
+      }
+    },
+    "results": {
+      "availableMasters": "Available Masters",
+      "mastersFound": "{{count}} {{text}} found",
+      "master": "master",
+      "masters": "masters",
+      "sortByRelevance": "Sort by relevance",
+      "noMastersFound": "No masters found",
+      "noMastersDescription": "Try adjusting your filters or search criteria to find more results.",
+      "errorLoadingMasters": "Error loading masters",
+      "errorDefaultMessage": "Something went wrong. Please try again later.",
+      "availability": "Availability:",
+      "joined": "Joined {{date}}",
+      "viewProfile": "View Profile",
+      "contact": "Contact",
+      "new": "New",
+      "noReviewsYet": "(No reviews yet)",
+      "reviews": "({{count}} reviews)",
+      "timeAgo": {
+        "dayAgo": "1 day ago",
+        "daysAgo": "{{count}} days ago",
+        "monthAgo": "1 month ago",
+        "monthsAgo": "{{count}} months ago",
+        "yearAgo": "1 year ago",
+        "yearsAgo": "{{count}} years ago",
+        "recentlyJoined": "Recently joined"
+      }
+    },
+    "topMembers": {
+      "title": "Top Members",
+      "active": "Active ({{count}})"
+    },
+    "mostPopular": {
+      "title": "Most Popular",
+      "subtitle": "Circle Application",
+      "registerNow": "Register Now"
+    },
+    "contactForm": {
+      "title": "Contact {{name}}",
+      "description": "Send a message to {{name}}",
+      "location": "Your Location",
+      "locationRequired": "Location is required",
+      "locationPlaceholder": "Enter your location (where you need the service)",
+      "locationMaxLength": "Location cannot exceed 200 characters",
+      "locationCharacterCount": "{{current}}/200 characters",
+      "message": "Message (Optional)",
+      "messagePlaceholder": "Describe your project or what you need help with...",
+      "messageMaxLength": "Message cannot exceed 500 characters",
+      "messageCharacterCount": "{{current}}/500 characters",
+      "requestedTime": "Preferred Date & Time (Optional)",
+      "requestedTimeDescription": "When would you like the service to be performed?",
+      "selectServiceFirst": "Please select a specific service first",
+      "cancel": "Cancel",
+      "sendRequest": "Send Request",
+      "sending": "Sending..."
+    }
+  },
   "auth": {
     "login": "Login",
     "register": "Register",

@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 function FindCardError({ error }: { error: Error }) {
+  const { t } = useTranslation();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div className="col-span-full">
@@ -19,10 +23,10 @@ function FindCardError({ error }: { error: Error }) {
             </svg>
           </div>
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Error loading masters
+            {t("find.results.errorLoadingMasters")}
           </h3>
           <p className="text-gray-500 dark:text-gray-400">
-            {error?.message || "Something went wrong. Please try again later."}
+            {error?.message || t("find.results.errorDefaultMessage")}
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { CheckCircle, MapPin, Star, Clock, User, Send, Calendar } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { Master } from "../../types/member";
 import { useCreateLead } from "../../hooks/useCreateLead";
 import ResponsiveModal from "@/components/ResponsiveModal";
@@ -19,6 +20,7 @@ function FindCardData({
   getAvailabilityText: (availability: string) => string;
   formatDate: (date: string) => string;
 }) {
+  const { t } = useTranslation();
   const { mutate: createLead, isPending } = useCreateLead();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -32,17 +34,17 @@ function FindCardData({
     const newErrors: Record<string, string> = {};
     
     if (!formData.location.trim()) {
-      newErrors.location = "Location is required";
+      newErrors.location = t("find.contactForm.locationRequired");
     } else if (formData.location.length > 200) {
-      newErrors.location = "Location cannot exceed 200 characters";
+      newErrors.location = t("find.contactForm.locationMaxLength");
     }
     
     if (formData.message.length > 500) {
-      newErrors.message = "Message cannot exceed 500 characters";
+      newErrors.message = t("find.contactForm.messageMaxLength");
     }
     
     if (!selectedJobId) {
-      newErrors.masterJobId = "Please select a specific service first";
+      newErrors.masterJobId = t("find.contactForm.selectServiceFirst");
     }
     
     setErrors(newErrors);
@@ -118,13 +120,13 @@ function FindCardData({
               <Star className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 fill-current" />
               <span className="text-sm font-medium text-gray-900 dark:text-white">
                 {master.reviewCount === "0" || !master.avgRating
-                  ? "New"
+                  ? t("find.results.new")
                   : parseFloat(master.avgRating).toFixed(1)}
               </span>
               <span className="text-xs text-gray-500 dark:text-gray-400">
                 {master.reviewCount === "0"
-                  ? "(No reviews yet)"
-                  : `(${master.reviewCount} reviews)`}
+                  ? t("find.results.noReviewsYet")
+                  : t("find.results.reviews", { count: parseInt(master.reviewCount) })}
               </span>
             </div>
           </div>
@@ -137,7 +139,7 @@ function FindCardData({
           <div className="flex items-center gap-2 min-w-0">
             <Clock className="w-3 h-3 md:w-4 md:h-4 text-gray-400 flex-shrink-0" />
             <span className="text-sm text-gray-600 dark:text-gray-300 truncate">
-              Availability:
+              {t("find.results.availability")}
             </span>
           </div>
           <span
@@ -150,7 +152,7 @@ function FindCardData({
         <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
           <User className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
           <span className="truncate">
-            Joined {formatDate(master.createdAt)}
+            {t("find.results.joined", { date: formatDate(master.createdAt) })}
           </span>
         </div>
       </div>
@@ -158,17 +160,17 @@ function FindCardData({
       {/* Action buttons */}
       <div className="flex gap-2">
         <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 md:px-4 rounded-lg text-sm font-medium transition-colors duration-200 min-w-0">
-          View Profile
+          {t("find.results.viewProfile")}
         </button>
         
         <ResponsiveModal
           trigger={
             <button className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 py-2 px-3 md:px-4 rounded-lg text-sm font-medium transition-colors duration-200 min-w-0">
-              Contact
+              {t("find.results.contact")}
             </button>
           }
-          title={`Contact ${master.fullName}`}
-          description={`Send a message to ${master.fullName}`}
+          title={t("find.contactForm.title", { name: master.fullName })}
+          description={t("find.contactForm.description", { name: master.fullName })}
           open={isModalOpen}
           onOpenChange={setIsModalOpen}
           maxWidth="md"
@@ -198,12 +200,12 @@ function FindCardData({
               {/* Location Field */}
               <div>
                 <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Your Location <span className="text-red-500">*</span>
+                  {t("find.contactForm.location")} <span className="text-red-500">*</span>
                 </label>
                 <Input
                   id="location"
                   type="text"
-                  placeholder="Enter your location (where you need the service)"
+                  placeholder={t("find.contactForm.locationPlaceholder")}
                   value={formData.location}
                   onChange={(e) => handleInputChange("location", e.target.value)}
                   className={`w-full ${errors.location ? "border-red-500" : ""}`}
@@ -212,19 +214,19 @@ function FindCardData({
                   <p className="text-red-500 text-sm mt-1">{errors.location}</p>
                 )}
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.location.length}/200 characters
+                  {t("find.contactForm.locationCharacterCount", { current: formData.location.length })}
                 </p>
               </div>
 
               {/* Message Field */}
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message (Optional)
+                  {t("find.contactForm.message")}
                 </label>
                 <textarea
                   id="message"
                   rows={4}
-                  placeholder="Describe your project or what you need help with..."
+                  placeholder={t("find.contactForm.messagePlaceholder")}
                   value={formData.message}
                   onChange={(e) => handleInputChange("message", e.target.value)}
                   className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${
@@ -235,14 +237,14 @@ function FindCardData({
                   <p className="text-red-500 text-sm mt-1">{errors.message}</p>
                 )}
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {formData.message.length}/500 characters
+                  {t("find.contactForm.messageCharacterCount", { current: formData.message.length })}
                 </p>
               </div>
 
               {/* Requested Time Field */}
               <div>
                 <label htmlFor="requestedTime" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Preferred Date & Time (Optional)
+                  {t("find.contactForm.requestedTime")}
                 </label>
                 <div className="relative">
                   <Input
@@ -256,7 +258,7 @@ function FindCardData({
                   <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  When would you like the service to be performed?
+                  {t("find.contactForm.requestedTimeDescription")}
                 </p>
               </div>
 
@@ -275,7 +277,7 @@ function FindCardData({
                   className="flex-1"
                   disabled={isPending}
                 >
-                  Cancel
+                  {t("find.contactForm.cancel")}
                 </Button>
                 <Button
                   type="submit"
@@ -285,12 +287,12 @@ function FindCardData({
                   {isPending ? (
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
+                      {t("find.contactForm.sending")}
                     </div>
                   ) : (
                     <div className="flex items-center gap-2">
                       <Send className="w-4 h-4" />
-                      Send Request
+                      {t("find.contactForm.sendRequest")}
                     </div>
                   )}
                 </Button>

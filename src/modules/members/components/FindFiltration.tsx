@@ -1,6 +1,7 @@
 import { MapPin, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { useCategory } from "../hooks/useCategory";
 import { useJobByCategoryId } from "../hooks/useJobByCategory";
 import { useGetCities } from "../hooks/useGetCities";
@@ -19,6 +20,7 @@ import ActiveFilters from "./activeFilters/ActiveFilters";
 import { useLanguage } from "@/hooks/useLanguage";
 
 function FindFiltration() {
+  const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const navigate = useNavigate();
   const searchParams = useSearch({ strict: false }) as SearchParams;
@@ -204,7 +206,7 @@ function FindFiltration() {
     } else if (selectedCityData) {
       return selectedCityData.name;
     }
-    return "Search Destinations";
+    return t("find.filters.searchDestinations");
   };
 
   const getServiceDisplayText = () => {
@@ -213,7 +215,7 @@ function FindFiltration() {
     } else if (selectedCategoryData) {
       return selectedCategoryData.name[currentLanguage] || selectedCategoryData.name.en;
     }
-    return "Add Service";
+    return t("find.filters.addService");
   };
 
   return (
@@ -242,24 +244,24 @@ function FindFiltration() {
           <ResponsiveModal
             open={locationDialogOpen}
             onOpenChange={setLocationDialogOpen}
-            title="Select Location"
-            description="Choose from available cities to filter your search"
+            title={t("find.filters.selectLocation")}
+            description={t("find.filters.chooseFromCities")}
             maxWidth="3xl"
             trigger={
               <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 rounded-t-2xl 2xl:rounded-l-3xl 2xl:rounded-tr-none p-3 sm:p-4 lg:p-6 transition-all duration-300 group">
-                                  <div className="flex items-center space-x-2 sm:space-x-3">
-                    <div className="flex-shrink-0">
-                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-200" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors duration-200">
-                        Where
-                      </p>
-                      <p className="text-gray-500 dark:text-gray-400 text-xs truncate">
-                        {getLocationDisplayText()}
-                      </p>
-                    </div>
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="flex-shrink-0">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 group-hover:text-blue-600 transition-colors duration-200" />
                   </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors duration-200">
+                      {t("find.filters.where")}
+                    </p>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs truncate">
+                      {getLocationDisplayText()}
+                    </p>
+                  </div>
+                </div>
               </div>
             }
           >
@@ -330,10 +332,10 @@ function FindFiltration() {
               <button
                 onClick={handleResetFilters}
                 className="cursor-pointer flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg 2xl:rounded-xl transition-all duration-200 w-full 2xl:w-auto justify-center 2xl:justify-start"
-                title="Reset all filters"
+                title={t("find.filters.reset")}
               >
                 <RotateCcw className="w-4 h-4" />
-                <span className="hidden sm:inline">Reset</span>
+                <span className="hidden sm:inline">{t("find.filters.reset")}</span>
               </button>
             )}
           </div>

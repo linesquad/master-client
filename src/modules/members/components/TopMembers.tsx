@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { useGetPopularMaster } from "../hooks/useGetPopularMaster";
 import TopMembersError from "./topMembers/TopMembersError";
 import TopMembersNoData from "./topMembers/TopMembersNoData";
 import TopMembersSkeleton from "./topMembers/TopMembersSkeleton";
 
 function TopMembers() {
+  const { t } = useTranslation();
   const {
     data: popularMasters,
     isLoading,
@@ -41,22 +43,22 @@ function TopMembers() {
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 1) return "1 day ago";
-    if (diffDays < 30) return `${diffDays} days ago`;
+    if (diffDays === 1) return t("find.results.timeAgo.dayAgo");
+    if (diffDays < 30) return t("find.results.timeAgo.daysAgo", { count: diffDays });
     if (diffDays < 365) {
       const months = Math.floor(diffDays / 30);
-      return months === 1 ? "1 month ago" : `${months} months ago`;
+      return months === 1 ? t("find.results.timeAgo.monthAgo") : t("find.results.timeAgo.monthsAgo", { count: months });
     }
     const years = Math.floor(diffDays / 365);
-    return years === 1 ? "1 year ago" : `${years} years ago`;
+    return years === 1 ? t("find.results.timeAgo.yearAgo") : t("find.results.timeAgo.yearsAgo", { count: years });
   };
 
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-      <h2 className="text-lg font-bold dark:text-white mb-4">Top Members</h2>
+      <h2 className="text-lg font-bold dark:text-white mb-4">{t("find.topMembers.title")}</h2>
       <div className="flex space-x-2 border-b dark:border-gray-700 pb-2 mb-4">
         <button className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm">
-          Active ({popularMasters.data.length})
+          {t("find.topMembers.active", { count: popularMasters.data.length })}
         </button>
       </div>
       <div className="space-y-4">
@@ -75,7 +77,7 @@ function TopMembers() {
               <p className="text-sm text-gray-400">
                 {master.createdAt
                   ? formatDate(master.createdAt)
-                  : "Recently joined"}
+                  : t("find.results.timeAgo.recentlyJoined")}
               </p>
             </div>
           </div>
