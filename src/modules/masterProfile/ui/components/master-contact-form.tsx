@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { MapPin, Send, Calendar } from "lucide-react";
 import { useCreateLead } from "@/modules/members/hooks/useCreateLead";
@@ -10,7 +10,7 @@ import { type MasterProfileData, type Work } from "../../types";
 interface MasterContactFormProps {
   master: MasterProfileData;
   selectedWork?: Work;
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -31,6 +31,16 @@ export function MasterContactForm({
     requestedTime: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Handle focus management when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      // Blur any currently focused element to prevent aria-hidden issues
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    }
+  }, [isOpen]);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -112,7 +122,7 @@ export function MasterContactForm({
           />
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {master.fullName}
+              {master.fullgitName}
             </h3>
             <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
               <MapPin className="w-3 h-3" />

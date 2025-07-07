@@ -19,7 +19,7 @@ import {
 import { X } from "lucide-react";
 
 interface ResponsiveModalProps {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
   title: string;
   description: string;
   children: React.ReactNode;
@@ -59,7 +59,7 @@ export function ResponsiveModal({
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerTrigger asChild>{trigger}</DrawerTrigger>
+        {trigger && <DrawerTrigger asChild>{trigger}</DrawerTrigger>}
         <DrawerContent className={`bg-white dark:bg-gray-900 h-[85vh] flex flex-col ${className}`}>
           <DrawerHeader className="sr-only">
             <DrawerTitle>{title}</DrawerTitle>
@@ -82,7 +82,7 @@ export function ResponsiveModal({
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+      {trigger && <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>}
       <AlertDialogContent className={`bg-white dark:bg-gray-900 ${maxWidthClasses[maxWidth]} h-[80vh] p-0 gap-0 flex flex-col ${className}`}>
         <AlertDialogTitle className="sr-only">{title}</AlertDialogTitle>
         <AlertDialogDescription className="sr-only">{description}</AlertDialogDescription>

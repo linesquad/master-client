@@ -193,7 +193,6 @@ export function MasterProfileSingle({ id }: { id: string }) {
       <MasterContactForm
         master={data}
         selectedWork={selectedWork}
-        trigger={<></>}
         isOpen={isContactFormOpen}
         onOpenChange={setIsContactFormOpen}
       />
