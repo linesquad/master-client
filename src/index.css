@@ -154,5 +154,23 @@
     word-break: break-word;
     overflow-wrap: break-word;
   }
+  
+  /* Hide scrollbars while maintaining scroll functionality */
+  .scrollbar-hide {
+    /* Firefox */
+    scrollbar-width: none;
+    /* Safari and Chrome */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .mobile-optimized {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
 }
 

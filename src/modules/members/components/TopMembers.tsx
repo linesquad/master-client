@@ -54,7 +54,7 @@ function TopMembers() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+    <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow mx-4 sm:mx-0">
       <h2 className="text-lg font-bold dark:text-white mb-4">{t("find.topMembers.title")}</h2>
       <div className="flex space-x-2 border-b dark:border-gray-700 pb-2 mb-4">
         <button className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm">

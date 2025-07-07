@@ -137,7 +137,6 @@ function FindCard() {
           <FindCardData
             key={master.id}
             master={master}
-            selectedJobId={searchParams.jobId}
             getAvailabilityColor={getAvailabilityColor}
             getAvailabilityText={getAvailabilityText}
             formatDate={formatDate}

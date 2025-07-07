@@ -14,11 +14,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as appRouteRouteImport } from './routes/(app)/route'
 import { Route as appIndexRouteImport } from './routes/(app)/index'
-import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as appContactRouteImport } from './routes/(app)/contact'
 import { Route as appFindRouteImport } from './routes/(app)/Find'
+import { Route as appProfileIdRouteImport } from './routes/(app)/profile/$id'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -32,11 +32,6 @@ const appIndexRoute = appIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => appRouteRoute,
-} as any)
-const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const authRegisterRoute = authRegisterRouteImport.update({
   id: '/(auth)/register',
@@ -58,35 +53,40 @@ const appFindRoute = appFindRouteImport.update({
   path: '/Find',
   getParentRoute: () => appRouteRoute,
 } as any)
+const appProfileIdRoute = appProfileIdRouteImport.update({
+  id: '/profile/$id',
+  path: '/profile/$id',
+  getParentRoute: () => appRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof appIndexRoute
-  '': typeof AuthenticatedRouteWithChildren
+  '': typeof AuthenticatedRoute
   '/Find': typeof appFindRoute
   '/contact': typeof appContactRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
-  '/profile': typeof AuthenticatedProfileRoute
+  '/profile/$id': typeof appProfileIdRoute
 }
 export interface FileRoutesByTo {
-  '': typeof AuthenticatedRouteWithChildren
+  '': typeof AuthenticatedRoute
   '/Find': typeof appFindRoute
   '/contact': typeof appContactRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
-  '/profile': typeof AuthenticatedProfileRoute
   '/': typeof appIndexRoute
+  '/profile/$id': typeof appProfileIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(app)': typeof appRouteRouteWithChildren
-  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRoute
   '/(app)/Find': typeof appFindRoute
   '/(app)/contact': typeof appContactRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
-  '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/(app)/': typeof appIndexRoute
+  '/(app)/profile/$id': typeof appProfileIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,9 +97,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/login'
     | '/register'
-    | '/profile'
+    | '/profile/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/Find' | '/contact' | '/login' | '/register' | '/profile' | '/'
+  to: '' | '/Find' | '/contact' | '/login' | '/register' | '/' | '/profile/$id'
   id:
     | '__root__'
     | '/(app)'
@@ -108,13 +108,13 @@ export interface FileRouteTypes {
     | '/(app)/contact'
     | '/(auth)/login'
     | '/(auth)/register'
-    | '/_authenticated/profile'
     | '/(app)/'
+    | '/(app)/profile/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   appRouteRoute: typeof appRouteRouteWithChildren
-  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AuthenticatedRoute: typeof AuthenticatedRoute
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
 }
@@ -163,18 +163,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/profile': {
-      id: '/_authenticated/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AuthenticatedProfileRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/(app)/': {
       id: '/(app)/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof appIndexRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/profile/$id': {
+      id: '/(app)/profile/$id'
+      path: '/profile/$id'
+      fullPath: '/profile/$id'
+      preLoaderRoute: typeof appProfileIdRouteImport
       parentRoute: typeof appRouteRoute
     }
   }
@@ -234,15 +234,6 @@ declare module './routes/(auth)/register' {
     FileRoutesByPath['/(auth)/register']['fullPath']
   >
 }
-declare module './routes/_authenticated/profile' {
-  const createFileRoute: CreateFileRoute<
-    '/_authenticated/profile',
-    FileRoutesByPath['/_authenticated/profile']['parentRoute'],
-    FileRoutesByPath['/_authenticated/profile']['id'],
-    FileRoutesByPath['/_authenticated/profile']['path'],
-    FileRoutesByPath['/_authenticated/profile']['fullPath']
-  >
-}
 declare module './routes/(app)/index' {
   const createFileRoute: CreateFileRoute<
     '/(app)/',
@@ -252,38 +243,37 @@ declare module './routes/(app)/index' {
     FileRoutesByPath['/(app)/']['fullPath']
   >
 }
+declare module './routes/(app)/profile/$id' {
+  const createFileRoute: CreateFileRoute<
+    '/(app)/profile/$id',
+    FileRoutesByPath['/(app)/profile/$id']['parentRoute'],
+    FileRoutesByPath['/(app)/profile/$id']['id'],
+    FileRoutesByPath['/(app)/profile/$id']['path'],
+    FileRoutesByPath['/(app)/profile/$id']['fullPath']
+  >
+}
 
 interface appRouteRouteChildren {
   appFindRoute: typeof appFindRoute
   appContactRoute: typeof appContactRoute
   appIndexRoute: typeof appIndexRoute
+  appProfileIdRoute: typeof appProfileIdRoute
 }
 
 const appRouteRouteChildren: appRouteRouteChildren = {
   appFindRoute: appFindRoute,
   appContactRoute: appContactRoute,
   appIndexRoute: appIndexRoute,
+  appProfileIdRoute: appProfileIdRoute,
 }
 
 const appRouteRouteWithChildren = appRouteRoute._addFileChildren(
   appRouteRouteChildren,
 )
 
-interface AuthenticatedRouteChildren {
-  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-}
-
-const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
-}
-
-const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
-  AuthenticatedRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   appRouteRoute: appRouteRouteWithChildren,
-  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AuthenticatedRoute: AuthenticatedRoute,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
 }

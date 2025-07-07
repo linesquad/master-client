@@ -60,7 +60,7 @@ export function ResponsiveModal({
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-        <DrawerContent className={`bg-white dark:bg-gray-900 h-[85vh] ${className}`}>
+        <DrawerContent className={`bg-white dark:bg-gray-900 h-[85vh] flex flex-col ${className}`}>
           <DrawerHeader className="sr-only">
             <DrawerTitle>{title}</DrawerTitle>
             <DrawerDescription>{description}</DrawerDescription>
@@ -72,7 +72,9 @@ export function ResponsiveModal({
               </button>
             </DrawerClose>
           )}
-          {children}
+          <div className="flex-1 overflow-y-auto">
+            {children}
+          </div>
         </DrawerContent>
       </Drawer>
     );
@@ -81,7 +83,7 @@ export function ResponsiveModal({
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-      <AlertDialogContent className={`bg-white dark:bg-gray-900 ${maxWidthClasses[maxWidth]} h-[80vh] p-0 gap-0 ${className}`}>
+      <AlertDialogContent className={`bg-white dark:bg-gray-900 ${maxWidthClasses[maxWidth]} h-[80vh] p-0 gap-0 flex flex-col ${className}`}>
         <AlertDialogTitle className="sr-only">{title}</AlertDialogTitle>
         <AlertDialogDescription className="sr-only">{description}</AlertDialogDescription>
         {showCloseButton && onOpenChange && (
@@ -92,7 +94,9 @@ export function ResponsiveModal({
             <X className="w-5 h-5" />
           </button>
         )}
-        {children}
+        <div className="flex-1 overflow-y-auto">
+          {children}
+        </div>
       </AlertDialogContent>
     </AlertDialog>
   );
