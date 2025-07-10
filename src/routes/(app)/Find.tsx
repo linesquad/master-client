@@ -1,9 +1,9 @@
 import MembersNewsfeed from "@/modules/members/views/Members-News-feed";
 
 export const Route = createFileRoute({
-  component: FindComponent,
+  component: RouteComponent,
 });
 
-function FindComponent() {
+function RouteComponent() {
   return <MembersNewsfeed />;
 }

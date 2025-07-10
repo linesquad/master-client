@@ -14,7 +14,8 @@ export function NoFiltersApplied() {
   const handleCategoryClick = (categoryId: string) => {
     navigate({
       to: "/find",
-      search: (prev) => ({ ...prev, categoryId }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      search: ((prev: any) => ({ ...prev, categoryId })) as any,
     });
   };
 
