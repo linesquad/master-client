@@ -1,56 +1,56 @@
 import instance from "@/lib/axios";
 
-export const signIn = async (email: string,password: string) => {
-  try {
-    const response = await instance.post("/api/auth/login", {
-      email,
-      password,
-    });
+export const signIn = async (email: string, password: string) => {
+  const response = await instance.post("/api/auth/login", {
+    email,
+    password,
+  });
+  if (response.status === 200) {
     return response.data;
-  } catch (error) {
-    throw error;
   }
+  throw new Error("Login failed");
 };
 
-export const signUp = async (fullName: string, email: string, password: string, phone: string, role: string) => {
-  try {
-    const response = await instance.post("/api/auth/register", {
-      fullName,
-      email,
-      password,
-      phone,
-      role
-    });
-    console.log(response.data);
+export const signUp = async (
+  fullName: string,
+  email: string,
+  password: string,
+  phone: string,
+  role: string
+) => {
+  const response = await instance.post("/api/auth/register", {
+    fullName,
+    email,
+    password,
+    phone,
+    role,
+  });
+  if (response.status === 200) {
     return response.data;
-  } catch (error) {
-    throw error;
   }
+  throw new Error("Failed to register");
 };
 
 export const signOut = async () => {
-  try {
-    const response = await instance.post("/api/auth/logout");
+  const response = await instance.post("/api/auth/logout");
+  if (response.status === 200) {
     return response.data;
-  } catch (error) {
-    throw error;
   }
+  throw new Error("Failed to logout");
 };
 
 export const getUserId = async () => {
-  try {
-    const response = await instance.get("/api/auth/me");
+  const response = await instance.get("/api/auth/me");
+  if (response.status === 200) {
     return response.data.user.id;
-  } catch (error) {
-    throw error;
   }
+  throw new Error("Failed to get user id");
 };
 
 export const getUser = async () => {
-  try {
-    const response = await instance.get("/api/auth/me");
+  const response = await instance.get("/api/auth/me");
+  if (response.status === 200) {
     return response.data.user;
-  } catch (error) {
-    throw error;
   }
+  throw new Error("Failed to get user");
 };

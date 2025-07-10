@@ -16,8 +16,10 @@ import { MasterProfileInfo } from "../components/master-profile-info";
 import { MasterProfileOverlay } from "../components/master-profile-overlay";
 import { MasterWorksSidebar } from "../components/master-works-sidebar";
 import { MasterContactForm } from "../components/master-contact-form";
+// import { useUser } from "@/modules/auth/hooks/useUser";
 
 export function MasterProfileSingle({ id }: { id: string }) {
+  // const { data: client, isLoading } = useUser();
   const { data, isLoading, error } = useGetMasterProfile(id);
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<

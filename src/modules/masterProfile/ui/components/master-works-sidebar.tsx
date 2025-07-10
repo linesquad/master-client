@@ -42,7 +42,10 @@ export function MasterWorksSidebar({
     return `${hours}h ${minutes}m`;
   };
 
-  const getTranslatedText = (text: string | { en?: string; ka?: string; ru?: string }, fallback = "") => {
+  const getTranslatedText = (
+    text: string | { en?: string; ka?: string; ru?: string },
+    fallback = ""
+  ) => {
     if (typeof text === "string") return text;
     if (!text) return fallback;
     return text.en || text.ka || text.ru || fallback;
@@ -93,50 +96,50 @@ export function MasterWorksSidebar({
                         alt={getTranslatedText(work.jobInfo?.title || "")}
                         className="w-full h-32 object-cover rounded-md"
                         onError={(e) => {
-                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.style.display = "none";
                         }}
                       />
                     </div>
                   )}
-                  
+
                   <div className="space-y-2">
                     {work.jobInfo?.title && (
                       <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">
                         {getTranslatedText(work.jobInfo.title)}
                       </h3>
                     )}
-                    
+
                     {work.category?.name && (
                       <div className="text-sm text-blue-600 dark:text-blue-400 font-medium">
                         {getTranslatedText(work.category.name)}
                       </div>
                     )}
-                    
+
                     {work.description && (
                       <p className="text-gray-600 dark:text-gray-300 text-sm">
                         {getTranslatedText(work.description)}
                       </p>
                     )}
-                    
+
                     {work.jobInfo?.description && (
                       <p className="text-gray-600 dark:text-gray-300 text-sm">
                         {getTranslatedText(work.jobInfo.description)}
                       </p>
                     )}
-                    
+
                     <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         {new Date(work.createdAt).toLocaleDateString()}
                       </div>
-                      
+
                       {work.priceRange && (
                         <div className="flex items-center gap-1">
                           <DollarSign className="w-3 h-3" />
                           {formatPrice(work.priceRange)}
                         </div>
                       )}
-                      
+
                       {work.duration && (
                         <div className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
@@ -144,13 +147,13 @@ export function MasterWorksSidebar({
                         </div>
                       )}
                     </div>
-                    
+
                     {work.note && (
                       <div className="mt-2 p-2 bg-gray-50 dark:bg-gray-700 rounded text-xs text-gray-600 dark:text-gray-300">
                         <strong>{t("profile.works.note")}:</strong> {work.note}
                       </div>
                     )}
-                    
+
                     {/* Select Work Button */}
                     <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-600">
                       <Button
@@ -173,4 +176,4 @@ export function MasterWorksSidebar({
       </DrawerContent>
     </Drawer>
   );
-} 
+}

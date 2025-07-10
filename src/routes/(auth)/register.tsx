@@ -23,7 +23,7 @@ function Register() {
       fullName: "",
       email: "",
       password: "",
-      phone: "",
+      phone: "+995",
       role: "client",
     },
     onSubmit: async ({ value }) => {
@@ -303,7 +303,7 @@ function Register() {
             </form.Subscribe>
             <div className="flex items-center justify-between">
               <Link
-                to="/_auth/login"
+                to="/login"
                 className="text-sm text-[#2C5BE3] hover:text-[#2C5BE3]/80"
               >
                 Lost your password?
