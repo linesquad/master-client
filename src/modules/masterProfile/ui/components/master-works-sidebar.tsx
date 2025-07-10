@@ -8,7 +8,7 @@ import {
   DrawerDescription,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { X, Calendar, DollarSign, Clock } from "lucide-react";
+import { X, Calendar, Clock } from "lucide-react";
 import { type Work } from "../../types";
 
 interface MasterWorksSidebarProps {
@@ -27,11 +27,6 @@ export function MasterWorksSidebar({
   onWorkSelect,
 }: MasterWorksSidebarProps) {
   const { t } = useTranslation();
-
-  const formatPrice = (priceRange?: { min: number; max: number }) => {
-    if (!priceRange) return t("profile.works.priceOnRequest");
-    return `${priceRange.min} - ${priceRange.max} ₾`;
-  };
 
   const formatDuration = (duration?: number) => {
     if (!duration) return t("profile.works.durationNotSpecified");
@@ -132,13 +127,6 @@ export function MasterWorksSidebar({
                         <Calendar className="w-3 h-3" />
                         {new Date(work.createdAt).toLocaleDateString()}
                       </div>
-
-                      {work.priceRange && (
-                        <div className="flex items-center gap-1">
-                          <DollarSign className="w-3 h-3" />
-                          {formatPrice(work.priceRange)}
-                        </div>
-                      )}
 
                       {work.duration && (
                         <div className="flex items-center gap-1">

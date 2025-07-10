@@ -11,15 +11,10 @@ import { useNavigate } from "@tanstack/react-router";
 function Header() {
   const { t } = useTranslation("common");
   const navigate = useNavigate();
-  const {
-    data: userData,
-    isLoading: userDataLoading,
-    isError: userDataError,
-  } = useUser();
+  const { data: userData, isLoading: userDataLoading } = useUser();
   const { mutate: logout } = useLogout();
 
   if (userDataLoading) return <NavbarSkeleton />;
-  if (userDataError) return <div>Error</div>;
 
   return (
     <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300">

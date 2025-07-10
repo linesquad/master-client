@@ -1,6 +1,10 @@
 {
+  "application": {
+    "name": "Pro"
+  },
   "navigation": {
     "home": "Home",
+    "about": "About",
     "find": "Find",
     "contact": "Contact",
     "login": "Login",
@@ -25,7 +29,7 @@
         "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
       },
       "forumDiscussion": {
-        "title": "Forum Discussion", 
+        "title": "Forum Discussion",
         "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
       },
       "activeGroups": {
@@ -295,4 +299,4 @@
       "selectWork": "Select this work"
     }
   }
-} 
+}

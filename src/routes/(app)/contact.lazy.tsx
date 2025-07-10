@@ -3,7 +3,7 @@ import ContactMap from "@/modules/contact/views/contact-map";
 import ContactForm from "@/modules/contact/views/contact-form";
 import SubscribeNewsletter from "@/modules/home/ui/views/subscribe-newsletter";
 
-export const Route = createFileRoute({
+export const Route = createLazyFileRoute({
   component: RouteComponent,
 });
 

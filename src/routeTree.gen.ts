@@ -18,12 +18,13 @@ import { Route as appIndexRouteImport } from './routes/(app)/index'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as appFindRouteImport } from './routes/(app)/find'
-import { Route as appContactRouteImport } from './routes/(app)/contact'
 import { Route as appProfileIdRouteImport } from './routes/(app)/profile/$id'
 
+const appContactLazyRouteImport = createFileRoute('/(app)/contact')()
 const appClientProfileLazyRouteImport = createFileRoute(
   '/(app)/client-profile',
 )()
+const appAboutLazyRouteImport = createFileRoute('/(app)/about')()
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -38,6 +39,13 @@ const appIndexRoute = appIndexRouteImport.update({
   path: '/',
   getParentRoute: () => appRouteRoute,
 } as any)
+const appContactLazyRoute = appContactLazyRouteImport
+  .update({
+    id: '/contact',
+    path: '/contact',
+    getParentRoute: () => appRouteRoute,
+  } as any)
+  .lazy(() => import('./routes/(app)/contact.lazy').then((d) => d.Route))
 const appClientProfileLazyRoute = appClientProfileLazyRouteImport
   .update({
     id: '/client-profile',
@@ -45,6 +53,13 @@ const appClientProfileLazyRoute = appClientProfileLazyRouteImport
     getParentRoute: () => appRouteRoute,
   } as any)
   .lazy(() => import('./routes/(app)/client-profile.lazy').then((d) => d.Route))
+const appAboutLazyRoute = appAboutLazyRouteImport
+  .update({
+    id: '/about',
+    path: '/about',
+    getParentRoute: () => appRouteRoute,
+  } as any)
+  .lazy(() => import('./routes/(app)/about.lazy').then((d) => d.Route))
 const authRegisterRoute = authRegisterRouteImport.update({
   id: '/(auth)/register',
   path: '/register',
@@ -60,11 +75,6 @@ const appFindRoute = appFindRouteImport.update({
   path: '/find',
   getParentRoute: () => appRouteRoute,
 } as any)
-const appContactRoute = appContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => appRouteRoute,
-} as any)
 const appProfileIdRoute = appProfileIdRouteImport.update({
   id: '/profile/$id',
   path: '/profile/$id',
@@ -74,20 +84,22 @@ const appProfileIdRoute = appProfileIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof appIndexRoute
   '': typeof AuthenticatedRoute
-  '/contact': typeof appContactRoute
   '/find': typeof appFindRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/about': typeof appAboutLazyRoute
   '/client-profile': typeof appClientProfileLazyRoute
+  '/contact': typeof appContactLazyRoute
   '/profile/$id': typeof appProfileIdRoute
 }
 export interface FileRoutesByTo {
   '': typeof AuthenticatedRoute
-  '/contact': typeof appContactRoute
   '/find': typeof appFindRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/about': typeof appAboutLazyRoute
   '/client-profile': typeof appClientProfileLazyRoute
+  '/contact': typeof appContactLazyRoute
   '/': typeof appIndexRoute
   '/profile/$id': typeof appProfileIdRoute
 }
@@ -95,11 +107,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(app)': typeof appRouteRouteWithChildren
   '/_authenticated': typeof AuthenticatedRoute
-  '/(app)/contact': typeof appContactRoute
   '/(app)/find': typeof appFindRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
+  '/(app)/about': typeof appAboutLazyRoute
   '/(app)/client-profile': typeof appClientProfileLazyRoute
+  '/(app)/contact': typeof appContactLazyRoute
   '/(app)/': typeof appIndexRoute
   '/(app)/profile/$id': typeof appProfileIdRoute
 }
@@ -108,31 +121,34 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | ''
-    | '/contact'
     | '/find'
     | '/login'
     | '/register'
+    | '/about'
     | '/client-profile'
+    | '/contact'
     | '/profile/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
-    | '/contact'
     | '/find'
     | '/login'
     | '/register'
+    | '/about'
     | '/client-profile'
+    | '/contact'
     | '/'
     | '/profile/$id'
   id:
     | '__root__'
     | '/(app)'
     | '/_authenticated'
-    | '/(app)/contact'
     | '/(app)/find'
     | '/(auth)/login'
     | '/(auth)/register'
+    | '/(app)/about'
     | '/(app)/client-profile'
+    | '/(app)/contact'
     | '/(app)/'
     | '/(app)/profile/$id'
   fileRoutesById: FileRoutesById
@@ -160,13 +176,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(app)/contact': {
-      id: '/(app)/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof appContactRouteImport
-      parentRoute: typeof appRouteRoute
-    }
     '/(app)/find': {
       id: '/(app)/find'
       path: '/find'
@@ -188,11 +197,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(app)/about': {
+      id: '/(app)/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof appAboutLazyRouteImport
+      parentRoute: typeof appRouteRoute
+    }
     '/(app)/client-profile': {
       id: '/(app)/client-profile'
       path: '/client-profile'
       fullPath: '/client-profile'
       preLoaderRoute: typeof appClientProfileLazyRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/contact': {
+      id: '/(app)/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof appContactLazyRouteImport
       parentRoute: typeof appRouteRoute
     }
     '/(app)/': {
@@ -209,11 +232,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof appProfileIdRouteImport
       parentRoute: typeof appRouteRoute
     }
+    '/(app)/contact': {
+      id: '/(app)/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof appContactLazyRouteImport
+      parentRoute: typeof appRouteRoute
+    }
     '/(app)/client-profile': {
       id: '/(app)/client-profile'
       path: '/client-profile'
       fullPath: '/client-profile'
       preLoaderRoute: typeof appClientProfileLazyRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/about': {
+      id: '/(app)/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof appAboutLazyRouteImport
       parentRoute: typeof appRouteRoute
     }
   }
@@ -235,15 +272,6 @@ declare module './routes/_authenticated' {
     FileRoutesByPath['/_authenticated']['id'],
     FileRoutesByPath['/_authenticated']['path'],
     FileRoutesByPath['/_authenticated']['fullPath']
-  >
-}
-declare module './routes/(app)/contact' {
-  const createFileRoute: CreateFileRoute<
-    '/(app)/contact',
-    FileRoutesByPath['/(app)/contact']['parentRoute'],
-    FileRoutesByPath['/(app)/contact']['id'],
-    FileRoutesByPath['/(app)/contact']['path'],
-    FileRoutesByPath['/(app)/contact']['fullPath']
   >
 }
 declare module './routes/(app)/find' {
@@ -273,9 +301,19 @@ declare module './routes/(auth)/register' {
     FileRoutesByPath['/(auth)/register']['fullPath']
   >
 }
+declare module './routes/(app)/about.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/(app)/about']['preLoaderRoute']
+  >
+}
 declare module './routes/(app)/client-profile.lazy' {
   const createLazyFileRoute: CreateLazyFileRoute<
     FileRoutesByPath['/(app)/client-profile']['preLoaderRoute']
+  >
+}
+declare module './routes/(app)/contact.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/(app)/contact']['preLoaderRoute']
   >
 }
 declare module './routes/(app)/index' {
@@ -298,17 +336,19 @@ declare module './routes/(app)/profile/$id' {
 }
 
 interface appRouteRouteChildren {
-  appContactRoute: typeof appContactRoute
   appFindRoute: typeof appFindRoute
+  appAboutLazyRoute: typeof appAboutLazyRoute
   appClientProfileLazyRoute: typeof appClientProfileLazyRoute
+  appContactLazyRoute: typeof appContactLazyRoute
   appIndexRoute: typeof appIndexRoute
   appProfileIdRoute: typeof appProfileIdRoute
 }
 
 const appRouteRouteChildren: appRouteRouteChildren = {
-  appContactRoute: appContactRoute,
   appFindRoute: appFindRoute,
+  appAboutLazyRoute: appAboutLazyRoute,
   appClientProfileLazyRoute: appClientProfileLazyRoute,
+  appContactLazyRoute: appContactLazyRoute,
   appIndexRoute: appIndexRoute,
   appProfileIdRoute: appProfileIdRoute,
 }

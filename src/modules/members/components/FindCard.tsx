@@ -172,14 +172,12 @@ function FindCard() {
         ))}
       </div>
 
-      {searchMasters?.masters?.pagination && (
-        <MainPagination
-          totalcount={parseInt(searchMasters.masters.pagination.total)}
-          limit={parseInt(searchMasters.masters.pagination.limit)}
-          currentPage={parseInt(searchMasters.masters.pagination.page)}
-          onPageChange={handlePageChange}
-        />
-      )}
+      <MainPagination
+        totalcount={parseInt(searchMasters.masters.pagination.total)}
+        limit={parseInt(searchMasters.masters.pagination.limit)}
+        currentPage={parseInt(searchMasters.masters.pagination.page)}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

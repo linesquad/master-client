@@ -6,6 +6,7 @@ import ResponsiveModal from "@/components/ResponsiveModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { type MasterProfileData, type Work } from "../../types";
+import { useUser } from "@/modules/auth/hooks/useUser";
 
 interface MasterContactFormProps {
   master: MasterProfileData;
@@ -24,7 +25,8 @@ export function MasterContactForm({
 }: MasterContactFormProps) {
   const { t } = useTranslation();
   const { mutate: createLead, isPending } = useCreateLead();
-  
+  const { data: user, isLoading, isError } = useUser();
+
   const [formData, setFormData] = useState({
     message: "",
     location: "",
@@ -41,6 +43,10 @@ export function MasterContactForm({
       }
     }
   }, [isOpen]);
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error</div>;
+
+  console.log(user);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -95,7 +101,10 @@ export function MasterContactForm({
     }
   };
 
-  const getTranslatedText = (text: string | { en?: string; ka?: string; ru?: string }, fallback = "") => {
+  const getTranslatedText = (
+    text: string | { en?: string; ka?: string; ru?: string },
+    fallback = ""
+  ) => {
     if (typeof text === "string") return text;
     if (!text) return fallback;
     return text.en || text.ka || text.ru || fallback;
@@ -122,7 +131,7 @@ export function MasterContactForm({
           />
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {master.fullgitName}
+              {master.fullName}
             </h3>
             <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
               <MapPin className="w-3 h-3" />
@@ -146,11 +155,6 @@ export function MasterContactForm({
               {selectedWork.category?.name && (
                 <p className="text-xs text-blue-600 dark:text-blue-300">
                   {getTranslatedText(selectedWork.category.name)}
-                </p>
-              )}
-              {selectedWork.priceRange && (
-                <p className="text-xs text-blue-600 dark:text-blue-300">
-                  {selectedWork.priceRange.min} - {selectedWork.priceRange.max} ₾
                 </p>
               )}
             </div>
@@ -280,4 +284,4 @@ export function MasterContactForm({
       </div>
     </ResponsiveModal>
   );
-} 
+}

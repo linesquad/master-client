@@ -1,6 +1,10 @@
 {
+  "application": {
+    "name": "Про"
+  },
   "navigation": {
     "home": "Главная",
+    "about": "О нас",
     "find": "Поиск",
     "contact": "Контакт",
     "login": "Вход",
@@ -295,4 +299,4 @@
       "selectWork": "Выбрать эту работу"
     }
   }
-} 
+}

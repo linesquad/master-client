@@ -9,25 +9,31 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { items } from "@/lib/sidebar";
+import { getSidebarItems } from "@/lib/sidebar";
 import Languages from "@/modules/home/ui/views/languages";
 import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 const activeLinkProps = {
   activeProps: {
     className: "bg-primary text-primary-foreground",
   },
   inactiveProps: {
-    className: "text-white",
+    className: "dark:text-white text-black",
   },
 };
 
 export function SideBar() {
+  const { t } = useTranslation();
+  const items = getSidebarItems(t);
+
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="mb-4">Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="mb-4 text-foreground dark:text-white">
+            <h1 className="text-xl font-bold">{t("application.name")}</h1>
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="flex flex-col gap-4">
               {items.map((item) => (
