@@ -102,8 +102,7 @@ export function DrawerDemo() {
                   {masters.map((master) => (
                     <Link
                       key={master.id}
-                      to="/Find"
-                      search={{ masterId: master.id }}
+                      to="/find"
                       className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors"
                     >
                       <div className="flex items-center gap-3 w-full">
