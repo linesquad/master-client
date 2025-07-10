@@ -19,11 +19,25 @@ export function MasterProfileInfo({
   onCallClick: () => void;
   onContactClick: () => void;
 }) {
-  const { data: client, isLoading, isError } = useUser();
+  const { data: client, isLoading } = useUser();
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const { t } = useTranslation();
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading)
+    return (
+      <div className="space-y-4 animate-pulse">
+        <div className="flex items-center gap-4">
+          <div className="w-32 h-32 rounded-full bg-gray-200 dark:bg-gray-700" />
+          <div className="flex-1 space-y-3">
+            <div className="h-6 w-3/4 rounded bg-gray-200 dark:bg-gray-700" />
+            <div className="h-4 w-1/2 rounded bg-gray-200 dark:bg-gray-700" />
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <div className="h-8 w-24 rounded-full bg-gray-200 dark:bg-gray-700" />
+          <div className="h-8 w-24 rounded-full bg-gray-200 dark:bg-gray-700" />
+        </div>
+      </div>
+    );
   return (
     <div className="bg-white dark:bg-gray-800 px-4 sm:px-6 pb-6 sm:pb-8">
       <AuthCheckModal showDialog={showDialog} setShowDialog={setShowDialog} />
