@@ -38,7 +38,6 @@ function FindFiltration() {
 
   const { data: categories, isLoading } = useCategory();
   const { data: cities, isLoading: isCitiesLoading } = useGetCities();
-  console.log(cities);
   // Find the selected category by ID
   const selectedCategoryId = searchParams.categoryId || null;
   const selectedCategoryData =
@@ -152,31 +151,19 @@ function FindFiltration() {
   };
 
   // Click handlers (removed unnecessary focus management)
-  const handleServiceClickWithFocus = (
-    serviceId: string,
-    
-  ) => {
+  const handleServiceClickWithFocus = (serviceId: string) => {
     handleServiceClick(serviceId);
   };
 
-  const handleCityClickWithFocus = (
-    cityId: string,
-  
-  ) => {
+  const handleCityClickWithFocus = (cityId: string) => {
     handleCityClick(cityId);
   };
 
-  const handleCityPartClickWithFocus = (
-    cityPartId: string,
-   
-  ) => {
+  const handleCityPartClickWithFocus = (cityPartId: string) => {
     handleCityPartClick(cityPartId);
   };
 
-  const handleJobClickWithFocus = (
-    job: Job,
- 
-  ) => {
+  const handleJobClickWithFocus = (job: Job) => {
     handleJobClick(job);
   };
 
@@ -198,7 +185,14 @@ function FindFiltration() {
 
   // Check if any filters are active
   const hasActiveFilters =
-    selectedCityPartId || selectedCityId || selectedCategoryId || selectedJobId || availability || hasReviews || minPrice || maxPrice;
+    selectedCityPartId ||
+    selectedCityId ||
+    selectedCategoryId ||
+    selectedJobId ||
+    availability ||
+    hasReviews ||
+    minPrice ||
+    maxPrice;
 
   const getLocationDisplayText = () => {
     if (selectedCityPartData && selectedCityData) {
@@ -213,7 +207,10 @@ function FindFiltration() {
     if (selectedJob) {
       return selectedJob.title[currentLanguage] || selectedJob.title.en;
     } else if (selectedCategoryData) {
-      return selectedCategoryData.name[currentLanguage] || selectedCategoryData.name.en;
+      return (
+        selectedCategoryData.name[currentLanguage] ||
+        selectedCategoryData.name.en
+      );
     }
     return t("find.filters.addService");
   };
@@ -335,7 +332,9 @@ function FindFiltration() {
                 title={t("find.filters.reset")}
               >
                 <RotateCcw className="w-4 h-4" />
-                <span className="hidden sm:inline">{t("find.filters.reset")}</span>
+                <span className="hidden sm:inline">
+                  {t("find.filters.reset")}
+                </span>
               </button>
             )}
           </div>

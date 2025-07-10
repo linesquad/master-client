@@ -25,10 +25,8 @@ function Login() {
     },
     onSubmit: async ({ value }) => {
       try {
-        const response = await signIn(value.email, value.password);
+        await signIn(value.email, value.password);
         toast.success("User logged in successfully");
-        console.log(response);
-        console.log(value);
         queryClient.invalidateQueries({ queryKey: ["user"] });
         navigate({ to: "/" });
       } catch (error) {
@@ -208,5 +206,5 @@ function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }

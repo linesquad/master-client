@@ -45,13 +45,6 @@ export function Searchbutton({
     return () => document.removeEventListener("keydown", down);
   }, [setOpen]);
 
-  // Debug logging
-  React.useEffect(() => {
-    if (data) {
-      console.log("Search data received:", data);
-    }
-  }, [data]);
-
   // Handle both possible response structures
   let masters: Master[] = [];
   if (data) {
@@ -79,7 +72,9 @@ export function Searchbutton({
         />
         <CommandList className="max-h-[320px] overflow-y-auto">
           {isLoading && searchQuery.length >= 2 && (
-            <div className="py-6 text-center text-sm">{t("search.searching")}</div>
+            <div className="py-6 text-center text-sm">
+              {t("search.searching")}
+            </div>
           )}
           {isError && (
             <div className="py-6 text-center text-sm text-red-500">
@@ -95,7 +90,9 @@ export function Searchbutton({
             <CommandEmpty>{t("search.noMastersFound")}</CommandEmpty>
           )}
           {masters.length > 0 && (
-            <CommandGroup heading={t("search.showingResults", { count: masters.length })}>
+            <CommandGroup
+              heading={t("search.showingResults", { count: masters.length })}
+            >
               <div className="space-y-1">
                 {masters.map((master) => (
                   <CommandItem
@@ -117,19 +114,24 @@ export function Searchbutton({
                         />
                       )}
                       <div className="flex flex-col flex-1 min-w-0">
-                        <span className="font-medium text-sm leading-snug break-words" 
-                              style={{
-                                display: '-webkit-box',
-                                WebkitLineClamp: 2,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                wordBreak: 'break-word',
-                                overflowWrap: 'break-word'
-                              }}>
+                        <span
+                          className="font-medium text-sm leading-snug break-words"
+                          style={{
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                            wordBreak: "break-word",
+                            overflowWrap: "break-word",
+                          }}
+                        >
                           {master.fullName}
                         </span>
                         <div className="flex items-start gap-2 text-xs text-muted-foreground mt-1">
-                          <span className="break-words leading-relaxed" style={{ wordBreak: 'break-word' }}>
+                          <span
+                            className="break-words leading-relaxed"
+                            style={{ wordBreak: "break-word" }}
+                          >
                             {master.city}
                           </span>
                           <span className="flex-shrink-0">•</span>

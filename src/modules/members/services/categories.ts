@@ -1,21 +1,17 @@
 import instance from "@/lib/axios";
 
 export const getCategories = async () => {
-  try {
-    const response = await instance.get("/api/categories");
-    return response.data;
-  } catch (error) {
-    throw error;
+  const response = await instance.get("/api/categories");
+  if (response.status !== 200) {
+    throw new Error("Failed to fetch categories");
   }
+  return response.data;
 };
 
-
 export const getJobsByCategoryId = async (categoryId: string) => {
-  try {
-    const response = await instance.get(`/api/categories/${categoryId}/jobs`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
+  const response = await instance.get(`/api/categories/${categoryId}/jobs`);
+  if (response.status !== 200) {
+    throw new Error("Failed to fetch jobs");
   }
+  return response.data;
 };

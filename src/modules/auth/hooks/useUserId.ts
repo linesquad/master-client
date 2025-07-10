@@ -3,7 +3,7 @@ import { getUserId } from "../services/auth";
 
 export const useUserId = () => {
   return useQuery({
-    queryKey: ["user"],
+    queryKey: ["user-id"],
     queryFn: getUserId,
     retry: false,
   });

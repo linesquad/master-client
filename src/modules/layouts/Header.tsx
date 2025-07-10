@@ -1,17 +1,26 @@
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { useUser } from "../auth/hooks/useUser";
 import { useLogout } from "../auth/hooks/useLogout";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { BurgerMenu } from "../home/ui/components/burger-menu/BurgerMenu";
-import SearchNav from "../home/ui/views/search-nav";
 import { DrawerDemo } from "./search/Drawer";
+import { useUser } from "../auth/hooks/useUser";
+import { NavbarSkeleton } from "@/components/navbar-skeleton";
+import { useNavigate } from "@tanstack/react-router";
 
 function Header() {
   const { t } = useTranslation("common");
-  const { data: user } = useUser();
+  const navigate = useNavigate();
+  const {
+    data: userData,
+    isLoading: userDataLoading,
+    isError: userDataError,
+  } = useUser();
   const { mutate: logout } = useLogout();
-  console.log(user);
+
+  if (userDataLoading) return <NavbarSkeleton />;
+  if (userDataError) return <div>Error</div>;
+
   return (
     <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300">
       <div className=" px-2 sm:px-6 lg:px-8">
@@ -23,36 +32,34 @@ function Header() {
               </div>
               <Link to="/">
                 <div className="flex items-center">
-                  <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
-                  <span className="ml-3 text-xl font-bold text-white">IRKLE</span>
+                  <img
+                    className="h-10 w-10"
+                    src="/projectlogo.webp"
+                    alt="Logo"
+                  />
+                  <span className="ml-3 text-xl font-bold text-white">
+                    IRKLE
+                  </span>
                 </div>
               </Link>
             </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-          <SearchNav />
-            {/* <nav className="flex space-x-2">
-              {header.map((item) => (
-                <Link
-                  to={item.to}
-                  key={item.name}
-                  className="text-white hover:text-indigo-300 dark:hover:text-indigo-200 px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-white/10 dark:hover:bg-white/5 rounded-md"
-                >
-                  {item.name}
-                </Link>
-              ))}
-               
-            </nav> */}
-
             <div className="flex items-center space-x-4">
-              {user ? (
+              {userData ? (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-3">
                     <div className="flex items-center space-x-2">
                       <div className="w-8 h-8 bg-white/20 dark:bg-white/10 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-semibold">
-                          {user.image || user.fullName?.charAt(0).toUpperCase()}
+                        <span
+                          onClick={() => {
+                            navigate({ to: "/client-profile" });
+                          }}
+                          className="text-white text-sm font-semibold cursor-pointer"
+                        >
+                          {userData.image ||
+                            userData.fullName?.charAt(0).toUpperCase()}
                         </span>
                       </div>
                     </div>

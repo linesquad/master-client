@@ -8,6 +8,7 @@ import FindCardError from "./findcard/FindCardError";
 import FindCardNoData from "./findcard/FindCardNoData";
 import MainPagination from "@/components/MainPagination";
 import { useNavigate } from "@tanstack/react-router";
+import { NoFiltersApplied } from "./no-filters-applied/no-filters-applied";
 
 function FindCard() {
   const { t } = useTranslation();
@@ -22,8 +23,12 @@ function FindCard() {
     jobId: searchParams.jobId,
     availability: searchParams.availability,
     hasReviews: searchParams.hasReviews,
-    minPrice: searchParams.minPrice ? parseFloat(searchParams.minPrice) : undefined,
-    maxPrice: searchParams.maxPrice ? parseFloat(searchParams.maxPrice) : undefined,
+    minPrice: searchParams.minPrice
+      ? parseFloat(searchParams.minPrice)
+      : undefined,
+    maxPrice: searchParams.maxPrice
+      ? parseFloat(searchParams.maxPrice)
+      : undefined,
     minRating: searchParams.minRating
       ? parseFloat(searchParams.minRating)
       : undefined,
@@ -38,7 +43,6 @@ function FindCard() {
     isError,
     error,
   } = useSearchMaster(searchMasterParams);
-  console.log(searchMasters);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -47,13 +51,18 @@ function FindCard() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 1) return t("find.results.timeAgo.dayAgo");
-    if (diffDays < 30) return t("find.results.timeAgo.daysAgo", { count: diffDays });
+    if (diffDays < 30)
+      return t("find.results.timeAgo.daysAgo", { count: diffDays });
     if (diffDays < 365) {
       const months = Math.floor(diffDays / 30);
-      return months === 1 ? t("find.results.timeAgo.monthAgo") : t("find.results.timeAgo.monthsAgo", { count: months });
+      return months === 1
+        ? t("find.results.timeAgo.monthAgo")
+        : t("find.results.timeAgo.monthsAgo", { count: months });
     }
     const years = Math.floor(diffDays / 365);
-    return years === 1 ? t("find.results.timeAgo.yearAgo") : t("find.results.timeAgo.yearsAgo", { count: years });
+    return years === 1
+      ? t("find.results.timeAgo.yearAgo")
+      : t("find.results.timeAgo.yearsAgo", { count: years });
   };
 
   const getAvailabilityColor = (availability: string) => {
@@ -102,13 +111,29 @@ function FindCard() {
 
   const handlePageChange = (page: number) => {
     navigate({
-      to: "/Find",
+      to: "/find",
       search: {
         ...searchParams,
         page: page.toString(),
       },
     });
   };
+
+  const noFiltersApplied =
+    !searchParams.search &&
+    !searchParams.cityId &&
+    !searchParams.cityPartId &&
+    !searchParams.categoryId &&
+    !searchParams.jobId &&
+    !searchParams.availability &&
+    !searchParams.hasReviews &&
+    !searchParams.minPrice &&
+    !searchParams.maxPrice &&
+    !searchParams.minRating;
+
+  if (noFiltersApplied) {
+    return <NoFiltersApplied />;
+  }
 
   return (
     <div className="space-y-6">
@@ -118,9 +143,12 @@ function FindCard() {
             {t("find.results.availableMasters")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {t("find.results.mastersFound", { 
-              count: masters.length, 
-              text: masters.length === 1 ? t("find.results.master") : t("find.results.masters")
+            {t("find.results.mastersFound", {
+              count: masters.length,
+              text:
+                masters.length === 1
+                  ? t("find.results.master")
+                  : t("find.results.masters"),
             })}
           </p>
         </div>

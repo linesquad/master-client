@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Search } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Input } from "@/components/ui/input";
@@ -30,14 +30,6 @@ export function DrawerDemo() {
     5
   );
 
-  // Debug logging
-  useEffect(() => {
-    if (data) {
-      console.log("Drawer search data received:", data);
-    }
-  }, [data]);
-
-  // Handle both possible response structures
   let masters: Master[] = [];
   if (data) {
     if (Array.isArray(data)) {

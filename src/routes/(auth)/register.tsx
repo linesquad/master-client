@@ -28,7 +28,7 @@ function Register() {
     },
     onSubmit: async ({ value }) => {
       try {
-        const response = await signUp(
+        await signUp(
           value.fullName,
           value.email,
           value.password,
@@ -36,8 +36,6 @@ function Register() {
           value.role
         );
         toast.success("User registered successfully");
-        console.log(response);
-        console.log(value);
         queryClient.invalidateQueries({ queryKey: ["user"] });
         navigate({ to: "/" });
       } catch (error) {
