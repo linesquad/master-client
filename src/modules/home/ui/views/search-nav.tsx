@@ -1,10 +1,8 @@
 import { Searchbutton } from "@/modules/layouts/search/Searchbutton";
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 function SearchNav() {
-  const { t } = useTranslation("common");
   const [open, setOpen] = useState(false);
   return (
     <div className="relative flex items-center">

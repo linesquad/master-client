@@ -19,8 +19,8 @@ function ActiveFilters({
   selectedCityPartId: string;
   selectedCityPartData: CityPart;
   selectedCityData: City;
-  selectedCategoryData: Category;
-  selectedJob: Job;
+  selectedCategoryData: Category | null;
+  selectedJob: Job | null;
   availability?: string;
   hasReviews?: string;
   minPrice?: string;
@@ -28,7 +28,7 @@ function ActiveFilters({
   handleResetFilters: () => void;
 }) {
   const { currentLanguage } = useLanguage();
-  
+
   return (
     <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl sm:rounded-2xl border border-blue-200 dark:border-blue-800">
       <div className="flex items-start justify-between gap-2">
@@ -59,16 +59,34 @@ function ActiveFilters({
             {selectedCategoryData && (
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 dark:bg-indigo-800 text-indigo-800 dark:text-indigo-200 text-xs font-medium rounded-md sm:rounded-lg">
                 <Briefcase className="w-3 h-3 flex-shrink-0" />
-                <span className="truncate max-w-[120px] sm:max-w-[150px] lg:max-w-[200px]" title={selectedCategoryData.name[currentLanguage as keyof typeof selectedCategoryData.name] || selectedCategoryData.name.en}>
-                  {selectedCategoryData.name[currentLanguage as keyof typeof selectedCategoryData.name] || selectedCategoryData.name.en}
+                <span
+                  className="truncate max-w-[120px] sm:max-w-[150px] lg:max-w-[200px]"
+                  title={
+                    selectedCategoryData.name[
+                      currentLanguage as keyof typeof selectedCategoryData.name
+                    ] || selectedCategoryData.name.en
+                  }
+                >
+                  {selectedCategoryData.name[
+                    currentLanguage as keyof typeof selectedCategoryData.name
+                  ] || selectedCategoryData.name.en}
                 </span>
               </span>
             )}
             {selectedJob && (
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs font-medium rounded-md sm:rounded-lg">
                 <Briefcase className="w-3 h-3 flex-shrink-0" />
-                <span className="truncate max-w-[120px] sm:max-w-[150px] lg:max-w-[200px]" title={selectedJob.title[currentLanguage as keyof typeof selectedJob.title] || selectedJob.title.en}>
-                  {selectedJob.title[currentLanguage as keyof typeof selectedJob.title] || selectedJob.title.en}
+                <span
+                  className="truncate max-w-[120px] sm:max-w-[150px] lg:max-w-[200px]"
+                  title={
+                    selectedJob.title[
+                      currentLanguage as keyof typeof selectedJob.title
+                    ] || selectedJob.title.en
+                  }
+                >
+                  {selectedJob.title[
+                    currentLanguage as keyof typeof selectedJob.title
+                  ] || selectedJob.title.en}
                 </span>
               </span>
             )}
@@ -78,11 +96,16 @@ function ActiveFilters({
                 <span className="truncate max-w-[80px] sm:max-w-none">
                   {(() => {
                     switch (availability) {
-                      case "now": return "Available Now";
-                      case "tomorrow": return "Tomorrow";
-                      case "next_week": return "Next Week";
-                      case "on_holiday": return "On Holiday";
-                      default: return availability;
+                      case "now":
+                        return "Available Now";
+                      case "tomorrow":
+                        return "Tomorrow";
+                      case "next_week":
+                        return "Next Week";
+                      case "on_holiday":
+                        return "On Holiday";
+                      default:
+                        return availability;
                     }
                   })()}
                 </span>

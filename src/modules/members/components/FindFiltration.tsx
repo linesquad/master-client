@@ -63,7 +63,8 @@ function FindFiltration() {
 
   // Find the selected city data by ID
   const selectedCityData = selectedCityId
-    ? citiesArray.find((city: any) => city.id === selectedCityId)
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      citiesArray.find((city: any) => city.id === selectedCityId)
     : null;
 
   // Always call the hook but determine city ID from URL first, then temp state
@@ -85,7 +86,8 @@ function FindFiltration() {
 
   // Find the selected city part data by ID
   const selectedCityPartData = selectedCityPartId
-    ? cityPartsArray.find((cityPart: any) => cityPart.id === selectedCityPartId)
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      cityPartsArray.find((cityPart: any) => cityPart.id === selectedCityPartId)
     : null;
 
   // Determine if we should show city parts based on URL state
@@ -97,13 +99,16 @@ function FindFiltration() {
 
     Object.entries(updates).forEach(([key, value]) => {
       if (value === undefined) {
-        delete newSearch[key as keyof typeof newSearch];
+        delete (newSearch as Record<string, unknown>)[key];
       } else {
-        (newSearch as any)[key] = value;
+        (newSearch as Record<string, string | undefined>)[key] = value;
       }
     });
 
-    navigate({ to: ".", search: newSearch });
+    navigate({
+      to: ".",
+      search: newSearch as Record<string, string | undefined>,
+    });
   };
 
   const handleCityClick = (cityId: string) => {
@@ -205,11 +210,15 @@ function FindFiltration() {
 
   const getServiceDisplayText = () => {
     if (selectedJob) {
-      return selectedJob.title[currentLanguage] || selectedJob.title.en;
+      return (
+        selectedJob.title[currentLanguage as keyof typeof selectedJob.title] ||
+        selectedJob.title.en
+      );
     } else if (selectedCategoryData) {
       return (
-        selectedCategoryData.name[currentLanguage] ||
-        selectedCategoryData.name.en
+        selectedCategoryData.name[
+          currentLanguage as keyof typeof selectedCategoryData.name
+        ] || selectedCategoryData.name.en
       );
     }
     return t("find.filters.addService");
