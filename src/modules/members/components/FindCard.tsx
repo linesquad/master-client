@@ -112,10 +112,8 @@ function FindCard() {
   const handlePageChange = (page: number) => {
     navigate({
       to: "/find",
-      search: {
-        ...searchParams,
-        page: page.toString(),
-      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      search: ((prev: any) => ({ ...prev, page: page.toString() })) as any,
     });
   };
 

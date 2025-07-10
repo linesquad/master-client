@@ -101,7 +101,7 @@ export function Searchbutton({
                     className="p-0"
                     onSelect={() => {
                       // Navigate to the master's profile or find page
-                      window.open(`/Find?masterId=${master.id}`, "_self");
+                      window.open(`/find?masterId=${master.id}`, "_self");
                       setOpen(false);
                     }}
                   >
