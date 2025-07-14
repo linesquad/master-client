@@ -60,24 +60,26 @@ function Register() {
           <span className=" text-3xl font-bold text-white">IRKLE</span>
         </div>
         <div className="relative">
-          <Link to="/login">
-            <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer group  hover:bg-[#34B1EB] hover:text-white transition-all duration-300">
-              <FaPeopleArrows className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-              <span className="text-sm text-black dark:text-white font-semibold group-hover:text-white transition-all duration-300">
-                Sign in
-              </span>
-            </div>
-          </Link>
-          <Link to="/register">
-            <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB]  px-12 py-4 rotate-270 cursor-pointer">
-              <FaUserPlus className="text-2xl text-white" />
-              <span className="text-sm font-semibold text-white">
-                Registration
-              </span>
-            </div>
-          </Link>
+          <div className="hidden md:block">
+            <Link to="/login">
+              <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer">
+                <FaPeopleArrows className="text-2xl text-white" />
+                <span className="text-sm text-white font-semibold">
+                  Sign in
+                </span>
+              </div>
+            </Link>
+            <Link to="/register">
+              <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+                  Registration
+                </span>
+              </div>
+            </Link>
+          </div>
           <form
-            className="mt-8 space-y-6 rounded-xl rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
+            className="mt-8 space-y-6 md:rounded-xl rounded-none md:rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -317,6 +319,24 @@ function Register() {
               </div>
             </div>
           </form>
+          <div className="flex flex-row w-full items-center justify-between md:hidden">
+            <Link to="/login" className="w-full">
+              <div className="z-10 flex items-center justify-center gap-2 bg-[#34B1EB] px-12 py-4 cursor-pointer">
+                <FaPeopleArrows className="text-2xl text-white" />
+                <span className="text-sm text-white font-semibold">
+                  Sign in
+                </span>
+              </div>
+            </Link>
+            <Link to="/register" className="w-full">
+              <div className=" z-10 flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+                  Registration
+                </span>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

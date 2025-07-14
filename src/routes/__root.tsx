@@ -19,20 +19,16 @@ function RootComponent() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    // Get language from URL search params
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get("lang");
 
-    // Priority: URL parameter > localStorage > default
     const storedLang = localStorage.getItem("language");
     const targetLang = urlLang || storedLang || "en";
 
-    // Only change language if it's different from current
     if (targetLang !== i18n.language) {
       i18n.changeLanguage(targetLang);
     }
 
-    // Sync localStorage with current language
     if (targetLang !== storedLang) {
       localStorage.setItem("language", targetLang);
     }

@@ -15,4 +15,8 @@ export const header = [
     name: "Find",
     to: "/find",
   },
+  {
+    name: "Notifications",
+    to: "/notifications",
+  },
 ];

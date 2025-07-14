@@ -17,6 +17,7 @@ import { Route as appRouteRouteImport } from './routes/(app)/route'
 import { Route as appIndexRouteImport } from './routes/(app)/index'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
+import { Route as appNotificationsRouteImport } from './routes/(app)/notifications'
 import { Route as appFindRouteImport } from './routes/(app)/find'
 import { Route as appProfileIdRouteImport } from './routes/(app)/profile/$id'
 
@@ -70,6 +71,11 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const appNotificationsRoute = appNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => appRouteRoute,
+} as any)
 const appFindRoute = appFindRouteImport.update({
   id: '/find',
   path: '/find',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/': typeof appIndexRoute
   '': typeof AuthenticatedRoute
   '/find': typeof appFindRoute
+  '/notifications': typeof appNotificationsRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/about': typeof appAboutLazyRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '': typeof AuthenticatedRoute
   '/find': typeof appFindRoute
+  '/notifications': typeof appNotificationsRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/about': typeof appAboutLazyRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/(app)': typeof appRouteRouteWithChildren
   '/_authenticated': typeof AuthenticatedRoute
   '/(app)/find': typeof appFindRoute
+  '/(app)/notifications': typeof appNotificationsRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
   '/(app)/about': typeof appAboutLazyRoute
@@ -122,6 +131,7 @@ export interface FileRouteTypes {
     | '/'
     | ''
     | '/find'
+    | '/notifications'
     | '/login'
     | '/register'
     | '/about'
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
   to:
     | ''
     | '/find'
+    | '/notifications'
     | '/login'
     | '/register'
     | '/about'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/(app)'
     | '/_authenticated'
     | '/(app)/find'
+    | '/(app)/notifications'
     | '/(auth)/login'
     | '/(auth)/register'
     | '/(app)/about'
@@ -181,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/find'
       fullPath: '/find'
       preLoaderRoute: typeof appFindRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/notifications': {
+      id: '/(app)/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof appNotificationsRouteImport
       parentRoute: typeof appRouteRoute
     }
     '/(auth)/login': {
@@ -283,6 +302,15 @@ declare module './routes/(app)/find' {
     FileRoutesByPath['/(app)/find']['fullPath']
   >
 }
+declare module './routes/(app)/notifications' {
+  const createFileRoute: CreateFileRoute<
+    '/(app)/notifications',
+    FileRoutesByPath['/(app)/notifications']['parentRoute'],
+    FileRoutesByPath['/(app)/notifications']['id'],
+    FileRoutesByPath['/(app)/notifications']['path'],
+    FileRoutesByPath['/(app)/notifications']['fullPath']
+  >
+}
 declare module './routes/(auth)/login' {
   const createFileRoute: CreateFileRoute<
     '/(auth)/login',
@@ -337,6 +365,7 @@ declare module './routes/(app)/profile/$id' {
 
 interface appRouteRouteChildren {
   appFindRoute: typeof appFindRoute
+  appNotificationsRoute: typeof appNotificationsRoute
   appAboutLazyRoute: typeof appAboutLazyRoute
   appClientProfileLazyRoute: typeof appClientProfileLazyRoute
   appContactLazyRoute: typeof appContactLazyRoute
@@ -346,6 +375,7 @@ interface appRouteRouteChildren {
 
 const appRouteRouteChildren: appRouteRouteChildren = {
   appFindRoute: appFindRoute,
+  appNotificationsRoute: appNotificationsRoute,
   appAboutLazyRoute: appAboutLazyRoute,
   appClientProfileLazyRoute: appClientProfileLazyRoute,
   appContactLazyRoute: appContactLazyRoute,

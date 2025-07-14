@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <div
-      className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
+      className="flex items-center justify-center py-12 px-10 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
       style={{
         backgroundImage: "url('/authbg.jpg')",
         backgroundSize: "cover",
@@ -51,22 +51,26 @@ function Login() {
           <span className=" text-3xl font-bold text-white">IRKLE</span>
         </div>
         <div className="relative">
-          <Link to="/login">
-            <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer">
-              <FaPeopleArrows className="text-2xl text-white" />
-              <span className="text-sm text-white font-semibold">Sign in</span>
-            </div>
-          </Link>
-          <Link to="/register">
-            <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
-              <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-              <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
-                Registration
-              </span>
-            </div>
-          </Link>
+          <div className="hidden md:block">
+            <Link to="/login">
+              <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer hover:text-[#34B1EB] hover:bg-[#F1F1F1] transition-all duration-300 group">
+                <FaPeopleArrows className="text-2xl text-white group-hover:text-[#34B1EB] transition-all duration-300" />
+                <span className="text-sm text-white font-semibold group-hover:text-[#34B1EB] transition-all duration-300">
+                  Sign in
+                </span>
+              </div>
+            </Link>
+            <Link to="/register">
+              <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+                  Registration
+                </span>
+              </div>
+            </Link>
+          </div>
           <form
-            className="mt-8 space-y-6 rounded-xl rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
+            className="mt-8 space-y-6 md:rounded-xl rounded-none md:rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -198,11 +202,27 @@ function Login() {
                   to="/"
                   className="text-sm text-[#2C5BE3] dark:text-blue-400 group-hover:text-[#2C5BE3]/80 dark:group-hover:text-blue-300 transition-colors duration-300"
                 >
-                  Back to Home
+                  Home
                 </Link>
               </div>
             </div>
           </form>
+          <div className="flex flex-row w-full items-center justify-between md:hidden">
+            <Link to="/login" className="w-full">
+              <div className="flex items-center justify-center gap-2 bg-[#34B1EB]  py-4 cursor-pointer">
+                <FaPeopleArrows className="text-2xl text-white" />
+                <span className="text-sm text-white font-semibold">Login</span>
+              </div>
+            </Link>
+            <Link to="/register" className="w-full">
+              <div className="flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+                  Registration
+                </span>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

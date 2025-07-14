@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
-import { Link } from "@tanstack/react-router"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 import {
   Sheet,
@@ -9,16 +9,19 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { MenuIcon } from "lucide-react"
-import { burgerPaths } from "@/lib/burgerPaths"
+} from "@/components/ui/sheet";
+import { MenuIcon } from "lucide-react";
+import { burgerPaths } from "@/lib/burgerPaths";
+import { useUser } from "@/modules/auth/hooks/useUser";
+import { UserButton } from "@/components/user-button";
 
-  export function BurgerMenu() {
-  const [open, setOpen] = useState(false)
+export function BurgerMenu() {
+  const { data: userData } = useUser();
+  const [open, setOpen] = useState(false);
 
   const handleLinkClick = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -39,14 +42,22 @@ import { burgerPaths } from "@/lib/burgerPaths"
         </SheetHeader>
         <div className="grid flex-1 auto-rows-min gap-6 px-4">
           <div className="grid gap-6">
-            {burgerPaths.map((path) => (
-              <Link to={path.path} key={path.name} onClick={handleLinkClick}>
-                <span className="text-lg font-medium transition-all duration-300 hover:text-indigo-600">{path.name}</span>
-              </Link>
-            ))}
+            {userData ? (
+              <div>
+                <UserButton />
+              </div>
+            ) : (
+              burgerPaths.map((path) => (
+                <Link to={path.path} key={path.name} onClick={handleLinkClick}>
+                  <span className="text-lg font-medium transition-all duration-300 hover:text-indigo-600">
+                    {path.name}
+                  </span>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </SheetContent>
     </Sheet>
-  )
+  );
 }
