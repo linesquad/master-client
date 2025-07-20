@@ -1,10 +1,9 @@
 import instance from "@/lib/axios";
 
 export const getMasterProfile = async (id: string) => {
-  try {
-    const response = await instance.get(`/api/public/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
+  const response = await instance.get(`/api/public/${id}`);
+  if (response.status !== 200) {
+    throw new Error("Failed to fetch master profile");
   }
+  return response.data;
 };

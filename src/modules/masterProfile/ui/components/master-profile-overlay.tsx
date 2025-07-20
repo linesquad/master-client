@@ -2,12 +2,9 @@ import { type MasterProfileData } from "../../types";
 
 import { useTranslation } from "react-i18next";
 
-export function MasterProfileOverlay({
-  data,
-}: {
-  data: MasterProfileData;
-}) {
+export function MasterProfileOverlay({ data }: { data: MasterProfileData }) {
   const { t } = useTranslation();
+  console.log(data);
   return (
     <div
       className="h-48 sm:h-64 md:h-80 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 dark:from-blue-700 dark:via-purple-700 dark:to-blue-900 relative"
@@ -20,13 +17,14 @@ export function MasterProfileOverlay({
       <div className="absolute top-2 sm:top-4 right-2 sm:right-4 text-white text-xs sm:text-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 bg-black/20 backdrop-blur-sm rounded-lg px-2 sm:px-3 py-1.5 sm:py-2">
           <span className="whitespace-nowrap">
-            {t("profile.stats.points")}: {data.points?.total || 0}
+            {t("profile.stats.points")}:{" "}
+            {data.reviews?.statistics?.normalizedScore || 0}
           </span>
           <span className="whitespace-nowrap">
             {t("profile.stats.comments")}: {data.summary?.totalReviews || 0}
           </span>
           <span className="whitespace-nowrap">
-            {t("profile.stats.views")}: {Math.floor(Math.random() * 10000)}
+            {t("profile.stats.views")}: {data.summary?.totalWorks || 0}
           </span>
         </div>
       </div>

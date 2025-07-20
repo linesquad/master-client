@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { MapPin, Send, Calendar } from "lucide-react";
+import { MapPin, Send } from "lucide-react";
 import { useCreateLead } from "@/modules/members/hooks/useCreateLead";
 import ResponsiveModal from "@/components/ResponsiveModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { type MasterProfileData, type Work } from "../../types";
 import { useUser } from "@/modules/auth/hooks/useUser";
+import { DatePicker } from "@/components/date-picker";
 
 interface MasterContactFormProps {
   master: MasterProfileData;
@@ -25,7 +26,7 @@ export function MasterContactForm({
 }: MasterContactFormProps) {
   const { t } = useTranslation();
   const { mutate: createLead, isPending } = useCreateLead();
-  const { data: user, isLoading, isError } = useUser();
+  const { isLoading, isError } = useUser();
 
   const [formData, setFormData] = useState({
     message: "",
@@ -45,8 +46,6 @@ export function MasterContactForm({
   }, [isOpen]);
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error</div>;
-
-  console.log(user);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -226,17 +225,16 @@ export function MasterContactForm({
               {t("find.contactForm.requestedTime")}
             </label>
             <div className="relative">
-              <Input
-                id="requestedTime"
-                type="datetime-local"
-                value={formData.requestedTime}
-                onChange={(e) =>
-                  handleInputChange("requestedTime", e.target.value)
+              <DatePicker
+                value={
+                  formData.requestedTime
+                    ? new Date(formData.requestedTime)
+                    : undefined
                 }
-                min={new Date().toISOString().slice(0, 16)}
-                className="w-full"
+                onChange={(date) =>
+                  handleInputChange("requestedTime", date.toISOString())
+                }
               />
-              <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             </div>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
               {t("find.contactForm.requestedTimeDescription")}

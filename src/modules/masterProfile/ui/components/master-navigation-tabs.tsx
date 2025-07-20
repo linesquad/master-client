@@ -6,7 +6,9 @@ export function MasterNavigationTabs({
   setActiveTab,
 }: {
   activeTab: string;
-  setActiveTab: (tab: "timeline" | "about" | "reviews" | "certificates") => void;
+  setActiveTab: (
+    tab: "timeline" | "about" | "reviews" | "certificates"
+  ) => void;
 }) {
   const { t } = useTranslation();
   return (
@@ -28,7 +30,11 @@ export function MasterNavigationTabs({
         ].map(({ key, label, icon: Icon }) => (
           <button
             key={key}
-            onClick={() => setActiveTab(key as any)}
+            onClick={() =>
+              setActiveTab(
+                key as "timeline" | "about" | "reviews" | "certificates"
+              )
+            }
             className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 font-medium transition-colors whitespace-nowrap text-sm sm:text-base ${
               activeTab === key
                 ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20"

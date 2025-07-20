@@ -1,4 +1,4 @@
-import { CheckCircle, MessageCircle, Phone } from "lucide-react";
+import { CheckCircle, Phone } from "lucide-react";
 import { type MasterProfileData } from "../../types";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,6 @@ export function MasterProfileInfo({
   getAvailabilityColor,
   formatDate,
   onCallClick,
-  onContactClick,
 }: {
   data: MasterProfileData;
   getAvailabilityColor: (availability: string) => string;
@@ -82,16 +81,6 @@ export function MasterProfileInfo({
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:pb-4 w-full lg:w-auto">
-          <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base flex-1 sm:flex-none"
-            onClick={(e) => {
-              e.currentTarget.blur();
-              onContactClick();
-            }}
-          >
-            <MessageCircle className="w-4 h-4 mr-2" />
-            {t("profile.actions.message")}
-          </Button>
           <Button
             variant="outline"
             className="border-gray-300 dark:border-white/50 bg-white dark:bg-white/20 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/30 shadow-lg px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base flex-1 sm:flex-none"
