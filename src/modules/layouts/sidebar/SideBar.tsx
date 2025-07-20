@@ -7,11 +7,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 import { getSidebarItems } from "@/lib/sidebar";
 import Languages from "@/modules/home/ui/views/languages";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const activeLinkProps = {
@@ -24,8 +26,14 @@ const activeLinkProps = {
 };
 
 export function SideBar() {
+  const { setOpenMobile } = useSidebar();
   const { t } = useTranslation();
   const items = getSidebarItems(t);
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpenMobile(false);
+  }, [location.pathname, setOpenMobile]);
 
   return (
     <Sidebar collapsible="icon">
@@ -39,7 +47,11 @@ export function SideBar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <Link to={item.url} {...activeLinkProps}>
+                    <Link
+                      to={item.url}
+                      {...activeLinkProps}
+                      activeOptions={{ exact: true }}
+                    >
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>

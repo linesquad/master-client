@@ -83,7 +83,7 @@ export const ReviewForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)}>
+      <form className="space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
         <FormField
           control={form.control}
           name="ratingPrice"
@@ -192,16 +192,18 @@ export const ReviewForm = ({
             </FormItem>
           )}
         />
-        <Button
-          disabled={isCreatingReview}
-          type="button"
-          onClick={handleCancel}
-        >
-          Cancel
-        </Button>
-        <Button disabled={isCreatingReview} type="submit">
-          Submit
-        </Button>
+        <div className="flex flex-col w-full md:w-auto lg:flex-row justify-end gap-2">
+          <Button
+            disabled={isCreatingReview}
+            type="button"
+            onClick={handleCancel}
+          >
+            Cancel
+          </Button>
+          <Button disabled={isCreatingReview} type="submit">
+            Submit
+          </Button>
+        </div>
       </form>
     </Form>
   );

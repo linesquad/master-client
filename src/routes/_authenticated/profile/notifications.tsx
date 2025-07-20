@@ -5,5 +5,9 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
-  return <ClientNotificationsView />;
+  return (
+    <div className="h-screen">
+      <ClientNotificationsView />
+    </div>
+  );
 }

@@ -1,3 +1,3 @@
 export const NotificationsListView = () => {
-  return <div>NotificationsListView</div>;
+  return <div className="">NotificationsListView</div>;
 };

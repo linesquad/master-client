@@ -5,8 +5,8 @@ import { StickyThemeToggle } from "./ui/sticky-theme-toggle";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <div className="min-h-screen flex flex-col">
+    <div className="bg-background text-foreground transition-colors duration-300">
+      <div className=" flex flex-col">
         <SideBarLayout>
           <Header />
           <main className="flex-1">{children}</main>

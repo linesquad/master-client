@@ -22,9 +22,9 @@ export const ResponsiveModalTwo = ({
   if (!isMobile) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-full sm:max-w-lg border-none overflow-y-auto hide-scrollbar max-h-[85vh] bg-white p-4">
-          <DialogTitle className="sr-only">Complete Lead</DialogTitle>
-          {children}
+        <DialogContent className="w-full sm:max-w-lg border-none overflow-y-auto hide-scrollbar max-h-[85vh] bg-background text-foreground p-4 dark:bg-neutral-900 dark:text-white space-y-4">
+          <DialogTitle>Complete Lead</DialogTitle>
+          <div>{children}</div>
         </DialogContent>
       </Dialog>
     );

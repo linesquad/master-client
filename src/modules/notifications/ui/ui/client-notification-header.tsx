@@ -13,11 +13,13 @@ export const ClientNotificationHeader = ({
 
   return (
     <div className="flex flex-col gap-4 items-center justify-between">
-      <h1 className="text-2xl font-bold">Notifications</h1>
+      <div>
+        <h1 className="text-2xl font-bold">Notifications</h1>
+      </div>
       <div className="flex flex-col gap-2 items-center">
         <h2 className="font-bold">Your information</h2>
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col lg:flex-row items-center gap-2">
             <p className="font-bold">Full name:</p>
             <p>{user.fullName}</p>
             <p className="font-bold">Email:</p>

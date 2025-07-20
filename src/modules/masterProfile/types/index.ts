@@ -35,6 +35,7 @@ export interface MasterProfileData {
     statistics?: {
       totalReviews: number;
       normalizedScore: number;
+      total: number;
       averageRatings: {
         overall: number;
         price: number;

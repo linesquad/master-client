@@ -17,8 +17,10 @@ import { Route as appRouteRouteImport } from './routes/(app)/route'
 import { Route as appIndexRouteImport } from './routes/(app)/index'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
-import { Route as appNotificationsRouteImport } from './routes/(app)/notifications'
 import { Route as appFindRouteImport } from './routes/(app)/find'
+import { Route as AuthenticatedProfileRouteRouteImport } from './routes/_authenticated/profile/route'
+import { Route as AuthenticatedProfileIndexRouteImport } from './routes/_authenticated/profile/index'
+import { Route as AuthenticatedProfileNotificationsRouteImport } from './routes/_authenticated/profile/notifications'
 import { Route as appProfileIdRouteImport } from './routes/(app)/profile/$id'
 
 const appContactLazyRouteImport = createFileRoute('/(app)/contact')()
@@ -71,16 +73,29 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const appNotificationsRoute = appNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => appRouteRoute,
-} as any)
 const appFindRoute = appFindRouteImport.update({
   id: '/find',
   path: '/find',
   getParentRoute: () => appRouteRoute,
 } as any)
+const AuthenticatedProfileRouteRoute =
+  AuthenticatedProfileRouteRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedProfileIndexRoute =
+  AuthenticatedProfileIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedProfileRouteRoute,
+  } as any)
+const AuthenticatedProfileNotificationsRoute =
+  AuthenticatedProfileNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedProfileRouteRoute,
+  } as any)
 const appProfileIdRoute = appProfileIdRouteImport.update({
   id: '/profile/$id',
   path: '/profile/$id',
@@ -89,20 +104,21 @@ const appProfileIdRoute = appProfileIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof appIndexRoute
-  '': typeof AuthenticatedRoute
+  '': typeof AuthenticatedRouteWithChildren
+  '/profile': typeof AuthenticatedProfileRouteRouteWithChildren
   '/find': typeof appFindRoute
-  '/notifications': typeof appNotificationsRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/about': typeof appAboutLazyRoute
   '/client-profile': typeof appClientProfileLazyRoute
   '/contact': typeof appContactLazyRoute
   '/profile/$id': typeof appProfileIdRoute
+  '/profile/notifications': typeof AuthenticatedProfileNotificationsRoute
+  '/profile/': typeof AuthenticatedProfileIndexRoute
 }
 export interface FileRoutesByTo {
-  '': typeof AuthenticatedRoute
+  '': typeof AuthenticatedRouteWithChildren
   '/find': typeof appFindRoute
-  '/notifications': typeof appNotificationsRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/about': typeof appAboutLazyRoute
@@ -110,13 +126,15 @@ export interface FileRoutesByTo {
   '/contact': typeof appContactLazyRoute
   '/': typeof appIndexRoute
   '/profile/$id': typeof appProfileIdRoute
+  '/profile/notifications': typeof AuthenticatedProfileNotificationsRoute
+  '/profile': typeof AuthenticatedProfileIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(app)': typeof appRouteRouteWithChildren
-  '/_authenticated': typeof AuthenticatedRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_authenticated/profile': typeof AuthenticatedProfileRouteRouteWithChildren
   '/(app)/find': typeof appFindRoute
-  '/(app)/notifications': typeof appNotificationsRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
   '/(app)/about': typeof appAboutLazyRoute
@@ -124,25 +142,28 @@ export interface FileRoutesById {
   '/(app)/contact': typeof appContactLazyRoute
   '/(app)/': typeof appIndexRoute
   '/(app)/profile/$id': typeof appProfileIdRoute
+  '/_authenticated/profile/notifications': typeof AuthenticatedProfileNotificationsRoute
+  '/_authenticated/profile/': typeof AuthenticatedProfileIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | ''
+    | '/profile'
     | '/find'
-    | '/notifications'
     | '/login'
     | '/register'
     | '/about'
     | '/client-profile'
     | '/contact'
     | '/profile/$id'
+    | '/profile/notifications'
+    | '/profile/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
     | '/find'
-    | '/notifications'
     | '/login'
     | '/register'
     | '/about'
@@ -150,12 +171,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/'
     | '/profile/$id'
+    | '/profile/notifications'
+    | '/profile'
   id:
     | '__root__'
     | '/(app)'
     | '/_authenticated'
+    | '/_authenticated/profile'
     | '/(app)/find'
-    | '/(app)/notifications'
     | '/(auth)/login'
     | '/(auth)/register'
     | '/(app)/about'
@@ -163,11 +186,13 @@ export interface FileRouteTypes {
     | '/(app)/contact'
     | '/(app)/'
     | '/(app)/profile/$id'
+    | '/_authenticated/profile/notifications'
+    | '/_authenticated/profile/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   appRouteRoute: typeof appRouteRouteWithChildren
-  AuthenticatedRoute: typeof AuthenticatedRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
 }
@@ -188,18 +213,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/(app)/find': {
       id: '/(app)/find'
       path: '/find'
       fullPath: '/find'
       preLoaderRoute: typeof appFindRouteImport
-      parentRoute: typeof appRouteRoute
-    }
-    '/(app)/notifications': {
-      id: '/(app)/notifications'
-      path: '/notifications'
-      fullPath: '/notifications'
-      preLoaderRoute: typeof appNotificationsRouteImport
       parentRoute: typeof appRouteRoute
     }
     '/(auth)/login': {
@@ -251,6 +276,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof appProfileIdRouteImport
       parentRoute: typeof appRouteRoute
     }
+    '/_authenticated/profile/notifications': {
+      id: '/_authenticated/profile/notifications'
+      path: '/notifications'
+      fullPath: '/profile/notifications'
+      preLoaderRoute: typeof AuthenticatedProfileNotificationsRouteImport
+      parentRoute: typeof AuthenticatedProfileRouteRoute
+    }
+    '/_authenticated/profile/': {
+      id: '/_authenticated/profile/'
+      path: '/'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof AuthenticatedProfileIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRouteRoute
+    }
     '/(app)/contact': {
       id: '/(app)/contact'
       path: '/contact'
@@ -293,6 +332,15 @@ declare module './routes/_authenticated' {
     FileRoutesByPath['/_authenticated']['fullPath']
   >
 }
+declare module './routes/_authenticated/profile/route' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/profile',
+    FileRoutesByPath['/_authenticated/profile']['parentRoute'],
+    FileRoutesByPath['/_authenticated/profile']['id'],
+    FileRoutesByPath['/_authenticated/profile']['path'],
+    FileRoutesByPath['/_authenticated/profile']['fullPath']
+  >
+}
 declare module './routes/(app)/find' {
   const createFileRoute: CreateFileRoute<
     '/(app)/find',
@@ -300,15 +348,6 @@ declare module './routes/(app)/find' {
     FileRoutesByPath['/(app)/find']['id'],
     FileRoutesByPath['/(app)/find']['path'],
     FileRoutesByPath['/(app)/find']['fullPath']
-  >
-}
-declare module './routes/(app)/notifications' {
-  const createFileRoute: CreateFileRoute<
-    '/(app)/notifications',
-    FileRoutesByPath['/(app)/notifications']['parentRoute'],
-    FileRoutesByPath['/(app)/notifications']['id'],
-    FileRoutesByPath['/(app)/notifications']['path'],
-    FileRoutesByPath['/(app)/notifications']['fullPath']
   >
 }
 declare module './routes/(auth)/login' {
@@ -362,10 +401,27 @@ declare module './routes/(app)/profile/$id' {
     FileRoutesByPath['/(app)/profile/$id']['fullPath']
   >
 }
+declare module './routes/_authenticated/profile/notifications' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/profile/notifications',
+    FileRoutesByPath['/_authenticated/profile/notifications']['parentRoute'],
+    FileRoutesByPath['/_authenticated/profile/notifications']['id'],
+    FileRoutesByPath['/_authenticated/profile/notifications']['path'],
+    FileRoutesByPath['/_authenticated/profile/notifications']['fullPath']
+  >
+}
+declare module './routes/_authenticated/profile/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/profile/',
+    FileRoutesByPath['/_authenticated/profile/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/profile/']['id'],
+    FileRoutesByPath['/_authenticated/profile/']['path'],
+    FileRoutesByPath['/_authenticated/profile/']['fullPath']
+  >
+}
 
 interface appRouteRouteChildren {
   appFindRoute: typeof appFindRoute
-  appNotificationsRoute: typeof appNotificationsRoute
   appAboutLazyRoute: typeof appAboutLazyRoute
   appClientProfileLazyRoute: typeof appClientProfileLazyRoute
   appContactLazyRoute: typeof appContactLazyRoute
@@ -375,7 +431,6 @@ interface appRouteRouteChildren {
 
 const appRouteRouteChildren: appRouteRouteChildren = {
   appFindRoute: appFindRoute,
-  appNotificationsRoute: appNotificationsRoute,
   appAboutLazyRoute: appAboutLazyRoute,
   appClientProfileLazyRoute: appClientProfileLazyRoute,
   appContactLazyRoute: appContactLazyRoute,
@@ -387,9 +442,38 @@ const appRouteRouteWithChildren = appRouteRoute._addFileChildren(
   appRouteRouteChildren,
 )
 
+interface AuthenticatedProfileRouteRouteChildren {
+  AuthenticatedProfileNotificationsRoute: typeof AuthenticatedProfileNotificationsRoute
+  AuthenticatedProfileIndexRoute: typeof AuthenticatedProfileIndexRoute
+}
+
+const AuthenticatedProfileRouteRouteChildren: AuthenticatedProfileRouteRouteChildren =
+  {
+    AuthenticatedProfileNotificationsRoute:
+      AuthenticatedProfileNotificationsRoute,
+    AuthenticatedProfileIndexRoute: AuthenticatedProfileIndexRoute,
+  }
+
+const AuthenticatedProfileRouteRouteWithChildren =
+  AuthenticatedProfileRouteRoute._addFileChildren(
+    AuthenticatedProfileRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedProfileRouteRoute: typeof AuthenticatedProfileRouteRouteWithChildren
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedProfileRouteRoute: AuthenticatedProfileRouteRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   appRouteRoute: appRouteRouteWithChildren,
-  AuthenticatedRoute: AuthenticatedRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
 }

@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { BurgerMenu } from "../home/ui/components/burger-menu/BurgerMenu";
 import { useUser } from "../auth/hooks/useUser";
 import { UserButton } from "@/components/user-button";
 import { UnathorizedHeader } from "@/components/unathorized-header";
@@ -13,7 +12,7 @@ function Header() {
   }
 
   return (
-    <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300">
+    <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300 sticky top-0 z-50">
       <div className=" px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -36,13 +35,10 @@ function Header() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="flex items-center space-x-8">
             <div className="flex items-center space-x-4">
               <UserButton />
             </div>
-          </div>
-          <div className="md:hidden flex items-center space-x-2">
-            <BurgerMenu />
           </div>
         </div>
       </div>

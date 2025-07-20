@@ -56,7 +56,7 @@ const MainPagination: React.FC<PaginationCompProps> = ({
             if (currentPage > 1) onPageChange(currentPage - 1);
           }}
           disabled={currentPage === 1}
-          className="flex items-center gap-1 px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-600 transition-all duration-200 cursor-pointer whitespace-nowrap"
+          className="flex items-center gap-1 px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-gray-800 disabled:hover:text-gray-600 dark:disabled:hover:text-gray-300 transition-all duration-200 cursor-pointer whitespace-nowrap"
         >
           <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
           <span className="hidden xs:inline">Previous</span>
@@ -71,12 +71,12 @@ const MainPagination: React.FC<PaginationCompProps> = ({
                 onPageChange(1);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-all duration-200 cursor-pointer"
+              className="min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer"
             >
               1
             </button>
             {startPage > 2 && (
-              <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">
+              <span className="px-1 sm:px-2 text-gray-400 dark:text-gray-500 text-xs sm:text-sm">
                 ...
               </span>
             )}
@@ -95,8 +95,8 @@ const MainPagination: React.FC<PaginationCompProps> = ({
               min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer
               ${
                 page === currentPage
-                  ? "bg-blue-600 text-white border border-blue-600 shadow-sm"
-                  : "text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:text-gray-700"
+                  ? "bg-blue-600 dark:bg-blue-700 text-white border border-blue-600 dark:border-blue-700 shadow-sm"
+                  : "text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200"
               }
             `}
           >
@@ -108,7 +108,7 @@ const MainPagination: React.FC<PaginationCompProps> = ({
         {endPage < totalPages && (
           <>
             {endPage < totalPages - 1 && (
-              <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">
+              <span className="px-1 sm:px-2 text-gray-400 dark:text-gray-500 text-xs sm:text-sm">
                 ...
               </span>
             )}
@@ -117,7 +117,7 @@ const MainPagination: React.FC<PaginationCompProps> = ({
                 onPageChange(totalPages);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-all duration-200 cursor-pointer"
+              className="min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer"
             >
               {totalPages}
             </button>
@@ -133,7 +133,7 @@ const MainPagination: React.FC<PaginationCompProps> = ({
             }
           }}
           disabled={currentPage === totalPages}
-          className="flex items-center gap-1 px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-gray-600 transition-all duration-200 cursor-pointer whitespace-nowrap"
+          className="flex items-center gap-1 px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-gray-800 disabled:hover:text-gray-600 dark:disabled:hover:text-gray-300 transition-all duration-200 cursor-pointer whitespace-nowrap"
         >
           <span className="hidden xs:inline">Next</span>
           <span className="xs:hidden">Next</span>

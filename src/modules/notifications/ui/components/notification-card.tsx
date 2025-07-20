@@ -4,6 +4,8 @@ import { ReviewForm } from "@/modules/reviews/ui/review-form";
 import { ResponsiveModalTwo } from "@/components/responsive-modal";
 import { useState } from "react";
 import { useCreateReview } from "@/modules/reviews/hooks/use-create-review";
+import { Star, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface NotificationCardProps {
   notification: Notification;
@@ -41,10 +43,10 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     setIsOpen(false);
   };
 
+  const isReview = notification.message.endsWith("Please leave a review.");
+
   return (
-    <div
-      className={`w-full p-4 border-b border-gray-200 ${!notification.read ? "bg-blue-50" : ""}`}
-    >
+    <div className="w-full border shadow-md dark:border-neutral-800 rounded-lg p-4">
       <ResponsiveModalTwo open={isOpen} onOpenChange={setIsOpen}>
         <ReviewForm
           leadId={notification.data.leadId}
@@ -63,28 +65,57 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
           isCreatingReview={isCreatingReview}
         />
       </ResponsiveModalTwo>
-      <div
-        className={`flex items-start gap-3 cursor-pointer ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
-        onClick={handleOpenModal}
-      >
-        <div
-          className={`h-2 w-2 mt-2 rounded-full ${!notification.read ? "bg-blue-500" : "bg-transparent"}`}
-        />
-        <div className="flex-1">
-          <div className="flex justify-between items-start">
-            <h3 className="font-medium text-gray-900">{notification.title}</h3>
-            <span className="text-xs text-gray-500">
-              {new Date(notification.createdAt).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+      <div className="flex items-center justify-between">
+        <div className="flex-1/10">
+          {isReview ? (
+            <div className="flex items-center gap-2">
+              <Star className="w-5 h-5 text-yellow-500" />
+            </div>
+          ) : (
+            <MessageCircle className="w-5 h-5 text-gray-500" />
+          )}
+        </div>
+        <div className="flex-8/10">
+          <div className="flex flex-col gap-2">
+            <span className="text-sm font-medium">{notification.title}</span>
+            <span className="text-sm text-gray-500">
+              {notification.message}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <p className="mt-1 text-sm text-gray-600">{notification.message}</p>
-          </div>
+        </div>
+        <div className="flex-1/4">
+          <span className="text-sm text-gray-500 mr-2">
+            {new Date(notification.createdAt).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+          <span className="text-sm text-gray-500">
+            {notification.read ? (
+              <span className="inline-block w-3 h-3 border border-blue-500 rounded-full bg-transparent" />
+            ) : (
+              <span className="inline-block w-3 h-3 bg-blue-500 rounded-full" />
+            )}
+          </span>
         </div>
       </div>
+      {isReview ? (
+        <div className="flex items-center gap-2 mt-5">
+          <Button disabled={isPending} onClick={handleOpenModal}>
+            Submit review
+          </Button>
+        </div>
+      ) : (
+        <div className="flex items-center gap-2 mt-5">
+          <Button
+            disabled={isPending}
+            onClick={() => readNotification()}
+            variant="outline"
+          >
+            Mark as read
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

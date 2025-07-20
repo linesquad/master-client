@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { type MasterProfileData, type Review } from "../../types";
 import { Star, User } from "lucide-react";
+import { StarRating } from "@/components/star-rating";
 
 export default function MasterProfIndReview({
   data,
@@ -40,13 +41,13 @@ export default function MasterProfIndReview({
                   {renderStars(data.reviews.statistics.averageRatings.overall)}
                 </div>
                 <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {data.reviews.statistics.averageRatings.overall}/100
+                  {data.reviews.statistics.averageRatings.overall}/25
                 </span>
               </div>
             </div>
             <div className="text-gray-600 dark:text-gray-400">
               {t("profile.basedOnReviews", {
-                count: data.reviews.statistics.totalReviews || 0,
+                count: data.reviews.statistics.total || 0,
               })}
             </div>
           </div>
@@ -55,50 +56,80 @@ export default function MasterProfIndReview({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.price}/100
+                {data.reviews.statistics.averageRatings.price}/25
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.price")}
               </div>
               <div className="flex items-center justify-center gap-1 mt-1">
-                {renderStars(data.reviews.statistics.averageRatings.price)}
+                <StarRating
+                  value={Number(
+                    (data.reviews.statistics.averageRatings.price / 5).toFixed(
+                      1
+                    )
+                  )}
+                />
               </div>
             </div>
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.quality}/100
+                {data.reviews.statistics.averageRatings.quality}/25
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.quality")}
               </div>
               <div className="flex items-center justify-center gap-1 mt-1">
-                {renderStars(data.reviews.statistics.averageRatings.quality)}
+                <StarRating
+                  value={Number(
+                    (
+                      data.reviews.statistics.averageRatings.quality / 5
+                    ).toFixed(1)
+                  )}
+                />
               </div>
             </div>
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.punctuality}
-                /100
+                {Number(
+                  (
+                    data.reviews.statistics.averageRatings.punctuality / 5
+                  ).toFixed(1)
+                )}
+                /25
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.punctuality")}
               </div>
               <div className="flex items-center justify-center gap-1 mt-1">
-                {renderStars(
-                  data.reviews.statistics.averageRatings.punctuality
-                )}
+                <StarRating
+                  value={Number(
+                    (
+                      data.reviews.statistics.averageRatings.punctuality / 5
+                    ).toFixed(1)
+                  )}
+                />
               </div>
             </div>
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.experience}
-                /100
+                {Number(
+                  (
+                    data.reviews.statistics.averageRatings.experience / 5
+                  ).toFixed(1)
+                )}
+                /25
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.experience")}
               </div>
               <div className="flex items-center justify-center gap-1 mt-1">
-                {renderStars(data.reviews.statistics.averageRatings.experience)}
+                <StarRating
+                  value={Number(
+                    (
+                      data.reviews.statistics.averageRatings.experience / 5
+                    ).toFixed(1)
+                  )}
+                />
               </div>
             </div>
           </div>
@@ -134,10 +165,14 @@ export default function MasterProfIndReview({
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1">
-                        {renderStars(review.ratings.average)}
+                        <StarRating
+                          value={Number(
+                            (review.ratings.average / 5).toFixed(1)
+                          )}
+                        />
                       </div>
                       <span className="text-gray-600 dark:text-gray-400 text-sm font-medium">
-                        {review.ratings.average}/100
+                        {((review.ratings.average * 4) / 10).toFixed(1)}/10
                       </span>
                     </div>
                   </div>

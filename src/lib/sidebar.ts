@@ -1,4 +1,4 @@
-import { Bell, Home, Info, Mail, Search } from "lucide-react";
+import { Bell, Home, Info, Mail, Search, User } from "lucide-react";
 
 export const getSidebarItems = (t: (key: string) => string) => [
   {
@@ -23,7 +23,12 @@ export const getSidebarItems = (t: (key: string) => string) => [
   },
   {
     title: t("navigation.notifications"),
-    url: "/notifications",
+    url: "/profile/notifications",
     icon: Bell,
+  },
+  {
+    title: t("navigation.profile"),
+    url: "/profile",
+    icon: User,
   },
 ];

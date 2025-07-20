@@ -17,6 +17,6 @@ export const header = [
   },
   {
     name: "Notifications",
-    to: "/notifications",
+    to: "/profile/notifications",
   },
 ];

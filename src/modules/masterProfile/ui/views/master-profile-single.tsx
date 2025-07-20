@@ -125,9 +125,11 @@ export function MasterProfileSingle({ id }: { id: string }) {
       <Star
         key={i}
         className={`w-4 h-4 ${
-          i < Math.floor(rating / 20)
+          i < Math.floor(rating / 5)
             ? "text-yellow-400 fill-current"
-            : "text-gray-300 dark:text-gray-500"
+            : i === Math.floor(rating / 5) && rating % 5 >= 2.5
+              ? "text-yellow-400 fill-current opacity-50"
+              : "text-gray-300 dark:text-gray-500"
         }`}
       />
     ));

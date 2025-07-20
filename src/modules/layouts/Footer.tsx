@@ -4,7 +4,7 @@ import MainWrapper from "@/components/ui/MainWrapper";
 
 function Footer() {
   return (
-    <footer className=" border-border w-full border-t px-2 sm:px-6 lg:px-8 transition-colors duration-300">
+    <footer className="border-border w-full border-t px-2 sm:px-6 lg:px-8 transition-colors duration-300">
       <MainWrapper>
         <div className=" py-12 bg-background border-border w-full flex flex-col items-center justify-between">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full">

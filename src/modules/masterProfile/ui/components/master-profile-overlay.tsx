@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 export function MasterProfileOverlay({ data }: { data: MasterProfileData }) {
   const { t } = useTranslation();
-  console.log(data);
   return (
     <div
       className="h-48 sm:h-64 md:h-80 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 dark:from-blue-700 dark:via-purple-700 dark:to-blue-900 relative"
