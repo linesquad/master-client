@@ -11,9 +11,9 @@ import ResponsiveModal from "@/components/ResponsiveModal";
 import { type SearchParams, type Category, type Job } from "../types/member";
 import JobsFiltration from "./findFiltrations/JobsFiltration";
 import ServiceFiltraiton from "./findFiltrations/ServiceFiltraiton";
-import AvailabilityFilter from "./findFiltrations/AvailabilityFilter";
-import PriceRangeFilter from "./findFiltrations/PriceRangeFilter";
-import ReviewsFilter from "./findFiltrations/ReviewsFilter";
+// import AvailabilityFilter from "./findFiltrations/AvailabilityFilter";
+// import PriceRangeFilter from "./findFiltrations/PriceRangeFilter";
+// import ReviewsFilter from "./findFiltrations/ReviewsFilter";
 import CityPartSection from "./findFiltrations/CityPartSection";
 import CityFilterSection from "./findFiltrations/CityFilterSection";
 import ActiveFilters from "./activeFilters/ActiveFilters";
@@ -28,9 +28,9 @@ function FindFiltration() {
   const [showJobs, setShowJobs] = useState(false);
   const [serviceDialogOpen, setServiceDialogOpen] = useState(false);
   const [locationDialogOpen, setLocationDialogOpen] = useState(false);
-  const [availabilityDialogOpen, setAvailabilityDialogOpen] = useState(false);
-  const [priceDialogOpen, setPriceDialogOpen] = useState(false);
-  const [reviewsDialogOpen, setReviewsDialogOpen] = useState(false);
+  // const [availabilityDialogOpen, setAvailabilityDialogOpen] = useState(false);
+  // const [priceDialogOpen, setPriceDialogOpen] = useState(false);
+  // const [reviewsDialogOpen, setReviewsDialogOpen] = useState(false);
   const [tempSelectedCityId, setTempSelectedCityId] = useState<string | null>(
     null
   );
@@ -148,9 +148,9 @@ function FindFiltration() {
     setShowJobs(false);
     setServiceDialogOpen(false);
     setLocationDialogOpen(false);
-    setAvailabilityDialogOpen(false);
-    setPriceDialogOpen(false);
-    setReviewsDialogOpen(false);
+    // setAvailabilityDialogOpen(false);
+    // setPriceDialogOpen(false);
+    // setReviewsDialogOpen(false);
     setShowCityParts(false);
     setTempSelectedCityId(null);
   };
@@ -176,17 +176,17 @@ function FindFiltration() {
     handleBackToCities();
   };
 
-  const handleAvailabilityChange = (availability?: string) => {
-    updateSearchParams({ availability });
-  };
+  // const handleAvailabilityChange = (availability?: string) => {
+  //   updateSearchParams({ availability });
+  // };
 
-  const handlePriceChange = (minPrice?: string, maxPrice?: string) => {
-    updateSearchParams({ minPrice, maxPrice });
-  };
+  // const handlePriceChange = (minPrice?: string, maxPrice?: string) => {
+  //   updateSearchParams({ minPrice, maxPrice });
+  // };
 
-  const handleReviewsChange = (hasReviews?: string) => {
-    updateSearchParams({ hasReviews });
-  };
+  // const handleReviewsChange = (hasReviews?: string) => {
+  //   updateSearchParams({ hasReviews });
+  // };
 
   // Check if any filters are active
   const hasActiveFilters =
@@ -305,33 +305,14 @@ function FindFiltration() {
           <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
           {/* Availability Filter */}
-          <AvailabilityFilter
+          {/* <AvailabilityFilter
             availability={availability || undefined}
             onAvailabilityChange={handleAvailabilityChange}
             availabilityDialogOpen={availabilityDialogOpen}
             setAvailabilityDialogOpen={setAvailabilityDialogOpen}
-          />
+          /> */}
 
           <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-
-          {/* Price Range Filter */}
-          <PriceRangeFilter
-            minPrice={minPrice || undefined}
-            maxPrice={maxPrice || undefined}
-            onPriceChange={handlePriceChange}
-            priceDialogOpen={priceDialogOpen}
-            setPriceDialogOpen={setPriceDialogOpen}
-          />
-
-          <div className="h-px 2xl:h-16 2xl:w-px bg-gradient-to-r 2xl:bg-gradient-to-b from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
-
-          {/* Reviews Filter */}
-          <ReviewsFilter
-            hasReviews={hasReviews || undefined}
-            onReviewsChange={handleReviewsChange}
-            reviewsDialogOpen={reviewsDialogOpen}
-            setReviewsDialogOpen={setReviewsDialogOpen}
-          />
 
           <div className="flex flex-col 2xl:flex-row items-center gap-2 p-3 2xl:p-0">
             {hasActiveFilters && (

@@ -12,7 +12,7 @@ export interface CreateReviewData {
 export const createReview = async (data: CreateReviewData) => {
   const response = await instance.post("/api/reviews", data);
 
-  if (response.status !== 200) {
+  if (response.status !== 201) {
     throw new Error("Failed to create review");
   }
 

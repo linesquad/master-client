@@ -41,7 +41,7 @@ export default function MasterProfIndReview({
                   {renderStars(data.reviews.statistics.averageRatings.overall)}
                 </div>
                 <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {data.reviews.statistics.averageRatings.overall}/25
+                  {data.reviews.statistics.averageRatings.overall / 5}/5
                 </span>
               </div>
             </div>
@@ -56,7 +56,7 @@ export default function MasterProfIndReview({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.price}/25
+                {data.reviews.statistics.averageRatings.price / 5}/5
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.price")}
@@ -73,7 +73,7 @@ export default function MasterProfIndReview({
             </div>
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.quality}/25
+                {data.reviews.statistics.averageRatings.quality / 5}/5
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.quality")}
@@ -95,7 +95,7 @@ export default function MasterProfIndReview({
                     data.reviews.statistics.averageRatings.punctuality / 5
                   ).toFixed(1)
                 )}
-                /25
+                /5
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.punctuality")}
@@ -117,7 +117,7 @@ export default function MasterProfIndReview({
                     data.reviews.statistics.averageRatings.experience / 5
                   ).toFixed(1)
                 )}
-                /25
+                /5
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.experience")}

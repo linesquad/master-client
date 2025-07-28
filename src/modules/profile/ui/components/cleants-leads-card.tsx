@@ -9,7 +9,7 @@ import { ReviewForm } from "@/modules/reviews/ui/review-form";
 import toast from "react-hot-toast";
 
 export function ClientsLeadsCard({ lead }: { lead: Lead }) {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const currentLanguage = i18n.language;
   const { data, isLoading } = useGetHasReview({ leadId: lead.id });
 
@@ -81,8 +81,6 @@ export function ClientsLeadsCard({ lead }: { lead: Lead }) {
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm dark:shadow-gray-700 p-5 mb-6 max-w-[420px] mx-auto animate-pulse h-64" />
     );
   if (!data) return <div>No data</div>;
-
-  console.log(data.data.hasReviewed);
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm dark:shadow-gray-700 p-5 mb-6 max-w-[420px] mx-auto">
@@ -167,7 +165,9 @@ export function ClientsLeadsCard({ lead }: { lead: Lead }) {
         </div>
       ) : (
         <div className="flex items-center gap-2 mt-5">
-          <Button onClick={handleOpenModal}>Add Review</Button>
+          <Button onClick={handleOpenModal}>
+            {t("userProfile.addReview")}
+          </Button>
         </div>
       )}
     </div>

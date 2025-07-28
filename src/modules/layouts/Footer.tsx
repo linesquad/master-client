@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Community, Followers, Important } from "@/lib/footer";
 import MainWrapper from "@/components/ui/MainWrapper";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="border-border w-full border-t px-2 sm:px-6 lg:px-8 transition-colors duration-300">
       <MainWrapper>
@@ -46,19 +48,17 @@ function Footer() {
                 </span>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
-                Dorem ipsum dolor sit amet consec adipisicing elit sed do
-                eiusmod por incididunt labore et loreLorem ipsum kelly amieo
-                dolorey.
+                {t("footer.description")}
               </p>
             </div>
 
             <div className="">
               <h3 className="text-lg font-bold text-foreground mb-2">
-                Important Links
+                {t("footer.importantLinks.heading")}
               </h3>
               <div className="w-8 h-1 bg-primary mb-4" />
               <ul className="space-y-2">
-                {Important.map((item) => (
+                {Important(t).map((item) => (
                   <li key={item.name}>
                     <Link
                       to={item.to}
@@ -73,11 +73,11 @@ function Footer() {
 
             <div className="">
               <h3 className="text-lg font-bold text-foreground mb-2">
-                Community
+                {t("footer.community.heading")}
               </h3>
               <div className="w-8 h-1 bg-primary mb-4" />
               <ul className="space-y-2">
-                {Community.map((item) => (
+                {Community(t).map((item) => (
                   <li key={item.name}>
                     <Link
                       to={item.to}
@@ -92,11 +92,11 @@ function Footer() {
 
             <div className="">
               <h3 className="text-lg font-bold text-foreground mb-2">
-                Followers
+                {t("footer.followers.heading")}
               </h3>
               <div className="w-8 h-1 bg-primary mb-4" />
               <ul className="space-y-2">
-                {Followers.map((item) => (
+                {Followers(t).map((item) => (
                   <li key={item.name}>
                     <Link
                       to={item.to}

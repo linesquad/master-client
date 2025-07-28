@@ -10,10 +10,11 @@
     "login": "Login",
     "register": "Register",
     "profile": "Profile",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "report": "Report"
   },
   "hero": {
-    "title": "Cirkle Community",
+    "title": "Pro Community",
     "subtitle": "Having real social contacts can sometimes be difficult FUN, everything becomes much simpler!",
     "searchPlaceholder": "Search for services...",
     "connectedPeople": "Connected People",
@@ -207,16 +208,6 @@
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?"
   },
-  "footer": {
-    "allRightsReserved": "All rights reserved",
-    "company": "Company",
-    "about": "About",
-    "careers": "Careers",
-    "support": "Support",
-    "help": "Help",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
-  },
   "common": {
     "loading": "Loading...",
     "error": "Error",
@@ -298,6 +289,74 @@
       "note": "Note",
       "selectedService": "Selected Service",
       "selectWork": "Select this work"
+    }
+  },
+  "footer": {
+    "description": "Discover skilled professionals for any service you need. Our platform connects you with trusted experts in your area for home services, beauty treatments, tutoring, repairs, and more. Find the perfect match for your needs today!",
+    "importantLinks": {
+      "heading": "Important Links",
+      "home": "Home",
+      "contact": "Contact",
+      "about": "About",
+      "blog": "Blog"
+    },
+    "community": {
+      "heading": "Community",
+      "find": "Find",
+      "blog": "Blog",
+      "notifications": "Notifications",
+      "profile": "Profile"
+    },
+    "followers": {
+      "heading": "Social",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "userProfile": {
+    "home": "Home",
+    "clientRole": "Client",
+    "email": "Email",
+    "phone": "Phone",
+    "id": "ID",
+    "createdAt": "Created At",
+    "addReview": "Add Review",
+    "requestedTime": "Requested Time"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "your information",
+    "noNotifications": "No notifications",
+    "noNotificationsDescription": "You don't have any notifications yet.",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "message": "Message",
+    "send": "Send",
+    "submitReview": "Submit Review",
+    "markAsRead": "Mark as Read",
+    "completeLead": "Complete Lead",
+    "priceRating": "Price Rating",
+    "qualityRating": "Quality Rating",
+    "punctualityRating": "Punctuality Rating",
+    "experienceRating": "Experience Rating",
+    "comment": "Comment",
+    "cancel": "Cancel",
+    "submit": "Submit"
+  },
+  "about": {
+    "title": "About Us",
+    "breadcrumb": "Cirkle / About Us",
+    "aboutView": {
+      "whoAreWe": "Who Are We?",
+      "title": "Linking Professionals to Clients",
+      "description1": "Our innovative platform serves as a powerful bridge connecting highly skilled professionals with individuals and businesses in need of top-quality services. Whether you're a talented expert looking to showcase your abilities and expand your client base, or someone searching for dependable, vetted professionals to handle important tasks, we facilitate these valuable connections with ease and efficiency. Our comprehensive matching system ensures that every interaction is meaningful, productive, and mutually beneficial for all parties involved.",
+      "description2": "We're proud to host a thriving community of thousands of dedicated service providers who are successfully scaling their businesses and reaching new clients every day. At the same time, we help countless individuals and organizations find exactly the right professionals to meet their specific needs and exceed their expectations. By fostering trust, transparency, and collaboration, we're creating an ecosystem where service providers can flourish, clients can access exceptional help, and together we're building a dynamic, inclusive community that delivers real value to everyone who participates in it.",
+      "registeredMembers": "Registered Members",
+      "featuresAvailable": "Features Available"
     }
   }
 }

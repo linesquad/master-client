@@ -6,12 +6,13 @@ import { useState } from "react";
 import { useCreateReview } from "@/modules/reviews/hooks/use-create-review";
 import { Star, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { useTranslation } from "react-i18next";
 interface NotificationCardProps {
   notification: Notification;
 }
 
 export const NotificationCard = ({ notification }: NotificationCardProps) => {
+  const { t } = useTranslation();
   const { createReviewMutation, isPending: isCreatingReview } =
     useCreateReview();
   const { readNotification, isPending } = useReadNotification(notification.id);
@@ -28,6 +29,11 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    setRatingPrice(0);
+    setRatingQuality(0);
+    setRatingPunctuality(0);
+    setRatingExperience(0);
+    setComment("");
   };
 
   const handleSubmitAndReadNotification = () => {
@@ -66,7 +72,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
         />
       </ResponsiveModalTwo>
       <div className="flex items-center justify-between">
-        <div className="flex-1/10">
+        <div className="flex-1/10 hidden md:flex">
           {isReview ? (
             <div className="flex items-center gap-2">
               <Star className="w-5 h-5 text-yellow-500" />
@@ -75,7 +81,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             <MessageCircle className="w-5 h-5 text-gray-500" />
           )}
         </div>
-        <div className="flex-8/10">
+        <div className="flex-9/10 md:flex-8/10">
           <div className="flex flex-col gap-2">
             <span className="text-sm font-medium">{notification.title}</span>
             <span className="text-sm text-gray-500">
@@ -83,7 +89,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             </span>
           </div>
         </div>
-        <div className="flex-1/4">
+        <div className="flex-1/10 md:flex-1/10">
           <span className="text-sm text-gray-500 mr-2">
             {new Date(notification.createdAt).toLocaleTimeString([], {
               hour: "2-digit",
@@ -102,7 +108,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
       {isReview ? (
         <div className="flex items-center gap-2 mt-5">
           <Button disabled={isPending} onClick={handleOpenModal}>
-            Submit review
+            {t("notifications.submitReview")}
           </Button>
         </div>
       ) : (
@@ -112,7 +118,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             onClick={() => readNotification()}
             variant="outline"
           >
-            Mark as read
+            {t("notifications.markAsRead")}
           </Button>
         </div>
       )}

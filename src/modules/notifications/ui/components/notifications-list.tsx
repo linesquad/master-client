@@ -1,8 +1,10 @@
 import { useGetNotifications } from "@/modules/notifications/hooks/use-get-notofications";
 import { NotificationCard } from "./notification-card";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const NotificationsList = () => {
+  const { t } = useTranslation();
   const { data, isLoading, error, isError } = useGetNotifications(1, 10);
 
   if (isLoading) {
@@ -18,7 +20,7 @@ export const NotificationsList = () => {
   }
 
   if (!data) {
-    return <div>No notifications found</div>;
+    return <div>{t("notifications.noNotifications")}</div>;
   }
 
   if ("notifications" in data && data.notifications.length > 0) {

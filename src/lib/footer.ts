@@ -1,57 +1,56 @@
-export const Important = [
+export const Important = (t: (key: string) => string) => [
   {
-    name: "About Us",
+    name: t("footer.importantLinks.about"),
     to: "/about",
   },
   {
-    name: "Shop",
-    to: "/shop",
+    name: t("footer.importantLinks.home"),
+    to: "/",
   },
   {
-    name: "Contact Us",
+    name: t("footer.importantLinks.contact"),
     to: "/contact",
   },
   {
-    name: "Blog",
+    name: t("footer.importantLinks.blog"),
     to: "/blog",
   },
 ];
 
-export const Community = [
+export const Community = (t: (key: string) => string) => [
   {
-    name: "Newsfeed",
-    to: "/newsfeed",
+    name: t("footer.community.find"),
+    to: "/find",
   },
   {
-    name: "Groups",
-    to: "/groups",
-  },
-
-  {
-    name: "Friends",
-    to: "/friends",
+    name: t("footer.community.blog"),
+    to: "/blog",
   },
   {
-    name: "Forums",
-    to: "/forums",
+    name: t("footer.community.notifications"),
+    to: "/notifications",
+  },
+  {
+    name: t("footer.community.profile"),
+    to: "/profile",
   },
 ];
 
-export const Followers = [
+export const Followers = (t: (key: string) => string) => [
   {
-    name: "Facebook",
+    name: t("footer.followers.facebook"),
     to: "/facebook",
   },
   {
-    name: "Twitter",
+    name: t("footer.followers.twitter"),
     to: "/twitter",
   },
   {
-    name: "Instagram",
+    name: t("footer.followers.instagram"),
     to: "/instagram",
   },
   {
-    name: "Youtube",
-    to: "/youtube",
+    name: t("footer.followers.linkedin"),
+    to: "/linkedin",
   },
 ];

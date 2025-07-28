@@ -40,7 +40,7 @@ export function ClientReviewCard({ review }: { review: Review }) {
       </div>
 
       {/* Ratings row */}
-      <div className="flex items-center bg-gray-50 dark:bg-gray-700 rounded-xl px-3 py-2 mb-3 gap-4 text-center">
+      <div className="flex flex-col md:flex-row items-center bg-gray-50 dark:bg-gray-700 rounded-xl px-3 py-4 md:py-2 mb-3 gap-4 text-center">
         <div className="flex-1 flex flex-col items-center">
           <span className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-medium text-sm">
             <svg width="18" height="18" fill="none" viewBox="0 0 20 20">

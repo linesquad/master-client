@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-
+import { useTranslation } from "react-i18next";
 interface ReviewFormProps {
   leadId: string;
   onClose: () => void;
@@ -47,6 +47,7 @@ export const ReviewForm = ({
   setComment,
   isCreatingReview,
 }: ReviewFormProps) => {
+  const { t } = useTranslation();
   const form = useForm<z.infer<typeof createReviewSchema>>({
     resolver: zodResolver(createReviewSchema),
     defaultValues: {
@@ -89,10 +90,10 @@ export const ReviewForm = ({
           name="ratingPrice"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Price Rating</FormLabel>
+              <FormLabel>{t("notifications.priceRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="number"
+                  type="text"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -111,10 +112,10 @@ export const ReviewForm = ({
           name="ratingQuality"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Quality Rating</FormLabel>
+              <FormLabel>{t("notifications.qualityRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="number"
+                  type="text"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -133,10 +134,10 @@ export const ReviewForm = ({
           name="ratingPunctuality"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Punctuality Rating</FormLabel>
+              <FormLabel>{t("notifications.punctualityRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="number"
+                  type="text"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -155,10 +156,10 @@ export const ReviewForm = ({
           name="ratingExperience"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Experience Rating</FormLabel>
+              <FormLabel>{t("notifications.experienceRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="number"
+                  type="text"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -177,7 +178,7 @@ export const ReviewForm = ({
           name="comment"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Comment</FormLabel>
+              <FormLabel>{t("notifications.comment")}</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
@@ -198,10 +199,10 @@ export const ReviewForm = ({
             type="button"
             onClick={handleCancel}
           >
-            Cancel
+            {t("notifications.cancel")}
           </Button>
           <Button disabled={isCreatingReview} type="submit">
-            Submit
+            {t("notifications.submit")}
           </Button>
         </div>
       </form>

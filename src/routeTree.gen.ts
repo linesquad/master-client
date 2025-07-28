@@ -23,6 +23,9 @@ import { Route as AuthenticatedProfileIndexRouteImport } from './routes/_authent
 import { Route as AuthenticatedProfileNotificationsRouteImport } from './routes/_authenticated/profile/notifications'
 import { Route as appProfileIdRouteImport } from './routes/(app)/profile/$id'
 
+const AuthenticatedReportLazyRouteImport = createFileRoute(
+  '/_authenticated/report',
+)()
 const appContactLazyRouteImport = createFileRoute('/(app)/contact')()
 const appClientProfileLazyRouteImport = createFileRoute(
   '/(app)/client-profile',
@@ -42,6 +45,13 @@ const appIndexRoute = appIndexRouteImport.update({
   path: '/',
   getParentRoute: () => appRouteRoute,
 } as any)
+const AuthenticatedReportLazyRoute = AuthenticatedReportLazyRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => AuthenticatedRoute,
+} as any).lazy(() =>
+  import('./routes/_authenticated/report.lazy').then((d) => d.Route),
+)
 const appContactLazyRoute = appContactLazyRouteImport
   .update({
     id: '/contact',
@@ -112,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof appAboutLazyRoute
   '/client-profile': typeof appClientProfileLazyRoute
   '/contact': typeof appContactLazyRoute
+  '/report': typeof AuthenticatedReportLazyRoute
   '/profile/$id': typeof appProfileIdRoute
   '/profile/notifications': typeof AuthenticatedProfileNotificationsRoute
   '/profile/': typeof AuthenticatedProfileIndexRoute
@@ -124,6 +135,7 @@ export interface FileRoutesByTo {
   '/about': typeof appAboutLazyRoute
   '/client-profile': typeof appClientProfileLazyRoute
   '/contact': typeof appContactLazyRoute
+  '/report': typeof AuthenticatedReportLazyRoute
   '/': typeof appIndexRoute
   '/profile/$id': typeof appProfileIdRoute
   '/profile/notifications': typeof AuthenticatedProfileNotificationsRoute
@@ -140,6 +152,7 @@ export interface FileRoutesById {
   '/(app)/about': typeof appAboutLazyRoute
   '/(app)/client-profile': typeof appClientProfileLazyRoute
   '/(app)/contact': typeof appContactLazyRoute
+  '/_authenticated/report': typeof AuthenticatedReportLazyRoute
   '/(app)/': typeof appIndexRoute
   '/(app)/profile/$id': typeof appProfileIdRoute
   '/_authenticated/profile/notifications': typeof AuthenticatedProfileNotificationsRoute
@@ -157,6 +170,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/client-profile'
     | '/contact'
+    | '/report'
     | '/profile/$id'
     | '/profile/notifications'
     | '/profile/'
@@ -169,6 +183,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/client-profile'
     | '/contact'
+    | '/report'
     | '/'
     | '/profile/$id'
     | '/profile/notifications'
@@ -184,6 +199,7 @@ export interface FileRouteTypes {
     | '/(app)/about'
     | '/(app)/client-profile'
     | '/(app)/contact'
+    | '/_authenticated/report'
     | '/(app)/'
     | '/(app)/profile/$id'
     | '/_authenticated/profile/notifications'
@@ -262,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof appContactLazyRouteImport
       parentRoute: typeof appRouteRoute
     }
+    '/_authenticated/report': {
+      id: '/_authenticated/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof AuthenticatedReportLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/(app)/': {
       id: '/(app)/'
       path: '/'
@@ -289,6 +312,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/profile/'
       preLoaderRoute: typeof AuthenticatedProfileIndexRouteImport
       parentRoute: typeof AuthenticatedProfileRouteRoute
+    }
+    '/_authenticated/report': {
+      id: '/_authenticated/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof AuthenticatedReportLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/(app)/contact': {
       id: '/(app)/contact'
@@ -383,6 +413,11 @@ declare module './routes/(app)/contact.lazy' {
     FileRoutesByPath['/(app)/contact']['preLoaderRoute']
   >
 }
+declare module './routes/_authenticated/report.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/_authenticated/report']['preLoaderRoute']
+  >
+}
 declare module './routes/(app)/index' {
   const createFileRoute: CreateFileRoute<
     '/(app)/',
@@ -461,10 +496,12 @@ const AuthenticatedProfileRouteRouteWithChildren =
 
 interface AuthenticatedRouteChildren {
   AuthenticatedProfileRouteRoute: typeof AuthenticatedProfileRouteRouteWithChildren
+  AuthenticatedReportLazyRoute: typeof AuthenticatedReportLazyRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProfileRouteRoute: AuthenticatedProfileRouteRouteWithChildren,
+  AuthenticatedReportLazyRoute: AuthenticatedReportLazyRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
