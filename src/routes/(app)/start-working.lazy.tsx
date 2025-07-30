@@ -1,5 +1,6 @@
 import { StartWorkView } from "@/modules/start-work/ui/start-work-view";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export const Route = createLazyFileRoute({
   component: RouteComponent,
@@ -7,6 +8,9 @@ export const Route = createLazyFileRoute({
 
 function RouteComponent() {
   const { t } = useTranslation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen">
       <div className="flex flex-col gap-4">

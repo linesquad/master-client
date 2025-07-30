@@ -28,7 +28,7 @@ export const Community = (t: (key: string) => string) => [
   },
   {
     name: t("footer.community.notifications"),
-    to: "/notifications",
+    to: "/profile/notifications",
   },
   {
     name: t("footer.community.profile"),

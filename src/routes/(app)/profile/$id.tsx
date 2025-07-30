@@ -1,5 +1,5 @@
 import { MasterProfileSingle } from "@/modules/masterProfile/ui/views/master-profile-single";
-
+import { useEffect } from "react";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -7,5 +7,8 @@ export const Route = createFileRoute({
 
 function RouteComponent() {
   const { id } = Route.useParams();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return <MasterProfileSingle id={id} />;
 }
