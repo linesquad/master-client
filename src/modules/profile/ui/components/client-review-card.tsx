@@ -1,7 +1,13 @@
 import type { Review } from "../../types";
+import { useTranslation } from "react-i18next";
 
 export function ClientReviewCard({ review }: { review: Review }) {
+  const { t } = useTranslation();
   // Format date
+
+  const resultTo1Decimal = (value: number) => {
+    return ((value / 25) * 10).toFixed(1);
+  };
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -49,10 +55,10 @@ export function ClientReviewCard({ review }: { review: Review }) {
                 fill="currentColor"
               />
             </svg>
-            Average Rating
+            {t("userProfile.averageRating")}
           </span>
           <span className="font-semibold text-lg dark:text-white">
-            {review.averageRating}
+            {Math.round(Number(resultTo1Decimal(review.averageRating)))}
           </span>
         </div>
         <div className="flex-1 flex flex-col items-center">
@@ -75,10 +81,10 @@ export function ClientReviewCard({ review }: { review: Review }) {
                 ₾
               </text>
             </svg>
-            Price
+            {t("userProfile.priceRating")}
           </span>
           <span className="font-semibold text-lg dark:text-white">
-            {review.ratingPrice}
+            {Math.round(Number(resultTo1Decimal(review.ratingPrice)))}
           </span>
         </div>
         <div className="flex-1 flex flex-col items-center">
@@ -98,10 +104,10 @@ export function ClientReviewCard({ review }: { review: Review }) {
                 strokeLinecap="round"
               />
             </svg>
-            Punctuality
+            {t("userProfile.punctualityRating")}
           </span>
           <span className="font-semibold text-lg dark:text-white">
-            {review.ratingPunctuality}
+            {resultTo1Decimal(review.ratingPunctuality)}
           </span>
         </div>
         <div className="flex-1 flex flex-col items-center">
@@ -123,10 +129,10 @@ export function ClientReviewCard({ review }: { review: Review }) {
                 strokeLinecap="round"
               />
             </svg>
-            Quality
+            {t("userProfile.qualityRating")}
           </span>
           <span className="font-semibold text-lg dark:text-white">
-            {review.ratingQuality}
+            {resultTo1Decimal(review.ratingQuality)}
           </span>
         </div>
       </div>

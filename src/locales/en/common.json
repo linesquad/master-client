@@ -11,7 +11,8 @@
     "register": "Register",
     "profile": "Profile",
     "notifications": "Notifications",
-    "report": "Report"
+    "report": "Report",
+    "startWorking": "Start Working"
   },
   "hero": {
     "title": "Pro Community",
@@ -323,7 +324,11 @@
     "id": "ID",
     "createdAt": "Created At",
     "addReview": "Add Review",
-    "requestedTime": "Requested Time"
+    "requestedTime": "Requested Time",
+    "averageRating": "Average",
+    "priceRating": "Price",
+    "punctualityRating": "Punctuality",
+    "qualityRating": "Quality"
   },
   "notifications": {
     "title": "Notifications",
@@ -358,5 +363,35 @@
       "registeredMembers": "Registered Members",
       "featuresAvailable": "Features Available"
     }
+  },
+  "start-work": {
+    "title": "Start Working By Applying",
+    "description": "Apply for a job and start working with us",
+    "fullName": "Full Name",
+    "phone": "Phone",
+    "speciality": "Speciality",
+    "note": "Note",
+    "submit": "Submit",
+    "reset": "Reset",
+    "enterFullName": "Enter your full name",
+    "enterPhone": "Enter your phone number",
+    "enterSpeciality": "Enter your speciality",
+    "enterNote": "Enter your note",
+    "submitting": "Submitting..."
+  },
+  "report": {
+    "title": "We are sorry for inconvenience",
+    "description": "Let us know what happened",
+    "phoneNumber": "Phone Number",
+    "titleInfo": "Title",
+    "note": "Note",
+    "submit": "Submit",
+    "reset": "Reset",
+    "enterPhoneNumber": "Enter your phone number",
+    "enterTitle": "Enter your title",
+    "enterNote": "Enter your note",
+    "backToHome": "Back to home",
+    "submitReport": "Submit Report",
+    "submitting": "Submitting..."
   }
 }

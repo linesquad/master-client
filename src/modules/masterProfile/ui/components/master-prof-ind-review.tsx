@@ -41,7 +41,10 @@ export default function MasterProfIndReview({
                   {renderStars(data.reviews.statistics.averageRatings.overall)}
                 </div>
                 <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {data.reviews.statistics.averageRatings.overall / 5}/5
+                  {(data.reviews.statistics.averageRatings.overall / 5).toFixed(
+                    1
+                  )}
+                  /5
                 </span>
               </div>
             </div>
@@ -56,7 +59,8 @@ export default function MasterProfIndReview({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.price / 5}/5
+                {(data.reviews.statistics.averageRatings.price / 5).toFixed(1)}
+                /5
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.price")}
@@ -73,7 +77,10 @@ export default function MasterProfIndReview({
             </div>
             <div className="text-center p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
               <div className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                {data.reviews.statistics.averageRatings.quality / 5}/5
+                {(data.reviews.statistics.averageRatings.quality / 5).toFixed(
+                  1
+                )}
+                /5
               </div>
               <div className="text-gray-600 dark:text-gray-400 text-sm">
                 {t("profile.quality")}
@@ -187,7 +194,9 @@ export default function MasterProfIndReview({
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 p-3 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
                       <div className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">
-                          {review.ratings.price || 0}
+                          {Math.round((review.ratings.price / 25) * 10).toFixed(
+                            1
+                          ) || 0}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
                           {t("profile.price")}
@@ -195,7 +204,9 @@ export default function MasterProfIndReview({
                       </div>
                       <div className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">
-                          {review.ratings.quality || 0}
+                          {Math.round(
+                            (review.ratings.quality / 25) * 10
+                          ).toFixed(1) || 0}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
                           {t("profile.quality")}
@@ -203,7 +214,9 @@ export default function MasterProfIndReview({
                       </div>
                       <div className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">
-                          {review.ratings.punctuality || 0}
+                          {Math.round(
+                            (review.ratings.punctuality / 25) * 10
+                          ).toFixed(1) || 0}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
                           {t("profile.punctuality")}
@@ -211,7 +224,9 @@ export default function MasterProfIndReview({
                       </div>
                       <div className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">
-                          {review.ratings.experience || 0}
+                          {Math.round(
+                            (review.ratings.experience / 25) * 10
+                          ).toFixed(1) || 0}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
                           {t("profile.experience")}

@@ -11,7 +11,8 @@
     "register": "რეგისტრაცია",
     "profile": "პროფილი",
     "notifications": "შეტყობინებები",
-    "report": "რეპორტი"
+    "report": "რეპორტი",
+    "startWorking": "დაიწყე მუშაობა"
   },
   "hero": {
     "title": "Cirkle საზოგადოება",
@@ -323,7 +324,11 @@
     "id": "ID",
     "createdAt": "შექმნის თარიღი",
     "addReview": "შეფასების დამატება",
-    "requestedTime": "მოთხოვნილი დრო"
+    "requestedTime": "მოთხოვნილი დრო",
+    "averageRating": "საშუალო",
+    "priceRating": "ფასი",
+    "punctualityRating": "დროულობა",
+    "qualityRating": "ხარისხი"
   },
   "notifications": {
     "title": "შეტყობინებები",
@@ -358,5 +363,35 @@
       "registeredMembers": "რეგისტრირებული წევრები",
       "featuresAvailable": "ხელმისაწვდომი ფუნქციები"
     }
+  },
+  "start-work": {
+    "title": "დაიწყეთ მუშაობა განაცხადის შევსებით",
+    "description": "შეავსეთ განაცხადი სამუშაოდ და დაიწყეთ ჩვენთან მუშაობა",
+    "fullName": "სრული სახელი",
+    "phone": "ტელეფონი",
+    "speciality": "სპეციალობა",
+    "note": "შენიშვნა",
+    "submit": "გაგზავნა",
+    "reset": "გასუფთავება",
+    "enterFullName": "შეიყვანეთ თქვენი სრული სახელი",
+    "enterPhone": "შეიყვანეთ თქვენი ტელეფონის ნომერი",
+    "enterSpeciality": "შეიყვანეთ თქვენი სპეციალობა",
+    "enterNote": "შეიყვანეთ თქვენი შენიშვნა",
+    "submitting": "გაგზავნა..."
+  },
+  "report": {
+    "title": "ჩვენ ვწუხვართ შექმნილი შეფერხებისთვის",
+    "description": "გვითხარით რა მოხდა",
+    "phoneNumber": "ტელეფონის ნომერი",
+    "titleInfo": "სათაური",
+    "note": "შენიშვნა",
+    "submit": "გაგზავნა",
+    "reset": "გასუფთავება",
+    "enterPhoneNumber": "შეიყვანეთ თქვენი ტელეფონის ნომერი",
+    "enterTitle": "შეიყვანეთ სათაური",
+    "enterNote": "შეიყვანეთ შენიშვნა",
+    "backToHome": "მთავარზე დაბრუნება",
+    "submitReport": "რეპორტის გაგზავნა",
+    "submitting": "გაგზავნა..."
   }
 }

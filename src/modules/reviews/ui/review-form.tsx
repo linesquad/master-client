@@ -93,7 +93,9 @@ export const ReviewForm = ({
               <FormLabel>{t("notifications.priceRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="text"
+                  min={0}
+                  max={10}
+                  type="number"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -115,7 +117,9 @@ export const ReviewForm = ({
               <FormLabel>{t("notifications.qualityRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="text"
+                  min={0}
+                  max={10}
+                  type="number"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -137,7 +141,9 @@ export const ReviewForm = ({
               <FormLabel>{t("notifications.punctualityRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="text"
+                  min={0}
+                  max={10}
+                  type="number"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {
@@ -159,7 +165,9 @@ export const ReviewForm = ({
               <FormLabel>{t("notifications.experienceRating")}</FormLabel>
               <FormControl>
                 <Input
-                  type="text"
+                  min={0}
+                  max={10}
+                  type="number"
                   {...field}
                   disabled={isCreatingReview}
                   onChange={(e) => {

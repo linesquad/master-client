@@ -11,7 +11,8 @@
     "register": "Регистрация",
     "profile": "Профиль",
     "notifications": "Уведомления",
-    "report": "Отчет"
+    "report": "Отчет",
+    "startWorking": "Начать работу"
   },
   "hero": {
     "title": "Сообщество Cirkle",
@@ -323,7 +324,11 @@
     "id": "ID",
     "createdAt": "Дата создания",
     "addReview": "Добавить отзыв",
-    "requestedTime": "Запрошенное время"
+    "requestedTime": "Запрошенное время",
+    "averageRating": "Среднее",
+    "priceRating": "Цена",
+    "punctualityRating": "Пунктуальность",
+    "qualityRating": "Качество"
   },
   "notifications": {
     "title": "Уведомления",
@@ -358,5 +363,35 @@
       "registeredMembers": "Зарегистрированные участники",
       "featuresAvailable": "Доступные функции"
     }
+  },
+  "start-work": {
+    "title": "Начать работу, подав заявку",
+    "description": "Подайте заявку на работу и начните работать с нами",
+    "fullName": "Полное имя",
+    "phone": "Телефон",
+    "speciality": "Специальность",
+    "note": "Примечание",
+    "submit": "Отправить",
+    "reset": "Сбросить",
+    "enterFullName": "Введите ваше полное имя",
+    "enterPhone": "Введите ваш номер телефона",
+    "enterSpeciality": "Введите вашу специальность",
+    "enterNote": "Введите ваше примечание",
+    "submitting": "Отправка..."
+  },
+  "report": {
+    "title": "Приносим извинения за неудобства",
+    "description": "Расскажите нам, что произошло",
+    "phoneNumber": "Номер телефона",
+    "titleInfo": "Заголовок",
+    "note": "Примечание",
+    "submit": "Отправить",
+    "reset": "Сбросить",
+    "enterPhoneNumber": "Введите ваш номер телефона",
+    "enterTitle": "Введите заголовок",
+    "enterNote": "Введите примечание",
+    "backToHome": "Вернуться на главную",
+    "submitReport": "Отправить жалобу",
+    "submitting": "Отправка..."
   }
 }

@@ -10,6 +10,9 @@ import toast from "react-hot-toast";
 
 export function ClientsLeadsCard({ lead }: { lead: Lead }) {
   const { i18n, t } = useTranslation();
+  const convert10to25 = (value: number): number => {
+    return value * 2.5;
+  };
   const currentLanguage = i18n.language;
   const { data, isLoading } = useGetHasReview({ leadId: lead.id });
 
@@ -23,7 +26,7 @@ export function ClientsLeadsCard({ lead }: { lead: Lead }) {
   const [comment, setComment] = useState("");
 
   const handleOpenModal = () => {
-    if (statusText === "COMPLETED") {
+    if (lead.status === "completed") {
       setIsOpen(true);
     } else {
       toast.error("You can only review completed leads");
@@ -34,13 +37,20 @@ export function ClientsLeadsCard({ lead }: { lead: Lead }) {
     setIsOpen(false);
   };
 
-  const handleSubmitAndReadNotification = () => {
+  const handleSubmitAndReadNotification = (formData: {
+    leadId: string;
+    ratingPrice: number;
+    ratingQuality: number;
+    ratingPunctuality: number;
+    ratingExperience: number;
+    comment: string;
+  }) => {
     createReviewMutation({
       leadId: lead.id,
-      ratingPrice,
-      ratingQuality,
-      ratingPunctuality,
-      ratingExperience,
+      ratingPrice: convert10to25(formData.ratingPrice),
+      ratingQuality: convert10to25(ratingQuality),
+      ratingPunctuality: convert10to25(ratingPunctuality),
+      ratingExperience: convert10to25(ratingExperience),
       comment,
     });
     setIsOpen(false);

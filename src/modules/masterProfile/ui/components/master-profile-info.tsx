@@ -59,10 +59,10 @@ export function MasterProfileInfo({
         </div>
 
         <div className="flex-1 text-center lg:text-left lg:pb-4 max-w-none">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 break-all drop-shadow-lg text-center lg:text-left">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 break-all drop-shadow-lg text-center lg:text-left">
             {data.fullName}
           </h1>
-          <p className="text-base sm:text-lg text-white/90 mb-3 sm:mb-4 drop-shadow-md text-center lg:text-left">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-white/90 mb-3 sm:mb-4 drop-shadow-md text-center lg:text-left">
             {data.city} • {t("profile.memberSince")}{" "}
             {formatDate(data.memberSince)}
           </p>
@@ -71,10 +71,6 @@ export function MasterProfileInfo({
               className={`px-4 py-2 rounded-full text-sm font-medium ${getAvailabilityColor(data.availability)}`}
             >
               {t("profile.available")} {data.availability}
-            </span>
-            <span className="px-4 py-2 rounded-full text-sm font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30">
-              {data.summary?.profileCompleteness || 0}%{" "}
-              {t("profile.stats.complete")}
             </span>
           </div>
         </div>

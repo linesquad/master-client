@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { type Work, type TranslatedText } from "../../types";
 import { type MasterProfileData } from "../../types";
-import { Trophy, Clock, DollarSign } from "lucide-react";
+import { Trophy, Clock } from "lucide-react";
 
 interface MasterTimelineProps {
   data: MasterProfileData;
@@ -58,7 +58,7 @@ export function MasterTimeline({ data, formatDate }: MasterTimelineProps) {
                 </p>
                 <div className="flex flex-wrap gap-2 mb-3">
                   <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs">
-                    <Trophy  className="w-3 h-3" />
+                    <Trophy className="w-3 h-3" />
                     {work.category?.name?.[
                       i18n.language as keyof TranslatedText
                     ] ||
@@ -69,12 +69,6 @@ export function MasterTimeline({ data, formatDate }: MasterTimelineProps) {
                     <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-xs">
                       <Clock className="w-3 h-3" />
                       {work.duration} {t("profile.minutes")}
-                    </span>
-                  )}
-                  {work.priceRange && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-xs">
-                      <DollarSign className="w-3 h-3" />${work.priceRange.min} -
-                      ${work.priceRange.max}
                     </span>
                   )}
                 </div>

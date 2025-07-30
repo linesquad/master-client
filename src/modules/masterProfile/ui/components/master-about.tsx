@@ -106,12 +106,6 @@ export function MasterAbout({
                   {data.summary?.totalCertificates || 0}
                 </span>
               </div>
-              <div className="flex justify-between">
-                <span>{t("profile.profileCompleteness")}:</span>
-                <span className="font-medium">
-                  {data.summary?.profileCompleteness || 0}%
-                </span>
-              </div>
             </div>
           </div>
         </div>
