@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { type AxiosRequestConfig } from "axios";
 
 const instance = axios.create({
   baseURL: "/",
@@ -7,5 +7,81 @@ const instance = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+const rawAxios = axios.create({
+  baseURL: "/",
+  withCredentials: true,
+});
+
+interface AxiosRequestConfigWithRetry extends AxiosRequestConfig {
+  _retry?: boolean;
+}
+
+let isRefreshing = false;
+let failedQueue: {
+  resolve: (value: string | PromiseLike<string>) => void;
+  reject: (reason?: Error) => void;
+}[] = [];
+
+const processQueue = (error: Error, token: string | null = null) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token as string);
+    }
+  });
+  failedQueue = [];
+};
+
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config as AxiosRequestConfigWithRetry;
+    const isOnLoginPage = window.location.pathname === "/login";
+
+    const shouldRefresh =
+      (error.response?.status === 401 || error.response?.status === 403) &&
+      !originalRequest._retry &&
+      !isOnLoginPage;
+
+    if (!shouldRefresh) {
+      return Promise.reject(error);
+    }
+
+    originalRequest._retry = true;
+
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        failedQueue.push({
+          resolve: () => resolve(instance(originalRequest)),
+          reject: (err: Error | undefined) => reject(err as Error),
+        });
+      });
+    }
+
+    isRefreshing = true;
+
+    try {
+      console.log("Refreshing token");
+      await rawAxios.get("/api/auth/refresh");
+      processQueue(new Error("Token refreshed"), null);
+      return instance(originalRequest);
+    } catch (err) {
+      console.log("hello from catch");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const status = (err as any)?.response?.status;
+      if (status === 401 || status === 403) {
+        console.warn("Redirecting to login after refresh failure");
+        window.location.href = "/login";
+        return new Promise(() => {});
+      }
+      return Promise.reject(err);
+    } finally {
+      console.log("hello from finally");
+      isRefreshing = false;
+    }
+  }
+);
 
 export default instance;

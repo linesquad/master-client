@@ -16,8 +16,8 @@ function ContactForm() {
   const form = useForm<ContactSchemaInput>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
+      surname: "",
       email: "",
       subject: "",
       message: "",
@@ -46,7 +46,7 @@ function ContactForm() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
-                    name="firstName"
+                    name="name"
                     render={({ field }) => (
                       <Input
                         {...field}
@@ -56,7 +56,7 @@ function ContactForm() {
                   />
                   <FormField
                     control={form.control}
-                    name="lastName"
+                    name="surname"
                     render={({ field }) => (
                       <Input
                         {...field}
