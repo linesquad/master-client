@@ -15,8 +15,11 @@ function desktopImages({
   members: Master[];
   navigate: (to: { to: string }) => void;
 }) {
+  const radius = 200;
+  const centerX = 450;
+  const centerY = 250;
   return (
-    <div className="hidden md:block relative w-full max-w-4xl">
+    <div className="hidden xl:block relative w-full max-w-4xl">
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
         <div
           onClick={() => {
@@ -38,42 +41,34 @@ function desktopImages({
       </div>
 
       <div className="relative w-full h-[500px]">
-        {members.map((member, index) => {
-          // Generate dynamic positions and sizes
-          const positions = [
-            { top: "0%", left: "60%", size: 32 },
-            { top: "0%", right: "50%", size: 48 },
-            { top: "20%", right: "20%", size: 40, bg: "#E8F0FB" },
-            { bottom: "10%", right: "15%", size: 40, bg: "#FFF4E5" },
-            { bottom: "10%", left: "15%", size: 40, bg: "#FFE9E9" },
-            { top: "30%", left: "0%", size: 32 },
-          ];
-
-          const position = positions[index % positions.length];
-          const size = position.size;
-          const bgColor = position.bg || "";
+        {members.slice(1).map((member, i, arr) => {
+          const angle = (2 * Math.PI * i) / arr.length;
+          const x = centerX + radius * Math.cos(angle);
+          const y = centerY + radius * Math.sin(angle);
 
           return (
             <div
               key={member.id}
-              onClick={() => {
-                navigate({ to: `/profile/${member.userId}` });
+              onClick={() => navigate({ to: `/profile/${member.userId}` })}
+              className="absolute"
+              style={{
+                left: `${x}px`,
+                top: `${y}px`,
+                transform: "translate(-50%, -50%)",
+                width: "96px",
+                height: "96px",
+                backgroundColor: "#E8F0FB",
+                borderRadius: "9999px",
+                overflow: "hidden",
+                cursor: "pointer",
+                zIndex: 10,
               }}
-              className={`absolute ${position.top ? `top-[${position.top}]` : ""} 
-                ${position.bottom ? `bottom-[${position.bottom}]` : ""}
-                ${position.left ? `left-[${position.left}]` : ""}
-                ${position.right ? `right-[${position.right}]` : ""}
-                transform -translate-x-1/2 -translate-y-0 cursor-pointer hover:scale-105 transition-all duration-300`}
             >
-              <div
-                className={`w-${size} h-${size} rounded-full overflow-hidden ${bgColor}`}
-              >
-                <img
-                  src={member.imageUrl}
-                  alt="Member"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <img
+                src={member.imageUrl}
+                alt="Member"
+                className="w-full h-full object-cover hover:scale-115 transition-all duration-300"
+              />
             </div>
           );
         })}

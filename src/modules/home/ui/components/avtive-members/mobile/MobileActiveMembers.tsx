@@ -16,7 +16,7 @@ function MobileActiveMembers({
   navigate: (to: { to: string }) => void;
 }) {
   return (
-    <div className="md:hidden relative mx-auto w-48 h-48 mb-16">
+    <div className="xl:hidden relative mx-auto w-48 h-48 mb-16">
       <div
         onClick={() => {
           navigate({ to: `/profile/${members[0].userId}` });

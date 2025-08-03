@@ -15,11 +15,16 @@ function ImagesActiveMembers({
   members: Master[];
   navigate: (to: { to: string }) => void;
 }) {
+  let slicedMembers = members;
+  if (members.length == 7) {
+    slicedMembers = members.slice(1, 7);
+  }
   return (
-    <div className="md:hidden w-full">
+    <div className="xl:hidden w-full">
       <div className="flex flex-wrap justify-center gap-4 mb-16">
-        {members.map((member) => (
+        {slicedMembers.map((member) => (
           <div
+            key={member.id}
             onClick={() => {
               navigate({ to: `/profile/${member.userId}` });
             }}
