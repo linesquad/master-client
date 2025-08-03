@@ -1,17 +1,18 @@
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
-import { QueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { z } from "zod";
+import type { User } from "@/modules/auth/types";
 
 interface MyRouterContext {
-  queryClient: QueryClient;
+  getUser: () => Promise<User>;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   validateSearch: z.object({
     lang: z.string().optional(),
   }),
+
   component: RootComponent,
 });
 

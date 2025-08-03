@@ -5,9 +5,9 @@ import { UserButton } from "@/components/user-button";
 import { UnathorizedHeader } from "@/components/unathorized-header";
 
 function Header() {
-  const { isLoading: userDataLoading, isError: userDataError } = useUser();
+  const { data: user, isInitialLoad } = useUser();
 
-  if (userDataError || userDataLoading) {
+  if (isInitialLoad || !user) {
     return <UnathorizedHeader />;
   }
 

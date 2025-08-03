@@ -17,7 +17,7 @@ interface AxiosRequestConfigWithRetry extends AxiosRequestConfig {
   _retry?: boolean;
 }
 
-let isRefreshing = false;
+export let isRefreshing = false;
 let failedQueue: {
   resolve: (value: string | PromiseLike<string>) => void;
   reject: (reason?: Error) => void;
@@ -38,7 +38,9 @@ instance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config as AxiosRequestConfigWithRetry;
-    const isOnLoginPage = window.location.pathname === "/login";
+    const isOnLoginPage =
+      window.location.pathname === "/login" ||
+      window.location.pathname === "/register";
 
     const shouldRefresh =
       (error.response?.status === 401 || error.response?.status === 403) &&
@@ -55,7 +57,7 @@ instance.interceptors.response.use(
       return new Promise((resolve, reject) => {
         failedQueue.push({
           resolve: () => resolve(instance(originalRequest)),
-          reject: (err: Error | undefined) => reject(err as Error),
+          reject,
         });
       });
     }
@@ -73,10 +75,10 @@ instance.interceptors.response.use(
       const status = (err as any)?.response?.status;
       if (status === 401 || status === 403) {
         console.warn("Redirecting to login after refresh failure");
-        window.location.href = "/login";
-        return new Promise(() => {});
+        // window.location.reload();
+        return Promise.resolve({ data: { user: null } });
       }
-      return Promise.reject(err);
+      return Promise.resolve({ data: { user: null } });
     } finally {
       console.log("hello from finally");
       isRefreshing = false;

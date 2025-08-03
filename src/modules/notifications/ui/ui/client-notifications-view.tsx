@@ -5,9 +5,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { redirect } from "@tanstack/react-router";
 
 export const ClientNotificationsView = () => {
-  const { data: user, isLoading } = useUser();
+  const { data: user, isInitialLoad } = useUser();
 
-  if (isLoading) {
+  if (isInitialLoad) {
     return (
       <div className="grid grid-cols-3 gap-4 h-full px-7 py-14">
         {Array.from({ length: 10 }).map((_, i) => (

@@ -16,11 +16,11 @@ import { BurgerMenu } from "@/modules/home/ui/components/burger-menu/BurgerMenu"
 import { useTranslation } from "react-i18next";
 
 export const UserButton = () => {
-  const { data: user, isLoading } = useUser();
+  const { data: user, isInitialLoad } = useUser();
   const { mutate: logout } = useLogout();
   const { t } = useTranslation("common");
 
-  if (isLoading || !user) {
+  if (isInitialLoad || !user) {
     return (
       <div>
         <div className="hidden md:flex items-center space-x-8">

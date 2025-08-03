@@ -5,9 +5,9 @@ import { ClientReviews } from "../components/client-reviews";
 import { DottedSeparator } from "@/components/dotted-separator";
 
 export function MainProfileView() {
-  const { data: user, isLoading } = useUser();
+  const { data: user, isInitialLoad } = useUser();
 
-  if (isLoading)
+  if (isInitialLoad)
     return (
       <div className="space-y-8">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm dark:shadow-gray-700 p-5 animate-pulse h-64" />

@@ -2,20 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import { getUser } from "../services/auth";
 import { isRefreshing } from "@/lib/axios";
 
-export const useUser = () => {
-  const { data, isLoading, isError, error } = useQuery({
+export function useUserWithRefresh() {
+  const result = useQuery({
     queryKey: ["user"],
     queryFn: getUser,
     staleTime: 1000 * 60 * 5,
   });
 
-  const isInitialLoad = isLoading || (data === null && isRefreshing);
+  const isInitialLoad =
+    result.isLoading || (result.data === null && isRefreshing);
 
   return {
-    data,
-    isLoading,
-    isError,
-    error,
+    ...result,
     isInitialLoad,
   };
-};
+}

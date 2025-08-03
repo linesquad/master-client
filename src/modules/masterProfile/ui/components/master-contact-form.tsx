@@ -26,7 +26,7 @@ export function MasterContactForm({
 }: MasterContactFormProps) {
   const { t } = useTranslation();
   const { mutate: createLead, isPending } = useCreateLead();
-  const { isLoading, isError } = useUser();
+  const { isInitialLoad, isError } = useUser();
 
   const [formData, setFormData] = useState({
     message: "",
@@ -44,7 +44,7 @@ export function MasterContactForm({
       }
     }
   }, [isOpen]);
-  if (isLoading) return <div>Loading...</div>;
+  if (isInitialLoad) return <div>Loading...</div>;
   if (isError) return <div>Error</div>;
 
   const validateForm = () => {

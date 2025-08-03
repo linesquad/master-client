@@ -1,9 +1,8 @@
-import { getUserId, signIn } from "@/modules/auth/services/auth";
+import { getUserId } from "@/modules/auth/services/auth";
 import { useForm } from "@tanstack/react-form";
-import { redirect, useNavigate, Link } from "@tanstack/react-router";
-import { toast } from "react-hot-toast";
-import { useQueryClient } from "@tanstack/react-query";
+import { redirect, Link } from "@tanstack/react-router";
 import { FaPeopleArrows, FaUserPlus, FaArrowLeft } from "react-icons/fa";
+import { useLoginUser } from "@/modules/auth/hooks/use-login-user";
 
 export const Route = createFileRoute({
   component: Login,
@@ -16,23 +15,14 @@ export const Route = createFileRoute({
 });
 
 function Login() {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const { mutate: loginUser, isPending } = useLoginUser();
   const form = useForm({
     defaultValues: {
       email: "",
       password: "",
     },
     onSubmit: async ({ value }) => {
-      try {
-        await signIn(value.email, value.password);
-        toast.success("User logged in successfully");
-        queryClient.invalidateQueries({ queryKey: ["user"] });
-        navigate({ to: "/" });
-      } catch (error) {
-        toast.error("Login failed. Please try again.");
-        console.error(error);
-      }
+      loginUser({ email: value.email, password: value.password });
     },
   });
 
@@ -176,16 +166,14 @@ function Login() {
               </div>
             </div>
 
-            <form.Subscribe
-              selector={(state) => [state.canSubmit, state.isSubmitting]}
-            >
-              {([canSubmit, isSubmitting]) => (
+            <form.Subscribe selector={(state) => [state.canSubmit]}>
+              {([canSubmit]) => (
                 <button
                   type="submit"
                   className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
-                  disabled={!canSubmit || isSubmitting}
+                  disabled={!canSubmit || isPending}
                 >
-                  {isSubmitting ? "Signing in..." : "Sign In"}
+                  {isPending ? "Signing in..." : "Sign In"}
                 </button>
               )}
             </form.Subscribe>

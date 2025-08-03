@@ -18,10 +18,10 @@ export function MasterProfileInfo({
   onCallClick: () => void;
   onContactClick: () => void;
 }) {
-  const { data: client, isLoading } = useUser();
+  const { data: client, isInitialLoad } = useUser();
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const { t } = useTranslation();
-  if (isLoading)
+  if (isInitialLoad)
     return (
       <div className="space-y-4 animate-pulse">
         <div className="flex items-center gap-4">
