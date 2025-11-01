@@ -13,6 +13,7 @@ function RouteComponent() {
   }, []);
   return (
     <div className="min-h-screen">
+      <title>Professionals | Start Working</title>
       <div className="flex flex-col gap-4">
         <h1 className="text-2xl font-bold p-4">{t("start-work.title")}</h1>
         <StartWorkView />

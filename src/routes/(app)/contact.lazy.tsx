@@ -14,6 +14,7 @@ function RouteComponent() {
   }, []);
   return (
     <div className="bg-[#F0F4F6] dark:bg-[#18191A]">
+      <title>Professionals | Contact Us</title>
       <ContactHero />
       <div className="relative mb-[800px] lg:mb-[400px] ">
         <ContactMap />

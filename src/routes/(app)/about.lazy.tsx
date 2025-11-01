@@ -16,6 +16,7 @@ function RouteComponent() {
 
   return (
     <div>
+      <title>Professionals | About Us</title>
       <div className="bg-[#F0F4F6] dark:bg-[#18191A]">
         <HeroView />
         <div className="relative">

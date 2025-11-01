@@ -35,6 +35,7 @@ function Login() {
         backgroundPosition: "center",
       }}
     >
+      <title>Professionals | Login</title>
       <div className="max-w-md w-full space-y-8">
         <div className="flex items-center justify-center mr-10">
           <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
@@ -197,15 +198,15 @@ function Login() {
           </form>
           <div className="flex flex-row w-full items-center justify-between md:hidden">
             <Link to="/login" className="w-full">
-              <div className="flex items-center justify-center gap-2 bg-[#34B1EB]  py-4 cursor-pointer">
-                <FaPeopleArrows className="text-2xl text-white" />
-                <span className="text-sm text-white font-semibold">Login</span>
+              <div className="flex items-center justify-center gap-2 bg-[#34B1EB] px-4 py-4 cursor-pointer">
+                <FaPeopleArrows className="text-lg sm:text-2xl text-white" />
+                <span className="text-xs sm:text-sm text-white font-semibold">Login</span>
               </div>
             </Link>
             <Link to="/register" className="w-full">
-              <div className="flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
-                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+              <div className="flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-4 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+                <FaUserPlus className="text-lg sm:text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-xs sm:text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
                   Registration
                 </span>
               </div>

@@ -15,7 +15,7 @@
     "startWorking": "Начать работу"
   },
   "hero": {
-    "title": "Сообщество Cirkle",
+    "title": "Сообщество Professionals",
     "subtitle": "Иметь реальные социальные контакты иногда может быть сложно, но всё становится намного проще!",
     "searchPlaceholder": "Поиск услуг...",
     "connectedPeople": "Подключенные люди",
@@ -23,7 +23,7 @@
   },
   "socialNetwork": {
     "tagline": "Что мы делаем",
-    "title": "Почему стоит присоединиться к нашей социальной сети Cirkle?",
+    "title": "Почему стоит присоединиться к нашей социальной сети Professionals?",
     "description": "Социальная сеть, когда неизвестный печатник взял набор шрифтов и перемешал их, чтобы создать образец книги. Это пережило не только пять веков, но и переход к электронному набору.",
     "joinCommunity": "Присоединиться к сообществу",
     "features": {
@@ -43,7 +43,7 @@
   },
   "locations": {
     "title": "129 стран, в которых мы строим наше крупнейшее сообщество",
-    "subtitle": "Сеть Cirkle",
+    "subtitle": "Сеть Professionals",
     "description": "Когда неизвестный печатник взял набор шрифтов и перемешал их, чтобы создать образец книги. Это пережило не только пять веков, но и переход к электронному набору."
   },
   "activeMembers": {
@@ -52,7 +52,7 @@
     "discoverAll": "Открыть всех участников"
   },
   "easierLife": {
-    "title": "Cirkle делает вашу жизнь проще",
+    "title": "Professionals делает вашу жизнь проще",
     "description": "Aliquam lorem ante dapibus in viverra quis feugiat atellu Peaselus vierra nullaut metus varius laoreet неизвестный печатник взял перемешанный.",
     "discoverMembers": "Открыть всех участников"
   },
@@ -61,7 +61,7 @@
     "description": "Когда неизвестный печатник взял набор шрифтов и встречу фари перемешал их, чтобы создать конкретный образец книги."
   },
   "categories": {
-    "title": "Полностью адаптивная тема WordPress Cirkle",
+    "title": "Полностью адаптивная тема WordPress Professionals",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed does the eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
     "purchaseNow": "Купить сейчас"
   },
@@ -87,7 +87,7 @@
   "contact": {
     "title": "Свяжитесь с нами",
     "subtitle": "Свяжитесь с нами",
-    "breadcrumb": "Cirkle / Свяжитесь с нами",
+    "breadcrumb": "Professionals / Свяжитесь с нами",
     "form": {
       "title": "Связаться с нами",
       "firstName": "Имя",
@@ -175,7 +175,7 @@
     },
     "mostPopular": {
       "title": "Самые популярные",
-      "subtitle": "Приложение Circle",
+      "subtitle": "Приложение Professionals",
       "registerNow": "Зарегистрироваться сейчас"
     },
     "contactForm": {
@@ -354,7 +354,7 @@
   },
   "about": {
     "title": "О нас",
-    "breadcrumb": "Cirkle / О нас",
+    "breadcrumb": "Professionals / О нас",
     "aboutView": {
       "whoAreWe": "Кто мы?",
       "title": "Соединяем профессионалов с клиентами",

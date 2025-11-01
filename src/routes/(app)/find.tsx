@@ -9,5 +9,10 @@ function RouteComponent() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <MembersNewsfeed />;
+  return (
+    <>
+      <title>Professionals | Find the Best</title>
+      <MembersNewsfeed />
+    </>
+  );
 }

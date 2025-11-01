@@ -12,40 +12,7 @@ function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full">
             <div className="col-span-1 sm:col-span-2 lg:col-span-1">
               <div className="flex items-center mb-4">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 56 56"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2"
-                >
-                  <rect
-                    x="4"
-                    y="4"
-                    width="48"
-                    height="48"
-                    rx="12"
-                    stroke="#3B5BFE"
-                    strokeWidth="4"
-                  />
-                  <path
-                    d="M16 28L28 16L40 28"
-                    stroke="#3B5BFE"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M16 36H40"
-                    stroke="#3B5BFE"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span className="text-2xl font-semibold text-foreground">
-                  irkle
-                </span>
+                <img src="/favicon.png" alt="Logo" className="w-30" />
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
                 {t("footer.description")}

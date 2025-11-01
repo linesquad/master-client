@@ -1,17 +1,17 @@
 import HomeButton from "@/components/HomeButton";
 import MainWrapper from "@/components/MainWrapper";
 import { useTranslation } from "react-i18next";
-import { useGetUsersCount } from "../../hooks/use-get-users-count";
-import { Loader2 } from "lucide-react";
+// import { useGetUsersCount } from "../../hooks/use-get-users-count";
+// import { Loader2 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 
 function Hero() {
   const { t } = useTranslation("common");
-  const {
-    data: usersCount,
-    isLoading: isUsersCountLoading,
-    isError,
-  } = useGetUsersCount();
+  // const {
+  //   data: usersCount,
+  //   isLoading: isUsersCountLoading,
+  //   isError,
+  // } = useGetUsersCount();
   const navigate = useNavigate();
   return (
     <div className="relative py-20 overflow-hidden bg-[#4846F8] dark:bg-[#242526]">
@@ -25,7 +25,7 @@ function Hero() {
               {t("hero.subtitle")}
             </p>
             <div className="space-y-2">
-              <p className="text-3xl font-bold text-white">
+              {/* <p className="text-3xl font-bold text-white">
                 {isUsersCountLoading ? (
                   <Loader2 className="animate-spin" />
                 ) : isError ? (
@@ -33,10 +33,10 @@ function Hero() {
                 ) : (
                   usersCount.total
                 )}
-              </p>
-              <p className="text-lg text-gray-200">
+              </p> */}
+              {/* <p className="text-lg text-gray-200">
                 {t("hero.connectedPeople")}
-              </p>
+              </p> */}
             </div>
             <HomeButton
               onClick={() => {

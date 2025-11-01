@@ -47,17 +47,19 @@ function Register() {
 
   return (
     <div
-      className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
+      className="flex items-center justify-center py-4 md:py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
       style={{
         backgroundImage: "url('/authbg.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="max-w-md w-full space-y-8">
+      <title>Professionals | Registration</title>
+      <div className="max-w-md w-full space-y-4">
         <div className="flex items-center justify-center mr-10">
-          <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
-          <span className=" text-3xl font-bold text-white">IRKLE</span>
+          <Link to="/">
+            <img className="w-30" src="/favicon.png" alt="Logo" />
+          </Link>
         </div>
         <div className="relative">
           <div className="hidden md:block">
@@ -321,17 +323,17 @@ function Register() {
           </form>
           <div className="flex flex-row w-full items-center justify-between md:hidden">
             <Link to="/login" className="w-full">
-              <div className="z-10 flex items-center justify-center gap-2 bg-[#34B1EB] px-12 py-4 cursor-pointer">
-                <FaPeopleArrows className="text-2xl text-white" />
-                <span className="text-sm text-white font-semibold">
+              <div className="z-10 flex items-center justify-center gap-2 bg-[#34B1EB] px-4 py-4 cursor-pointer">
+                <FaPeopleArrows className="text-lg sm:text-2xl text-white" />
+                <span className="text-xs sm:text-sm text-white font-semibold">
                   Sign in
                 </span>
               </div>
             </Link>
             <Link to="/register" className="w-full">
-              <div className=" z-10 flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
-                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+              <div className="z-10 flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-4 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+                <FaUserPlus className="text-lg sm:text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-xs sm:text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
                   Registration
                 </span>
               </div>

@@ -1,5 +1,5 @@
 import LeftTexts from "../components/famous-categories/leftTexts";
-import RightImage from "../components/famous-categories/rightImage";
+// import RightImage from "../components/famous-categories/rightImage";
 
 function FullyResponsiveCircle() {
   return (
@@ -88,7 +88,7 @@ function FullyResponsiveCircle() {
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl px-6 pt-16 gap-10">
         <LeftTexts />
-        <RightImage />
+        {/* <RightImage /> */}
       </div>
     </div>
   );

@@ -15,64 +15,64 @@
     "startWorking": "Start Working"
   },
   "hero": {
-    "title": "Pro Community",
-    "subtitle": "Having real social contacts can sometimes be difficult FUN, everything becomes much simpler!",
+    "title": "Professionals Community",
+    "subtitle": "Find the best services for your needs, find the best professionals for your needs",
     "searchPlaceholder": "Search for services...",
-    "connectedPeople": "Connected People",
-    "discoverNow": "Discover Now"
+    "connectedPeople": "Connected Professionals",
+    "discoverNow": "Discover Professionals"
   },
   "socialNetwork": {
     "tagline": "What We Do",
-    "title": "Why Join Our Cirkle from Social Network ?",
-    "description": "Social hen an unknown printer took a galley of type and scrambled make type specimen book. It has survived not only five centuries but also the leap into electronic typesetting of the remaining essential unchanged they popularised with release.",
+    "title": "Why Our Professionals Are the Best?",
+    "description": "Our professionals are the best in the industry, they are the best in the world, they are the best in the universe",
     "joinCommunity": "Join Our Community",
     "features": {
       "meetPeople": {
-        "title": "Meet Great People",
-        "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
+        "title": "Find best in industry",
+        "description": "Find the best professionals in the industry, find the best professionals in the world, find the best professionals in the universe"
       },
       "forumDiscussion": {
-        "title": "Forum Discussion",
-        "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
+        "title": "Leave your review",
+        "description": "Leave a review for the professionals you have worked with, leave a review for the professionals you have worked with, leave a review for the professionals you have worked with"
       },
       "activeGroups": {
-        "title": "Active Groups",
-        "description": "When an unknown printer took a galley of scrambled it to make a type specimen It has survived not only."
+        "title": "Find best in your area",
+        "description": "Find the best professionals in your area, find the best professionals in your city, find the best professionals in your country"
       }
     }
   },
   "locations": {
-    "title": "129 Countries We Build Our Largest Community in",
-    "subtitle": "Cirkle Network",
-    "description": "When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also leap electronic typesetting, remaining essentially."
+    "title": "Our Service in all cities of Georgia",
+    "subtitle": "Professionals",
+    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia"
   },
   "activeMembers": {
-    "title": "Our Active Members",
-    "description": "When an unknown printer took a galley of type and meeting fari scrambled it to make a type of specific specimen book.",
-    "discoverAll": "Discover All Member"
+    "title": "Our Active Professionals",
+    "description": "Our professionals are active in all cities of Georgia, our professionals are active in all cities of Georgia, our professionals are active in all cities of Georgia",
+    "discoverAll": "Discover All Professionals"
   },
   "easierLife": {
-    "title": "Cirkle Makes Your Life Easier & Simple",
-    "description": "Aliquam lorem ante dapibus in viverra quis feugiat atellu Peaselus vierra nullaut metus varius laoreet unknown printer took scrambled make.",
-    "discoverMembers": "Discover All Member"
+    "title": "Professionals Makes Your Life Easier & Simple",
+    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia",
+    "discoverMembers": "Discover All Professionals"
   },
   "findLocations": {
-    "title": "Find People Near You",
-    "description": "When an unknown printer took a galley of type and meeting fari scrambled it to make a type of specific specimen book."
+    "title": "Find Professionals Near You",
+    "description": "Find the best professionals in your area, find the best professionals in your city, find the best professionals in your country"
   },
   "categories": {
-    "title": "Fully Responsive Cirkle WordPress Theme",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed does the eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "title": "Fully Responsive Professionals Theme",
+    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia",
     "purchaseNow": "Purchase Now"
   },
   "popularGroups": {
-    "title": "Most Popular Groups",
-    "description": "When an unknown printer took a galley of type and meeting fari scrambled it to make a type of specimen book.",
+    "title": "Most Popular Professionals",
+    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia",
     "seeAll": "See All Groups"
   },
   "newsletter": {
     "title": "Subscribe to Our Newsletter",
-    "description": "Stay updated with the latest news and updates from our community.",
+    "description": "Stay updated with the latest news and updates from our professionals.",
     "placeholder": "Enter your email",
     "subscribe": "Subscribe"
   },
@@ -87,7 +87,7 @@
   "contact": {
     "title": "Contact Us",
     "subtitle": "Get in touch with us",
-    "breadcrumb": "Cirkle / Contact Us",
+    "breadcrumb": "Professionals / Contact Us",
     "form": {
       "title": "Get In Touch",
       "firstName": "First Name",
@@ -100,14 +100,14 @@
     "info": {
       "title": "Contact Info.",
       "address": "598 Kazi Avenue, New York, NY23598",
-      "email": "info@radiustheme.net",
+      "email": "info@professionals.ge",
       "phone": "(+123) 456 789 101"
     }
   },
   "find": {
     "banner": {
-      "title": "Members Newsfeed",
-      "subtitle": "Check what your friends have been up to!"
+      "title": "Professionals Newsfeed",
+      "subtitle": "Check what your professionals have been up to!"
     },
     "filters": {
       "where": "Where",
@@ -119,7 +119,7 @@
       "when": "When",
       "anyTime": "Any time",
       "filterByAvailability": "Filter by Availability",
-      "selectAvailabilityStatus": "Select availability status to filter masters",
+      "selectAvailabilityStatus": "Select availability status to filter professionals",
       "anyAvailability": "Any availability",
       "price": "Price",
       "anyPrice": "Any price",
@@ -128,7 +128,7 @@
       "reviews": "Reviews",
       "anyReviews": "Any reviews",
       "filterByReviews": "Filter by Reviews",
-      "selectReviewsFilter": "Select reviews filter to find masters",
+      "selectReviewsFilter": "Select reviews filter to find professionals",
       "anyReviewsFilter": "Any reviews",
       "reset": "Reset",
       "availability": {
@@ -143,7 +143,7 @@
       }
     },
     "results": {
-      "availableMasters": "Available Masters",
+      "availableProfessionals": "Available Professionals",
       "mastersFound": "{{count}} {{text}} found",
       "master": "master",
       "masters": "masters",
@@ -175,7 +175,7 @@
     },
     "mostPopular": {
       "title": "Most Popular",
-      "subtitle": "Circle Application",
+      "subtitle": "Professionals Application",
       "registerNow": "Register Now"
     },
     "contactForm": {
@@ -354,13 +354,13 @@
   },
   "about": {
     "title": "About Us",
-    "breadcrumb": "Cirkle / About Us",
+    "breadcrumb": "Professionals / About Us",
     "aboutView": {
       "whoAreWe": "Who Are We?",
       "title": "Linking Professionals to Clients",
       "description1": "Our innovative platform serves as a powerful bridge connecting highly skilled professionals with individuals and businesses in need of top-quality services. Whether you're a talented expert looking to showcase your abilities and expand your client base, or someone searching for dependable, vetted professionals to handle important tasks, we facilitate these valuable connections with ease and efficiency. Our comprehensive matching system ensures that every interaction is meaningful, productive, and mutually beneficial for all parties involved.",
       "description2": "We're proud to host a thriving community of thousands of dedicated service providers who are successfully scaling their businesses and reaching new clients every day. At the same time, we help countless individuals and organizations find exactly the right professionals to meet their specific needs and exceed their expectations. By fostering trust, transparency, and collaboration, we're creating an ecosystem where service providers can flourish, clients can access exceptional help, and together we're building a dynamic, inclusive community that delivers real value to everyone who participates in it.",
-      "registeredMembers": "Registered Members",
+      "registeredMembers": "Registered Professionals",
       "featuresAvailable": "Features Available"
     }
   },

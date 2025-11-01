@@ -17,14 +17,7 @@ export const UnathorizedHeader = () => {
               </div>
               <Link to="/">
                 <div className="flex items-center">
-                  <img
-                    className="h-10 w-10"
-                    src="/projectlogo.webp"
-                    alt="Logo"
-                  />
-                  <span className="ml-3 text-xl font-bold text-white">
-                    IRKLE
-                  </span>
+                  <img className="w-25" src="/favicon.png" alt="Logo" />
                 </div>
               </Link>
             </div>

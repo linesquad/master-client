@@ -10,5 +10,10 @@ function RouteComponent() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return <MasterProfileSingle id={id} />;
+  return (
+    <>
+      <title>Professionals | Service Provider Profile</title>
+      <MasterProfileSingle id={id} />
+    </>
+  );
 }
