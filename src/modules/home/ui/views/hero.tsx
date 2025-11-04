@@ -18,9 +18,11 @@ function Hero() {
       <MainWrapper className="relative h-full">
         <div className="flex items-center justify-between h-full px-8  py-24 lg:py-12">
           <div className="flex flex-col items-start justify-center text-white space-y-6 max-w-md z-10">
-            <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight break-words">
+
+            <img src="/favicon.png" alt="favicon" className="w-50 h-50" />
+            {/* <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight break-words">
               {t("hero.title")}
-            </h2>
+            </h2> */}
             <p className="text-lg text-gray-100 leading-relaxed">
               {t("hero.subtitle")}
             </p>

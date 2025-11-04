@@ -7,7 +7,7 @@ export const UnathorizedHeader = () => {
   const { t } = useTranslation("common");
 
   return (
-    <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300">
+    <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300 sticky top-0 z-50">
       <div className=" px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">

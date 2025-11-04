@@ -2,7 +2,11 @@ export const getLocationsFeatures = (t: (key: string) => string) => [
   {
     id: 1,
     title: t("socialNetwork.features.meetPeople.title"),
-    description: t("socialNetwork.features.meetPeople.description"),
+    description: t("socialNetwork.features.meetPeople.description")
+      .split("✔")
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((s) => s.replace(/^,/, "").replace(/,$/, "")),
     icon: (
       <svg
         width="32"
@@ -17,7 +21,7 @@ export const getLocationsFeatures = (t: (key: string) => string) => [
         <path d="M2 20c0-4 8-6 10-6s10 2 10 6v2H2v-2z" />
       </svg>
     ),
-    hasHover: true
+    hasHover: true,
   },
   {
     id: 2,
@@ -37,7 +41,7 @@ export const getLocationsFeatures = (t: (key: string) => string) => [
         <path d="M8 15h8M8 11h8M8 7h8" />
       </svg>
     ),
-    hasHover: true
+    hasHover: true,
   },
   {
     id: 3,
@@ -57,10 +61,9 @@ export const getLocationsFeatures = (t: (key: string) => string) => [
         <path d="M6 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
       </svg>
     ),
-    hasHover: true
-  }
+    hasHover: true,
+  },
 ];
-
 
 export const locations = [
   {

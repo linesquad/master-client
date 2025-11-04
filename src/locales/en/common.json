@@ -16,28 +16,28 @@
   },
   "hero": {
     "title": "Professionals Community",
-    "subtitle": "Find the best services for your needs, find the best professionals for your needs",
+    "subtitle": "We unite clients and professionals from different serviceareas, creating a single space of trust and professionalism.Find a trusted specialist now:",
     "searchPlaceholder": "Search for services...",
     "connectedPeople": "Connected Professionals",
     "discoverNow": "Discover Professionals"
   },
   "socialNetwork": {
-    "tagline": "What We Do",
-    "title": "Why Our Professionals Are the Best?",
-    "description": "Our professionals are the best in the industry, they are the best in the world, they are the best in the universe",
+    "tagline": "Professionals - ",
+    "title": "Is a platform of trusted specialists. A place where the best professionals and clients meet.We make finding a specialist simple, fast and safe.",
+    "description": "With us, you always choose professionals you can trust. Our priority is a transparent rating, honest reviews and guaranteed quality.",
     "joinCommunity": "Join Our Community",
     "features": {
       "meetPeople": {
-        "title": "Find best in industry",
-        "description": "Find the best professionals in the industry, find the best professionals in the world, find the best professionals in the universe"
+        "title": "Platform advantages:",
+        "description": "✔ Verified specialists,✔ Real reviews and ratings,✔ Convenient search by category,✔ Support in Georgian, English and Russian,✔ Transparent payment system"
       },
       "forumDiscussion": {
-        "title": "Leave your review",
-        "description": "Leave a review for the professionals you have worked with, leave a review for the professionals you have worked with, leave a review for the professionals you have worked with"
+        "title": "Effective information",
+        "description": "We publish hundreds of thousands of verified reviews about our specialists. We publish recommended prices for work, important tips, guides and training videos."
       },
       "activeGroups": {
-        "title": "Find best in your area",
-        "description": "Find the best professionals in your area, find the best professionals in your city, find the best professionals in your country"
+        "title": "Support until the end of the work.",
+        "description": "We attract only licensed and certified specialists to the site.We remove specialists from the site who do not comply with our terms of service and have low ratings from the clients.We will contact you to find out about the quality of the service received.Your feedback helps us and other clients use only the best services from the best craftsmen.We have a call center for quality service and for the dispute resolutions with professionals. "
       }
     }
   },
@@ -47,13 +47,13 @@
     "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia"
   },
   "activeMembers": {
-    "title": "Our Active Professionals",
-    "description": "Our professionals are active in all cities of Georgia, our professionals are active in all cities of Georgia, our professionals are active in all cities of Georgia",
+    "title": "Best professional of the week",
+    "description": "Find the best professional of the week in all cities of Georgia",
     "discoverAll": "Discover All Professionals"
   },
   "easierLife": {
-    "title": "Professionals Makes Your Life Easier & Simple",
-    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia",
+    "title": "How it works",
+    "description": "1. The client searches for a master in the required category or leaves a request. 2. The master receives the order and contacts the client directly. 3. After the work is completed, the client evaluates the quality, leaves a review and helps other users make the right choice.",
     "discoverMembers": "Discover All Professionals"
   },
   "findLocations": {
@@ -62,12 +62,12 @@
   },
   "categories": {
     "title": "Fully Responsive Professionals Theme",
-    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia",
+    "description": "Professionals make your life easier",
     "purchaseNow": "Purchase Now"
   },
   "popularGroups": {
     "title": "Most Popular Professionals",
-    "description": "Our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia, our professionals are available in all cities of Georgia",
+    "description": "Find the most popular professionals in all cities of Georgia",
     "seeAll": "See All Groups"
   },
   "newsletter": {
@@ -200,7 +200,7 @@
   },
   "auth": {
     "login": "Login",
-    "register": "Register",
+    "register": "Become a professional",
     "logout": "Sign Out",
     "email": "Email",
     "password": "Password",
@@ -211,6 +211,7 @@
   },
   "common": {
     "loading": "Loading...",
+    "subscribe": "Subscribe",
     "error": "Error",
     "success": "Success",
     "cancel": "Cancel",
