@@ -23,11 +23,11 @@ export const AboutView = () => {
   return (
     <section className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto py-20 px-4 gap-12">
       {/* Left Side: Text Content */}
-      <div className="flex-1 max-w-xl">
+      <div className="flex-1 sm:max-w-xl min-w-0">
         <div className="text-blue-700 font-semibold mb-2 text-lg">
           {t("about.aboutView.whoAreWe")}
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
           {t("about.aboutView.title")}
         </h2>
         <p className="text-gray-600 mb-4">
@@ -36,7 +36,7 @@ export const AboutView = () => {
         <p className="text-gray-600 mb-8">
           {t("about.aboutView.description2")}
         </p>
-        <div className="flex gap-12 mt-8">
+        <div className="flex flex-wrap gap-6 sm:gap-12 mt-8 w-full">
           <div className="flex items-center gap-3">
             <svg
               className="w-8 h-8 text-blue-400"
@@ -70,7 +70,7 @@ export const AboutView = () => {
         </div>
       </div>
       {/* Right Side: Video Content */}
-      <div className="flex-1 flex items-center justify-center relative min-w-[340px] min-h-[340px]">
+      <div className="flex-1 flex items-center justify-center relative min-w-[300px] min-h-[340px]">
         {showVideo ? (
           <iframe
             src={randomVideo}

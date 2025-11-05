@@ -1,13 +1,13 @@
 import MainWrapper from "@/components/MainWrapper";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
 function LocationsHero() {
-  const { t } = useTranslation("common");
+  // const { t } = useTranslation("common");
 
   return (
     <div className="relative w-full bg-[#F6F6F6] dark:bg-[#242526] py-24">
-      <MainWrapper>
-        <div className="flex flex-col lg:flex-row items-center justify-around w-full gap-12 lg:gap-16">
+      <MainWrapper children={undefined}>
+        {/* <div className="flex flex-col lg:flex-row items-center justify-around w-full gap-12 lg:gap-16">
           <div className=" flex items-center justify-center">
             <img
               src="/whitelocations.png"
@@ -25,14 +25,14 @@ function LocationsHero() {
               {t("locations.description")}
             </p>
           </div>
-        </div>
-        <div className="absolute flex items-center justify-center bottom-0 right-0">
+        </div> */}
+        {/* <div className="absolute flex items-center justify-center bottom-0 right-0">
           <img
             src="/locationsdecoration.png"
             alt="Locations decoration"
             className="w-auto h-auto "
           />
-        </div>
+        </div> */}
       </MainWrapper>
     </div>
   );

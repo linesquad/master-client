@@ -1,16 +1,16 @@
-import HomeButton from "@/components/HomeButton";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "@tanstack/react-router";
+// import HomeButton from "@/components/HomeButton";
+// import { useTranslation } from "react-i18next";
+// import { useNavigate } from "@tanstack/react-router";
 
 function EasierLife() {
-  const { t } = useTranslation("common");
-  const navigate = useNavigate();
-  const steps = t("easierLife.description")
-    .split(/\s*\d+\.\s*/)
-    .filter(Boolean);
+  // const { t } = useTranslation("common");
+  // const navigate = useNavigate();
+  // const steps = t("easierLife.description")
+  //   .split(/\s*\d+\.\s*/)
+  //   .filter(Boolean);
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center ">
-      <div className="flex flex-col items-center justify-center flex-1 h-[400px] lg:h-[500px] xl:h-[600px] w-full p-8 lg:p-12 bg-[#4846F8] dark:bg-[#242526]">
+      {/* <div className="flex flex-col items-center justify-center flex-1 h-[400px] lg:h-[500px] xl:h-[600px] w-full p-8 lg:p-12 bg-[#4846F8] dark:bg-[#242526]">
         <div className="max-w-md text-center lg:text-left">
           <p className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 lg:mb-6 text-white">
             {t("easierLife.title")}
@@ -34,11 +34,11 @@ function EasierLife() {
             {t("easierLife.discoverMembers")}
           </HomeButton>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col items-center justify-center flex-1 h-[200px] lg:h-[500px] xl:h-[600px] w-full">
         <img
-          src="/peopleimage.jpg"
+          src="/workers.jpg"
           alt="Easier Life"
           className="w-full lg:h-full object-cover"
         />
