@@ -63,27 +63,27 @@ function Register() {
             <img className="w-30 h-30" src="/favicon.png" alt="Logo" />
           </Link>
         </div>
-        <div className="relative">
-          <div className="hidden md:block">
+        <div className="relative mt-8 md:min-h-[560px]">
+          <div className="hidden md:flex absolute inset-y-0 -left-[133px] z-10 flex-col justify-between">
             <Link to="/login">
-              <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer">
-                <FaPeopleArrows className="text-2xl text-white" />
-                <span className="text-sm text-white font-semibold">
+              <div className="flex mt-[85.5px] items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] rotate-270 cursor-pointer h-12 w-[220px] px-0 shrink-0 hover:text-[#34B1EB] hover:bg-[#F1F1F1] transition-all duration-300 group">
+                <FaPeopleArrows className="text-2xl text-white group-hover:text-[#34B1EB] transition-all duration-300" />
+                <span className="text-sm text-white font-semibold whitespace-nowrap leading-none group-hover:text-[#34B1EB] transition-all duration-300">
                   {t("navigation.login")}
                 </span>
               </div>
             </Link>
             <Link to="/register">
-              <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+              <div className="flex mb-[220px] items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group h-12 w-[220px] px-0 shrink-0">
                 <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300 whitespace-nowrap leading-none">
                   {t("navigation.register")}
                 </span>
               </div>
             </Link>
           </div>
           <form
-            className="mt-8 space-y-6 md:rounded-xl rounded-none md:rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
+            className="space-y-6 md:rounded-xl rounded-none md:rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300 md:h-full"
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -280,7 +280,7 @@ function Register() {
                 )}
               </form.Field>
             </div>
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input type="checkbox" id="remember" className="mr-2" />
                 <label
@@ -290,7 +290,7 @@ function Register() {
                   {t("auth.rememberMe")}
                 </label>
               </div>
-            </div>
+            </div> */}
 
             <form.Subscribe
               selector={(state) => [state.canSubmit, state.isSubmitting]}
@@ -307,13 +307,13 @@ function Register() {
                 </button>
               )}
             </form.Subscribe>
-            <div className="flex items-center justify-between">
-              <Link
+            <div className="flex items-center justify-end">
+              {/* <Link
                 to="/login"
                 className="text-sm text-[#2C5BE3] hover:text-[#2C5BE3]/80"
               >
                 {t("auth.forgotPassword")}
-              </Link>
+              </Link> */}
               <div className="flex items-center justify-center gap-2 hover:text-[#2C5BE3]/80 group">
                 <FaArrowLeft className="text-xs text-[#2C5BE3] font-extralight group-hover:text-[#2C5BE3]/80" />
                 <Link
