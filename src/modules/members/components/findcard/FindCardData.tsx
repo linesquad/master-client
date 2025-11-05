@@ -1,10 +1,4 @@
-import {
-  CheckCircle,
-  MapPin,
-  Star,
-  Clock,
-  User,
-} from "lucide-react";
+import { CheckCircle, MapPin, Star, Clock, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { Master } from "../../types/member";
 import { Link } from "@tanstack/react-router";
@@ -21,6 +15,18 @@ function FindCardData({
   formatDate: (date: string) => string;
 }) {
   const { t } = useTranslation();
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "_")
+      .replace(/^_|_$/g, "");
+  const translateCity = (name?: string) => {
+    if (!name) return "";
+    const key = `common:cities.${slugify(name)}`;
+    const translated = t(key);
+    return translated !== key ? translated : name;
+  };
 
   return (
     <div
@@ -51,7 +57,7 @@ function FindCardData({
 
           <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 mb-2">
             <MapPin className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
-            <span className="truncate">{master.city}</span>
+            <span className="truncate">{translateCity(master.city)}</span>
           </div>
 
           <div className="flex items-center gap-2">

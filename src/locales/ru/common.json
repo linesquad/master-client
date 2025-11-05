@@ -236,7 +236,9 @@
     "fullNameLettersOnly": "Полное имя должно содержать только буквы и пробелы",
     "phoneRequired": "Требуется номер телефона",
     "phoneMinLength": "Номер телефона должен содержать не менее 10 символов",
-    "phoneInvalid": "Номер телефона может содержать только цифры, пробелы, дефисы и скобки"
+    "phoneInvalid": "Номер телефона может содержать только цифры, пробелы, дефисы и скобки",
+    "specialityRequired": "Требуется специальность",
+    "noteRequired": "Требуется примечание"
   },
   "common": {
     "loading": "Загрузка...",
@@ -382,6 +384,45 @@
     "cancel": "Отмена",
     "submit": "Подтвердить"
   },
+  "cityFilter": {
+    "title": "Выберите город",
+    "subtitleCount": "Выберите из {{count}} доступных городов",
+    "loading": "Загрузка городов...",
+    "emptyTitle": "Нет доступных городов",
+    "emptyDescription": "В настоящее время нет городов для выбора.",
+    "footer": "Прокрутите, чтобы увидеть больше вариантов • {{count}} городов доступно"
+  },
+  "serviceFilter": {
+    "title": "Выберите тип услуги",
+    "description": "Выберите из доступных категорий услуг, чтобы отфильтровать поиск",
+    "triggerLabel": "Услуга",
+    "subtitleCount": "Выберите из {{count}} доступных услуг",
+    "footer": "Прокрутите, чтобы увидеть больше вариантов • {{count}} услуг доступно"
+  },
+  "cityPartFilter": {
+    "title": "Выберите район",
+    "subtitleCount": "Выберите из {{count}} доступных районов",
+    "loading": "Загрузка районов...",
+    "emptyTitle": "Нет доступных районов",
+    "emptyDescription": "Для этого города сейчас нет доступных районов.",
+    "footer": "Прокрутите, чтобы увидеть больше вариантов • {{count}} районов доступно"
+  },
+  "jobsFilter": {
+    "title": "Доступные вакансии",
+    "description": "Просматривайте и выбирайте доступные вакансии в выбранной категории",
+    "subtitleCount": "Доступно {{count}} вакансий",
+    "loading": "Загрузка доступных вакансий...",
+    "emptyTitle": "Вакансий нет",
+    "emptyDescription": "В этой категории сейчас нет доступных вакансий. Попробуйте выбрать другой тип услуги.",
+    "footer": "Прокрутите, чтобы увидеть больше вакансий • Доступно {{count}} вакансий"
+  },
+  "activeFilters": {
+    "filters": "Фильтры:",
+    "clearAll": "Очистить все фильтры",
+    "priceRange": "${{min}}-${{max}}",
+    "priceFrom": "От ${{min}}",
+    "priceUpTo": "До ${{max}}"
+  },
   "about": {
     "title": "О нас",
     "breadcrumb": "Professionals / О нас",
@@ -423,5 +464,45 @@
     "backToHome": "Вернуться на главную",
     "submitReport": "Отправить жалобу",
     "submitting": "Отправка..."
+  },
+  "cities": {
+    "batumi": "Батуми",
+    "gori": "Гори",
+    "kutaisi": "Кутаиси",
+    "poti": "Поти",
+    "rustavi": "Рустави",
+    "tbilisi": "Тбилиси",
+    "zugdidi": "Зугдиди"
+  },
+  "cityParts": {
+    "chakvi_makhinjauri": "Чакви и Махинджаури",
+    "new_boulevard": "Новый бульвар",
+    "old_boulevard": "Старый бульвар",
+    "central_gori": "Центр Гори",
+    "station_area": "Район вокзала",
+    "tskhinvali_road": "Дорога на Цхинвали",
+    "bagrati_ukimerioni": "Баграти и Укимериони",
+    "central_kutaisi": "Центр Кутаиси",
+    "sapichkhia": "Сапичхиа",
+    "city_center": "Центр города",
+    "maltakva_suburbs": "Малтаква и пригороды",
+    "port_zone": "Портовая зона",
+    "new_rustavi": "Новый Рустави",
+    "old_rustavi": "Старый Рустави",
+    "rustavi_industrial": "Промзона Рустави",
+    "avlabari_isani": "Авлабари (Исани)",
+    "chughureti_marjanishvili": "Чугурети и Марджанишвили",
+    "gldani": "Глдани",
+    "isani_other_parts_navtlughi": "Исани (другие части) и Навтлуги",
+    "krtsanisi_ortachala": "Крцаниси и Ортачала",
+    "mtatsminda_sololaki": "Мтацминда и Сололаки",
+    "mtavari_bank_east_south_microzones": "Мтавари Банк Восток/Юг (микрозоны)",
+    "nadzaladevi": "Надзаладеви",
+    "old_town": "Старый город",
+    "saburtalo": "Сабуртало",
+    "samgori_orkhevi_lilo_others": "Самгори и Орхеви (Лило и др.)",
+    "vake": "Ваке",
+    "anaklia": "Анаклия",
+    "zugdidi_east": "Восточный Зугдиди"
   }
 }

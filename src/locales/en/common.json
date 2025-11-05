@@ -236,7 +236,9 @@
     "fullNameLettersOnly": "Full name should only contain letters and spaces",
     "phoneRequired": "Phone number is required",
     "phoneMinLength": "Phone number must be at least 10 characters long",
-    "phoneInvalid": "Phone number can only contain digits, spaces, hyphens, and parentheses"
+    "phoneInvalid": "Phone number can only contain digits, spaces, hyphens, and parentheses",
+    "specialityRequired": "Speciality is required",
+    "noteRequired": "Note is required"
   },
   "common": {
     "loading": "Loading...",
@@ -382,6 +384,45 @@
     "cancel": "Cancel",
     "submit": "Submit"
   },
+  "cityFilter": {
+    "title": "Select City",
+    "subtitleCount": "Choose from {{count}} available cities",
+    "loading": "Loading cities...",
+    "emptyTitle": "No cities available",
+    "emptyDescription": "There are currently no cities available for selection.",
+    "footer": "Scroll to view more options • {{count}} cities available"
+  },
+  "serviceFilter": {
+    "title": "Select Service Type",
+    "description": "Choose from available service categories to filter your search",
+    "triggerLabel": "Service",
+    "subtitleCount": "Choose from {{count}} available services",
+    "footer": "Scroll to view more options • {{count}} services available"
+  },
+  "cityPartFilter": {
+    "title": "Select Area",
+    "subtitleCount": "Choose from {{count}} available areas",
+    "loading": "Loading areas...",
+    "emptyTitle": "No areas available",
+    "emptyDescription": "There are currently no areas available for this city.",
+    "footer": "Scroll to view more options • {{count}} areas available"
+  },
+  "jobsFilter": {
+    "title": "Available Jobs",
+    "description": "Browse and select from available job positions in the selected category",
+    "subtitleCount": "{{count}} positions available",
+    "loading": "Loading available positions...",
+    "emptyTitle": "No jobs available",
+    "emptyDescription": "There are currently no job positions available in this category. Please try selecting a different service type.",
+    "footer": "Scroll to view more positions • {{count}} jobs available"
+  },
+  "activeFilters": {
+    "filters": "Filters:",
+    "clearAll": "Clear all filters",
+    "priceRange": "${{min}}-${{max}}",
+    "priceFrom": "From ${{min}}",
+    "priceUpTo": "Up to ${{max}}"
+  },
   "about": {
     "title": "About Us",
     "breadcrumb": "Professionals / About Us",
@@ -423,5 +464,45 @@
     "backToHome": "Back to home",
     "submitReport": "Submit Report",
     "submitting": "Submitting..."
+  },
+  "cities": {
+    "batumi": "Batumi",
+    "gori": "Gori",
+    "kutaisi": "Kutaisi",
+    "poti": "Poti",
+    "rustavi": "Rustavi",
+    "tbilisi": "Tbilisi",
+    "zugdidi": "Zugdidi"
+  },
+  "cityParts": {
+    "chakvi_makhinjauri": "Chakvi & Makhinjauri",
+    "new_boulevard": "New Boulevard",
+    "old_boulevard": "Old Boulevard",
+    "central_gori": "Central Gori",
+    "station_area": "Station Area",
+    "tskhinvali_road": "Tskhinvali Road",
+    "bagrati_ukimerioni": "Bagrati & Ukimerioni",
+    "central_kutaisi": "Central Kutaisi",
+    "sapichkhia": "Sapichkhia",
+    "city_center": "City Center",
+    "maltakva_suburbs": "Maltakva & Suburbs",
+    "port_zone": "Port Zone",
+    "new_rustavi": "New Rustavi",
+    "old_rustavi": "Old Rustavi",
+    "rustavi_industrial": "Rustavi Industrial",
+    "avlabari_isani": "Avlabari (Isani)",
+    "chughureti_marjanishvili": "Chughureti & Marjanishvili",
+    "gldani": "Gldani",
+    "isani_other_parts_navtlughi": "Isani (other parts) & Navtlughi",
+    "krtsanisi_ortachala": "Krtsanisi & Ortachala",
+    "mtatsminda_sololaki": "Mtatsminda & Sololaki",
+    "mtavari_bank_east_south_microzones": "Mtavari Bank East/South (microzones)",
+    "nadzaladevi": "Nadzaladevi",
+    "old_town": "Old Town",
+    "saburtalo": "Saburtalo",
+    "samgori_orkhevi_lilo_others": "Samgori & Orkhevi (Lilo + others)",
+    "vake": "Vake",
+    "anaklia": "Anaklia",
+    "zugdidi_east": "Zugdidi East"
   }
 }

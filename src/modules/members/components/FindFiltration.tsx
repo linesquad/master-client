@@ -199,11 +199,41 @@ function FindFiltration() {
     minPrice ||
     maxPrice;
 
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "_")
+      .replace(/^_|_$/g, "");
+
+  const translateCity = (name?: string, id?: string) => {
+    if (!name && !id) return "";
+    const byId = id ? t(`cities.${id}`) : "";
+    const bySlug = name ? t(`cities.${slugify(name)}`) : "";
+    if (id && byId !== `cities.${id}`) return byId;
+    if (name && bySlug !== `cities.${slugify(name)}`) return bySlug;
+    return name || "";
+  };
+
+  const translateCityPart = (name?: string, id?: string) => {
+    if (!name && !id) return "";
+    const byId = id ? t(`cityParts.${id}`) : "";
+    const bySlug = name ? t(`cityParts.${slugify(name)}`) : "";
+    if (id && byId !== `cityParts.${id}`) return byId;
+    if (name && bySlug !== `cityParts.${slugify(name)}`) return bySlug;
+    return name || "";
+  };
+
   const getLocationDisplayText = () => {
     if (selectedCityPartData && selectedCityData) {
-      return `${selectedCityData.name}, ${selectedCityPartData.name}`;
+      const city = translateCity(selectedCityData.name, selectedCityData.id);
+      const part = translateCityPart(
+        selectedCityPartData.name,
+        selectedCityPartData.id
+      );
+      return `${city}, ${part}`;
     } else if (selectedCityData) {
-      return selectedCityData.name;
+      return translateCity(selectedCityData.name, selectedCityData.id);
     }
     return t("find.filters.searchDestinations");
   };

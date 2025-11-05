@@ -2,6 +2,7 @@ import ResponsiveModal from "@/components/ResponsiveModal";
 import { Briefcase } from "lucide-react";
 import { type Category } from "../../types/member";
 import ServiceFiltrationButton from "./ServiceFiltrationButton";
+import { useTranslation } from "react-i18next";
 
 function ServiceFiltraiton({
   serviceDialogOpen,
@@ -15,15 +16,19 @@ function ServiceFiltraiton({
   setServiceDialogOpen: (serviceDialogOpen: boolean) => void;
   categoriesArray: Category[];
   selectedCategoryId: string;
-  handleServiceClickWithFocus: (serviceId: string, event: React.MouseEvent<HTMLButtonElement>) => void;
+  handleServiceClickWithFocus: (
+    serviceId: string,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void;
   getServiceDisplayText: () => string;
 }) {
+  const { t } = useTranslation("common");
   return (
     <ResponsiveModal
       open={serviceDialogOpen}
       onOpenChange={setServiceDialogOpen}
-      title="Select Service Type"
-      description="Choose from available service categories to filter your search"
+      title={t("serviceFilter.title")}
+      description={t("serviceFilter.description")}
       maxWidth="3xl"
       trigger={
         <div className="flex-1 cursor-pointer hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 p-3 sm:p-4 lg:p-6 transition-all duration-300 group">
@@ -33,14 +38,16 @@ function ServiceFiltraiton({
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-900 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                Service
+                {t("serviceFilter.triggerLabel")}
               </p>
-              <p className="text-gray-500 dark:text-gray-400 text-xs leading-tight break-words overflow-hidden" 
-                 style={{ 
-                   display: '-webkit-box',
-                   WebkitLineClamp: 2,
-                   WebkitBoxOrient: 'vertical'
-                 }}>
+              <p
+                className="text-gray-500 dark:text-gray-400 text-xs leading-tight break-words overflow-hidden"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
                 {getServiceDisplayText()}
               </p>
             </div>
@@ -58,10 +65,12 @@ function ServiceFiltraiton({
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Select Service Type
+                {t("serviceFilter.title")}
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Choose from {categoriesArray.length} available services
+                {t("serviceFilter.subtitleCount", {
+                  count: categoriesArray.length,
+                })}
               </p>
             </div>
           </div>
@@ -87,8 +96,7 @@ function ServiceFiltraiton({
         {/* Footer */}
         <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            Scroll to view more options • {categoriesArray.length} services
-            available
+            {t("serviceFilter.footer", { count: categoriesArray.length })}
           </p>
         </div>
       </div>

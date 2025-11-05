@@ -1,6 +1,7 @@
 import { Briefcase, MapPin, X, Clock, DollarSign, Star } from "lucide-react";
 import type { Category, City, CityPart, Job } from "../../types/member";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 function ActiveFilters({
   selectedCityId,
@@ -28,6 +29,36 @@ function ActiveFilters({
   handleResetFilters: () => void;
 }) {
   const { currentLanguage } = useLanguage();
+  const { t } = useTranslation("common");
+
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "_")
+      .replace(/^_|_$/g, "");
+
+  const translateCity = (city?: City) => {
+    if (!city) return "";
+    const byId = t(`cities.${city.id}`);
+    const bySlug = t(`cities.${slugify(city.name)}`);
+    return byId !== `cities.${city.id}`
+      ? byId
+      : bySlug !== `cities.${slugify(city.name)}`
+        ? bySlug
+        : city.name;
+  };
+
+  const translateCityPart = (cityPart?: CityPart) => {
+    if (!cityPart) return "";
+    const byId = t(`cityParts.${cityPart.id}`);
+    const bySlug = t(`cityParts.${slugify(cityPart.name)}`);
+    return byId !== `cityParts.${cityPart.id}`
+      ? byId
+      : bySlug !== `cityParts.${slugify(cityPart.name)}`
+        ? bySlug
+        : cityPart.name;
+  };
 
   return (
     <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl sm:rounded-2xl border border-blue-200 dark:border-blue-800">
@@ -35,7 +66,7 @@ function ActiveFilters({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2 sm:mb-0">
             <span className="text-xs sm:text-sm font-medium text-blue-800 dark:text-blue-200 whitespace-nowrap">
-              Filters:
+              {t("activeFilters.filters")}
             </span>
           </div>
           <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
@@ -45,11 +76,9 @@ function ActiveFilters({
                 <span className="truncate max-w-[80px] sm:max-w-none">
                   {(() => {
                     if (selectedCityPartData && selectedCityData) {
-                      // Show "City, Area" format when both are selected
-                      return `${selectedCityData.name}, ${selectedCityPartData.name}`;
+                      return `${translateCity(selectedCityData)}, ${translateCityPart(selectedCityPartData)}`;
                     } else if (selectedCityData) {
-                      // Show just city name when only city is selected
-                      return selectedCityData.name;
+                      return translateCity(selectedCityData);
                     }
                     return "";
                   })()}
@@ -97,13 +126,13 @@ function ActiveFilters({
                   {(() => {
                     switch (availability) {
                       case "now":
-                        return "Available Now";
+                        return t("find.filters.availability.now");
                       case "tomorrow":
-                        return "Tomorrow";
+                        return t("find.filters.availability.tomorrow");
                       case "next_week":
-                        return "Next Week";
+                        return t("find.filters.availability.nextWeek");
                       case "on_holiday":
-                        return "On Holiday";
+                        return t("find.filters.availability.onHoliday");
                       default:
                         return availability;
                     }
@@ -115,7 +144,7 @@ function ActiveFilters({
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-200 text-xs font-medium rounded-md sm:rounded-lg">
                 <Star className="w-3 h-3 flex-shrink-0" />
                 <span className="truncate max-w-[80px] sm:max-w-none">
-                  Has Reviews
+                  {t("find.filters.reviewsOptions.withReviews")}
                 </span>
               </span>
             )}
@@ -125,11 +154,14 @@ function ActiveFilters({
                 <span className="truncate max-w-[80px] sm:max-w-none">
                   {(() => {
                     if (minPrice && maxPrice) {
-                      return `$${minPrice}-$${maxPrice}`;
+                      return t("activeFilters.priceRange", {
+                        min: minPrice,
+                        max: maxPrice,
+                      });
                     } else if (minPrice) {
-                      return `From $${minPrice}`;
+                      return t("activeFilters.priceFrom", { min: minPrice });
                     } else if (maxPrice) {
-                      return `Up to $${maxPrice}`;
+                      return t("activeFilters.priceUpTo", { max: maxPrice });
                     }
                     return "";
                   })()}
@@ -141,7 +173,7 @@ function ActiveFilters({
         <button
           onClick={handleResetFilters}
           className="cursor-pointer flex-shrink-0 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 p-1 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
-          title="Clear all filters"
+          title={t("activeFilters.clearAll")}
         >
           <X className="w-4 h-4" />
         </button>
