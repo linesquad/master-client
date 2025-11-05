@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { type CityPart } from "../../types/member";
+import { useTranslation } from "react-i18next";
 
 function CityPartFilterButton({
   cityPart,
@@ -15,6 +16,23 @@ function CityPartFilterButton({
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
 }) {
+  const { t } = useTranslation("common");
+
+  const slugify = (text: string) =>
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "_")
+      .replace(/^_|_$/g, "");
+
+  const byId = t(`cityParts.${cityPart.id}`);
+  const bySlug = t(`cityParts.${slugify(cityPartName)}`);
+  const translatedName =
+    byId !== `cityParts.${cityPart.id}`
+      ? byId
+      : bySlug !== `cityParts.${slugify(cityPartName)}`
+        ? bySlug
+        : cityPartName;
   return (
     <button
       key={cityPart.id}
@@ -40,7 +58,7 @@ function CityPartFilterButton({
               : "text-gray-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-300"
           }`}
         >
-          {cityPartName}
+          {translatedName}
         </span>
       </div>
       <ChevronRight

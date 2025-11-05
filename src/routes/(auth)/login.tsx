@@ -3,6 +3,7 @@ import { useForm } from "@tanstack/react-form";
 import { redirect, Link } from "@tanstack/react-router";
 import { FaPeopleArrows, FaUserPlus, FaArrowLeft } from "react-icons/fa";
 import { useLoginUser } from "@/modules/auth/hooks/use-login-user";
+import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute({
   component: Login,
@@ -15,6 +16,7 @@ export const Route = createFileRoute({
 });
 
 function Login() {
+  const { t } = useTranslation("common");
   const { mutate: loginUser, isPending } = useLoginUser();
   const form = useForm({
     defaultValues: {
@@ -35,11 +37,12 @@ function Login() {
         backgroundPosition: "center",
       }}
     >
-      <title>Professionals | Login</title>
+      <title>Professionals | {t("navigation.login")}</title>
       <div className="max-w-md w-full space-y-8">
         <div className="flex items-center justify-center mr-10">
-          <img className="h-10 w-10" src="/projectlogo.webp" alt="Logo" />
-          <span className=" text-3xl font-bold text-white">IRKLE</span>
+          <Link to="/">
+            <img src="/favicon.png" alt="Logo" className="w-30 h-30" />
+          </Link>
         </div>
         <div className="relative">
           <div className="hidden md:block">
@@ -47,7 +50,7 @@ function Login() {
               <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer hover:text-[#34B1EB] hover:bg-[#F1F1F1] transition-all duration-300 group">
                 <FaPeopleArrows className="text-2xl text-white group-hover:text-[#34B1EB] transition-all duration-300" />
                 <span className="text-sm text-white font-semibold group-hover:text-[#34B1EB] transition-all duration-300">
-                  Sign in
+                  {t("navigation.login")}
                 </span>
               </div>
             </Link>
@@ -55,7 +58,7 @@ function Login() {
               <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
                 <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
                 <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
-                  Registration
+                  {t("navigation.register")}
                 </span>
               </div>
             </Link>
@@ -69,7 +72,7 @@ function Login() {
             }}
           >
             <h2 className="mt-6 text-start text-xl text-black dark:text-white font-semibold">
-              Sign In Your Account
+              {t("auth.signInYourAccount")}
             </h2>
             <div className="flex items-start justify-start gap-1">
               <div className="flex items-center justify-center  bg-[#34B1EB] rounded-xl w-2 h-1"></div>
@@ -82,10 +85,10 @@ function Login() {
                   onChangeAsyncDebounceMs: 500,
                   onChangeAsync: async ({ value }) => {
                     if (!value) {
-                      return "Email is required";
+                      return t("validation.emailRequired");
                     }
                     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                      return "Please enter a valid email address";
+                      return t("validation.emailInvalid");
                     }
                     return undefined;
                   },
@@ -97,7 +100,7 @@ function Login() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
-                      Email
+                      {t("auth.email")}
                     </label>
                     <input
                       id="email"
@@ -106,7 +109,7 @@ function Login() {
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
                       className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
-                      placeholder="Enter your email"
+                      placeholder={t("auth.enterEmail")}
                     />
                     {field.state.meta.errors && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -123,7 +126,7 @@ function Login() {
                   onChangeAsyncDebounceMs: 500,
                   onChangeAsync: async ({ value }) => {
                     if (!value) {
-                      return "Password is required";
+                      return t("validation.passwordRequired");
                     }
                     return undefined;
                   },
@@ -135,7 +138,7 @@ function Login() {
                       htmlFor="password"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
-                      Password
+                      {t("auth.password")}
                     </label>
                     <input
                       id="password"
@@ -144,7 +147,7 @@ function Login() {
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
                       className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
-                      placeholder="Enter your password"
+                      placeholder={t("auth.enterPassword")}
                     />
                     {field.state.meta.errors && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -162,7 +165,7 @@ function Login() {
                   htmlFor="remember"
                   className="text-sm text-gray-700 dark:text-gray-300"
                 >
-                  Remember me
+                  {t("auth.rememberMe")}
                 </label>
               </div>
             </div>
@@ -174,7 +177,7 @@ function Login() {
                   className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
                   disabled={!canSubmit || isPending}
                 >
-                  {isPending ? "Signing in..." : "Sign In"}
+                  {isPending ? t("auth.signingIn") : t("auth.login")}
                 </button>
               )}
             </form.Subscribe>
@@ -183,7 +186,7 @@ function Login() {
                 to="/register"
                 className="text-sm text-[#2C5BE3] dark:text-blue-400 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 transition-colors duration-300"
               >
-                Lost your password?
+                {t("auth.forgotPassword")}
               </Link>
               <div className="flex items-center justify-center gap-2 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 group">
                 <FaArrowLeft className="text-xs text-[#2C5BE3] dark:text-blue-400 font-extralight group-hover:text-[#2C5BE3]/80 dark:group-hover:text-blue-300 transition-colors duration-300" />
@@ -191,7 +194,7 @@ function Login() {
                   to="/"
                   className="text-sm text-[#2C5BE3] dark:text-blue-400 group-hover:text-[#2C5BE3]/80 dark:group-hover:text-blue-300 transition-colors duration-300"
                 >
-                  Home
+                  {t("navigation.home")}
                 </Link>
               </div>
             </div>
@@ -200,14 +203,16 @@ function Login() {
             <Link to="/login" className="w-full">
               <div className="flex items-center justify-center gap-2 bg-[#34B1EB] px-4 py-4 cursor-pointer">
                 <FaPeopleArrows className="text-lg sm:text-2xl text-white" />
-                <span className="text-xs sm:text-sm text-white font-semibold">Login</span>
+                <span className="text-xs sm:text-sm text-white font-semibold">
+                  {t("navigation.login")}
+                </span>
               </div>
             </Link>
             <Link to="/register" className="w-full">
               <div className="flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-4 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
                 <FaUserPlus className="text-lg sm:text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
                 <span className="text-xs sm:text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
-                  Registration
+                  {t("navigation.register")}
                 </span>
               </div>
             </Link>

@@ -85,7 +85,7 @@ function MostFamousCategories() {
             className={`relative rounded-sm overflow-hidden shadow-lg flex items-center justify-center h-40 sm:h-44 md:h-48 ${bgColorClasses[Math.floor(Math.random() * bgColorClasses.length)]} hover:scale-95 transition-all duration-300 cursor-pointer`}
           >
             <div className="absolute inset-0 bg-black/30" />
-            <span className="relative z-10 text-white text-xl sm:text-2xl font-semibold">
+            <span className="relative z-10 text-white  text-lg sm:text-xl font-semibold">
               {category.name[i18n.language as "en" | "ka" | "ru"]}
             </span>
           </div>

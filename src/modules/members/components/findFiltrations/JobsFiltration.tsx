@@ -2,6 +2,7 @@ import ResponsiveModal from "@/components/ResponsiveModal";
 import { Briefcase } from "lucide-react";
 import { type Job } from "../../types/member";
 import JobFiltrationButton from "./JobFiltrationButton";
+import { useTranslation } from "react-i18next";
 
 function JobsFiltration({
   showJobs,
@@ -22,12 +23,13 @@ function JobsFiltration({
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
 }) {
+  const { t } = useTranslation("common");
   return (
     <ResponsiveModal
       open={showJobs}
       onOpenChange={setShowJobs}
-      title="Available Jobs"
-      description="Browse and select from available job positions in the selected category"
+      title={t("jobsFilter.title")}
+      description={t("jobsFilter.description")}
       maxWidth="4xl"
       trigger={<div />}
     >
@@ -41,10 +43,10 @@ function JobsFiltration({
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Available Jobs
+                {t("jobsFilter.title")}
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                {jobs?.length || 0} positions available
+                {t("jobsFilter.subtitleCount", { count: jobs?.length || 0 })}
               </p>
             </div>
           </div>
@@ -59,7 +61,7 @@ function JobsFiltration({
             <div className="flex flex-col items-center justify-center py-16">
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-blue-600 mb-4"></div>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Loading available positions...
+                {t("jobsFilter.loading")}
               </p>
             </div>
           ) : jobs?.length === 0 ? (
@@ -68,11 +70,10 @@ function JobsFiltration({
                 <Briefcase className="w-10 h-10 text-gray-400" />
               </div>
               <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                No jobs available
+                {t("jobsFilter.emptyTitle")}
               </h4>
               <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-                There are currently no job positions available in this category.
-                Please try selecting a different service type.
+                {t("jobsFilter.emptyDescription")}
               </p>
             </div>
           ) : (
@@ -97,7 +98,7 @@ function JobsFiltration({
         {jobs?.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
             <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-              Scroll to view more positions • {jobs.length} jobs available
+              {t("jobsFilter.footer", { count: jobs.length })}
             </p>
           </div>
         )}

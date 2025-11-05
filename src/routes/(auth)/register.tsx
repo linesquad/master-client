@@ -4,6 +4,7 @@ import { Link, redirect, useNavigate } from "@tanstack/react-router";
 import { toast } from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { FaArrowLeft, FaPeopleArrows, FaUserPlus } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute({
   component: Register,
@@ -16,6 +17,7 @@ export const Route = createFileRoute({
 });
 
 function Register() {
+  const { t } = useTranslation("common");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const form = useForm({
@@ -35,11 +37,11 @@ function Register() {
           value.phone,
           value.role
         );
-        toast.success("User registered successfully");
+        toast.success(t("auth.registerSuccess"));
         queryClient.invalidateQueries({ queryKey: ["user"] });
         navigate({ to: "/" });
       } catch (error) {
-        toast.error("Registration failed. Please try again.");
+        toast.error(t("auth.registerFailed"));
         console.error(error);
       }
     },
@@ -54,11 +56,11 @@ function Register() {
         backgroundPosition: "center",
       }}
     >
-      <title>Professionals | Registration</title>
+      <title>Professionals | {t("navigation.register")}</title>
       <div className="max-w-md w-full space-y-4">
         <div className="flex items-center justify-center mr-10">
           <Link to="/">
-            <img className="w-30" src="/favicon.png" alt="Logo" />
+            <img className="w-30 h-30" src="/favicon.png" alt="Logo" />
           </Link>
         </div>
         <div className="relative">
@@ -67,7 +69,7 @@ function Register() {
               <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer">
                 <FaPeopleArrows className="text-2xl text-white" />
                 <span className="text-sm text-white font-semibold">
-                  Sign in
+                  {t("navigation.login")}
                 </span>
               </div>
             </Link>
@@ -75,7 +77,7 @@ function Register() {
               <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
                 <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
                 <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
-                  Registration
+                  {t("navigation.register")}
                 </span>
               </div>
             </Link>
@@ -89,7 +91,7 @@ function Register() {
             }}
           >
             <h2 className="mt-6 text-start text-xl text-black dark:text-white font-semibold">
-              Sign In Your Account
+              {t("auth.createYourAccount")}
             </h2>
             <div className="flex items-start justify-start gap-1">
               <div className="flex items-center justify-center  bg-[#34B1EB] rounded-xl w-2 h-1"></div>
@@ -102,13 +104,13 @@ function Register() {
                   onChangeAsyncDebounceMs: 500,
                   onChangeAsync: async ({ value }) => {
                     if (!value) {
-                      return "Full name is required";
+                      return t("validation.fullNameRequired");
                     }
                     if (value.length < 2) {
-                      return "Full name must be at least 2 characters long";
+                      return t("validation.fullNameMinLength");
                     }
-                    if (!/^[a-zA-Z\s]+$/.test(value)) {
-                      return "Full name should only contain letters and spaces";
+                    if (!/^[\p{L}\s]+$/u.test(value)) {
+                      return t("validation.fullNameLettersOnly");
                     }
                     return undefined;
                   },
@@ -120,7 +122,7 @@ function Register() {
                       htmlFor="fullName"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
-                      Full Name
+                      {t("auth.fullName")}
                     </label>
                     <input
                       id="fullName"
@@ -129,7 +131,7 @@ function Register() {
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
                       className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
-                      placeholder="Enter your full name"
+                      placeholder={t("auth.enterFullName")}
                     />
                     {field.state.meta.errors && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -146,10 +148,10 @@ function Register() {
                   onChangeAsyncDebounceMs: 500,
                   onChangeAsync: async ({ value }) => {
                     if (!value) {
-                      return "Email is required";
+                      return t("validation.emailRequired");
                     }
                     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                      return "Please enter a valid email address";
+                      return t("validation.emailInvalid");
                     }
                     return undefined;
                   },
@@ -161,7 +163,7 @@ function Register() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
-                      Email
+                      {t("auth.email")}
                     </label>
                     <input
                       id="email"
@@ -170,7 +172,7 @@ function Register() {
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
                       className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
-                      placeholder="Enter your email"
+                      placeholder={t("auth.enterEmail")}
                     />
                     {field.state.meta.errors && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -187,22 +189,22 @@ function Register() {
                   onChangeAsyncDebounceMs: 500,
                   onChangeAsync: async ({ value }) => {
                     if (!value) {
-                      return "Password is required";
+                      return t("validation.passwordRequired");
                     }
                     if (value.length < 8) {
-                      return "Password must be at least 8 characters long";
+                      return t("validation.passwordMinLength");
                     }
                     if (!/[A-Z]/.test(value)) {
-                      return "Password must contain at least one uppercase letter";
+                      return t("validation.passwordUppercase");
                     }
                     if (!/[a-z]/.test(value)) {
-                      return "Password must contain at least one lowercase letter";
+                      return t("validation.passwordLowercase");
                     }
                     if (!/[0-9]/.test(value)) {
-                      return "Password must contain at least one number";
+                      return t("validation.passwordNumber");
                     }
                     if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                      return "Password must contain at least one special character";
+                      return t("validation.passwordSpecial");
                     }
                     return undefined;
                   },
@@ -214,7 +216,7 @@ function Register() {
                       htmlFor="password"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
-                      Password
+                      {t("auth.password")}
                     </label>
                     <input
                       id="password"
@@ -223,7 +225,7 @@ function Register() {
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
                       className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
-                      placeholder="Enter your password"
+                      placeholder={t("auth.enterPassword")}
                     />
                     {field.state.meta.errors && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -240,13 +242,13 @@ function Register() {
                   onChangeAsyncDebounceMs: 500,
                   onChangeAsync: async ({ value }) => {
                     if (!value) {
-                      return "Phone number is required";
+                      return t("validation.phoneRequired");
                     }
                     if (value.length < 10) {
-                      return "Phone number must be at least 10 characters long";
+                      return t("validation.phoneMinLength");
                     }
                     if (!/^\+?[0-9\s-()]+$/.test(value)) {
-                      return "Phone number can only contain digits, spaces, hyphens, and parentheses";
+                      return t("validation.phoneInvalid");
                     }
                     return undefined;
                   },
@@ -258,7 +260,7 @@ function Register() {
                       htmlFor="phone"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
-                      Phone
+                      {t("auth.phone")}
                     </label>
                     <input
                       id="phone"
@@ -267,7 +269,7 @@ function Register() {
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
                       className="appearance-none relative block w-full px-3 py-3 border-b border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-transparent rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-colors duration-300"
-                      placeholder="Enter your phone number"
+                      placeholder={t("auth.enterPhone")}
                     />
                     {field.state.meta.errors && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -285,7 +287,7 @@ function Register() {
                   htmlFor="remember"
                   className="text-sm text-gray-700 dark:text-gray-300"
                 >
-                  Remember me
+                  {t("auth.rememberMe")}
                 </label>
               </div>
             </div>
@@ -299,7 +301,9 @@ function Register() {
                   className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!canSubmit || isSubmitting}
                 >
-                  {isSubmitting ? "Registering..." : "Register"}
+                  {isSubmitting
+                    ? t("auth.registering")
+                    : t("navigation.register")}
                 </button>
               )}
             </form.Subscribe>
@@ -308,7 +312,7 @@ function Register() {
                 to="/login"
                 className="text-sm text-[#2C5BE3] hover:text-[#2C5BE3]/80"
               >
-                Lost your password?
+                {t("auth.forgotPassword")}
               </Link>
               <div className="flex items-center justify-center gap-2 hover:text-[#2C5BE3]/80 group">
                 <FaArrowLeft className="text-xs text-[#2C5BE3] font-extralight group-hover:text-[#2C5BE3]/80" />
@@ -316,7 +320,7 @@ function Register() {
                   to="/"
                   className="text-sm text-[#2C5BE3] group-hover:text-[#2C5BE3]/80"
                 >
-                  Back to Home
+                  {t("navigation.home")}
                 </Link>
               </div>
             </div>
@@ -326,7 +330,7 @@ function Register() {
               <div className="z-10 flex items-center justify-center gap-2 bg-[#34B1EB] px-4 py-4 cursor-pointer">
                 <FaPeopleArrows className="text-lg sm:text-2xl text-white" />
                 <span className="text-xs sm:text-sm text-white font-semibold">
-                  Sign in
+                  {t("navigation.login")}
                 </span>
               </div>
             </Link>
@@ -334,7 +338,7 @@ function Register() {
               <div className="z-10 flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-4 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
                 <FaUserPlus className="text-lg sm:text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
                 <span className="text-xs sm:text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
-                  Registration
+                  {t("navigation.register")}
                 </span>
               </div>
             </Link>

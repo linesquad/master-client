@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 function ContactHero() {
   const { t } = useTranslation("common");
-  
+
   return (
     <div className="flex items-center justify-between bg-[#4846F8] dark:bg-[#242526]">
       <MainWrapper className="relative flex items-center overflow-hidden w-full h-[20rem]">

@@ -1,10 +1,10 @@
 export const burgerPaths = [
   {
-    name: "Login",
+    name: "navigation.login",
     path: "/login",
   },
   {
-    name: "Register",
+    name: "navigation.register",
     path: "/register",
   },
 ];
