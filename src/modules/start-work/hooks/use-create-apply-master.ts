@@ -3,7 +3,7 @@ import {
   newMasterApply,
   type NewMasterApplyResponse,
 } from "../api/new-master-apply";
-import type { startWorkSchema } from "../schema";
+import type { createStartWorkSchema } from "../schema";
 import type z from "zod";
 import { toast } from "react-hot-toast";
 
@@ -11,9 +11,9 @@ export function useCreateApplyMaster() {
   const mutation = useMutation<
     NewMasterApplyResponse,
     Error,
-    z.infer<typeof startWorkSchema>
+    z.infer<typeof createStartWorkSchema>
   >({
-    mutationFn: (data: z.infer<typeof startWorkSchema>) => newMasterApply(data),
+    mutationFn: (data: z.infer<typeof createStartWorkSchema>) => newMasterApply(data),
     onSuccess: () => {
       toast.success("Successfully applied for new master");
     },
