@@ -33,7 +33,7 @@ export const UnathorizedHeader = () => {
                   {t("auth.login")}
                 </Link>
                 <Link
-                  to="/register"
+                  to="/start-working"
                   className="bg-white dark:bg-gray-100 text-[#2C5BE3] dark:text-[#1a365d] px-3 py-1.5 text-sm font-semibold rounded-sm hover:bg-gray-50 dark:hover:bg-gray-200 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#2C5BE3] dark:focus:ring-offset-[#1a365d] shadow-lg hover:shadow-xl hover:scale-105 transform cursor-pointer"
                 >
                   {t("auth.register")}

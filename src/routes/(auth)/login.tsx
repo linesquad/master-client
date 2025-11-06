@@ -44,27 +44,27 @@ function Login() {
             <img src="/favicon.png" alt="Logo" className="w-30 h-30" />
           </Link>
         </div>
-        <div className="relative">
-          <div className="hidden md:block">
+        <div className="relative mt-8 md:min-h-[560px]">
+          <div className="hidden md:flex absolute inset-y-0 -left-[98.5px] z-10 flex-col justify-between">
             <Link to="/login">
-              <div className="absolute top-[58.5px] -left-[115px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#34B1EB] px-12 py-4 rotate-270 cursor-pointer hover:text-[#34B1EB] hover:bg-[#F1F1F1] transition-all duration-300 group">
-                <FaPeopleArrows className="text-2xl text-white group-hover:text-[#34B1EB] transition-all duration-300" />
-                <span className="text-sm text-white font-semibold group-hover:text-[#34B1EB] transition-all duration-300">
+              <div className="flex mt-[50px] items-center justify-center gap-1 rounded-t-lg bg-[#34B1EB] rotate-270 cursor-pointer hover:text-[#34B1EB] hover:bg-[#F1F1F1] transition-all duration-300 group h-12 w-[150px] px-0 shrink-0 ">
+                <FaPeopleArrows className="text-xl text-white group-hover:text-[#34B1EB] transition-all duration-300" />
+                <span className="text-xs text-white font-semibold group-hover:text-[#34B1EB] transition-all duration-300 whitespace-nowrap leading-none">
                   {t("navigation.login")}
                 </span>
               </div>
             </Link>
             <Link to="/register">
-              <div className="absolute top-[260.5px] -left-[133px] z-10 flex items-center justify-center gap-2 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 px-12 py-4 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
-                <FaUserPlus className="text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
-                <span className="text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
+              <div className="flex items-center mb-[285px] justify-center gap-1 rounded-t-lg bg-[#F1F1F1] dark:bg-gray-800 rotate-270 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group h-12 w-[150px] px-0 shrink-0">
+                <FaUserPlus className="text-xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
+                <span className="text-xs font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300 whitespace-nowrap leading-none">
                   {t("navigation.register")}
                 </span>
               </div>
             </Link>
           </div>
           <form
-            className="mt-8 space-y-6 md:rounded-xl rounded-none md:rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300"
+            className="space-y-6 md:rounded-xl rounded-none md:rounded-tl-none py-6 px-12 bg-white dark:bg-gray-800 pt-12 transition-colors duration-300 md:h-full"
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -158,7 +158,7 @@ function Login() {
                 )}
               </form.Field>
             </div>
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input type="checkbox" id="remember" className="mr-2" />
                 <label
@@ -168,7 +168,7 @@ function Login() {
                   {t("auth.rememberMe")}
                 </label>
               </div>
-            </div>
+            </div> */}
 
             <form.Subscribe selector={(state) => [state.canSubmit]}>
               {([canSubmit]) => (
@@ -181,13 +181,13 @@ function Login() {
                 </button>
               )}
             </form.Subscribe>
-            <div className="flex items-center justify-between">
-              <Link
+            <div className="flex items-center justify-end">
+              {/* <Link
                 to="/register"
                 className="text-sm text-[#2C5BE3] dark:text-blue-400 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 transition-colors duration-300"
               >
                 {t("auth.forgotPassword")}
-              </Link>
+              </Link> */}
               <div className="flex items-center justify-center gap-2 hover:text-[#2C5BE3]/80 dark:hover:text-blue-300 group">
                 <FaArrowLeft className="text-xs text-[#2C5BE3] dark:text-blue-400 font-extralight group-hover:text-[#2C5BE3]/80 dark:group-hover:text-blue-300 transition-colors duration-300" />
                 <Link
@@ -209,7 +209,7 @@ function Login() {
               </div>
             </Link>
             <Link to="/register" className="w-full">
-              <div className="flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-4 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
+              <div className="flex items-center justify-center gap-2 bg-[#F1F1F1] dark:bg-gray-800 px-0 sm:px-4 py-4 cursor-pointer hover:bg-[#34B1EB] hover:text-white transition-all duration-300 group">
                 <FaUserPlus className="text-lg sm:text-2xl text-[#34B1EB] group-hover:text-white transition-all duration-300" />
                 <span className="text-xs sm:text-sm font-semibold text-black dark:text-white group-hover:text-white transition-all duration-300">
                   {t("navigation.register")}
