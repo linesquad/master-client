@@ -1,12 +1,12 @@
 import type z from "zod";
-import type { startWorkSchema } from "../schema";
+import type { createStartWorkSchema } from "../schema";
 import instance from "@/lib/axios";
 
 export interface NewMasterApplyResponse {
   success: boolean;
 }
 
-export async function newMasterApply(data: z.infer<typeof startWorkSchema>) {
+export async function newMasterApply(data: z.infer<typeof createStartWorkSchema>) {
   const response = await instance.post<NewMasterApplyResponse>(
     "/api/new-master-applies",
     data
