@@ -23,9 +23,20 @@ function RightDesign() {
             >
               {feature.title}
             </h3>
-            <p className="text-muted-foreground text-sm sm:text-base max-w-sm">
-              {feature.description}
-            </p>
+            {Array.isArray(feature.description) ? (
+              <ul className="text-muted-foreground text-sm sm:text-base max-w-sm list-none space-y-1">
+                {feature.description.map((item: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="select-none">✔</span>
+                    <span>{item.trim()}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-muted-foreground text-sm sm:text-base max-w-sm">
+                {feature.description}
+              </p>
+            )}
           </div>
         </div>
       ))}

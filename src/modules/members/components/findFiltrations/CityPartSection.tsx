@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { type CityPart } from "../../types/member";
+import { useTranslation } from "react-i18next";
 import CityPartFilterButton from "./CityPartFilterButton";
 
 function CityPartSection({
@@ -14,8 +15,14 @@ function CityPartSection({
   isCityPartsLoading: boolean;
   selectedCityPartId: string;
   handleBackClickWithFocus: () => void;
-  handleCityPartClickWithFocus: (cityPartId: string, event: React.MouseEvent<HTMLButtonElement>) => void;
+  handleCityPartClickWithFocus: (
+    cityPartId: string,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void;
 }) {
+  const { t } = useTranslation("common");
+
+  console.log(cityPartsArray.map((cityPart: any) => cityPart.name));
   return (
     <>
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
@@ -31,10 +38,12 @@ function CityPartSection({
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Select Area
+              {t("cityPartFilter.title")}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Choose from {cityPartsArray.length} available areas
+              {t("cityPartFilter.subtitleCount", {
+                count: cityPartsArray.length,
+              })}
             </p>
           </div>
         </div>
@@ -49,17 +58,17 @@ function CityPartSection({
           <div className="flex flex-col items-center justify-center py-16">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Loading areas...
+              {t("cityPartFilter.loading")}
             </p>
           </div>
         ) : cityPartsArray.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16">
             <MapPin className="w-12 h-12 text-gray-400 mb-4" />
             <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-              No areas available
+              {t("cityPartFilter.emptyTitle")}
             </h4>
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-              There are currently no areas available for this city.
+              {t("cityPartFilter.emptyDescription")}
             </p>
           </div>
         ) : (
@@ -85,8 +94,7 @@ function CityPartSection({
       {cityPartsArray.length > 0 && (
         <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            Scroll to view more options • {cityPartsArray.length} areas
-            available
+            {t("cityPartFilter.footer", { count: cityPartsArray.length })}
           </p>
         </div>
       )}

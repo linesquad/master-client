@@ -1,5 +1,6 @@
 import { MapPin } from "lucide-react";
 import { type City } from "../../types/member";
+import { useTranslation } from "react-i18next";
 import CityFilterButton from "./CityFilterButton";
 
 function CityFilterSection({
@@ -14,6 +15,7 @@ function CityFilterSection({
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
 }) {
+  const { t } = useTranslation("common");
   return (
     <>
       <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
@@ -23,10 +25,10 @@ function CityFilterSection({
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Select City
+              {t("cityFilter.title")}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Choose from {citiesArray.length} available cities
+              {t("cityFilter.subtitleCount", { count: citiesArray.length })}
             </p>
           </div>
         </div>
@@ -41,17 +43,17 @@ function CityFilterSection({
           <div className="flex flex-col items-center justify-center py-16">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Loading cities...
+              {t("cityFilter.loading")}
             </p>
           </div>
         ) : citiesArray.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16">
             <MapPin className="w-12 h-12 text-gray-400 mb-4" />
             <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-              No cities available
+              {t("cityFilter.emptyTitle")}
             </h4>
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-              There are currently no cities available for selection.
+              {t("cityFilter.emptyDescription")}
             </p>
           </div>
         ) : (
@@ -75,7 +77,7 @@ function CityFilterSection({
       {citiesArray.length > 0 && (
         <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            Scroll to view more options • {citiesArray.length} cities available
+            {t("cityFilter.footer", { count: citiesArray.length })}
           </p>
         </div>
       )}

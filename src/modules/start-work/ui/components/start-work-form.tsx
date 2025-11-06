@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { startWorkSchema } from "../../schema";
-import type { z } from "zod";
+import { createStartWorkSchema, type StartWorkValues } from "../../schema";
 
 import {
   Form,
@@ -19,8 +18,8 @@ import { useTranslation } from "react-i18next";
 
 export function StartWorkForm() {
   const { t } = useTranslation();
-  const form = useForm<z.infer<typeof startWorkSchema>>({
-    resolver: zodResolver(startWorkSchema),
+  const form = useForm<StartWorkValues>({
+    resolver: zodResolver(createStartWorkSchema(t)),
     defaultValues: {
       fullName: "",
       phone: "+995",
@@ -30,7 +29,7 @@ export function StartWorkForm() {
   });
   const { mutate: createApplyMaster, isPending } = useCreateApplyMaster();
 
-  function onSubmit(values: z.infer<typeof startWorkSchema>) {
+  function onSubmit(values: StartWorkValues) {
     createApplyMaster(values);
     form.reset();
   }

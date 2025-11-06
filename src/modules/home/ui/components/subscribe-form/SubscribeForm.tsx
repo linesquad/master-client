@@ -52,7 +52,8 @@ function SubscribeForm({
           className="absolute right-0 top-0 bottom-0 bg-blue-600 dark:bg-blue-500 text-white px-6 sm:px-8 py-3 sm:py-8 rounded-full font-semibold text-base sm:text-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
           disabled={isPending}
         >
-          {isPending ? "submitting" : "Subscripbe"}
+          {/* {isPending ? "submitting" : "Subscribe"} */}
+          {isPending ? t("common.loading") : t("common.subscribe")}
         </Button>
       </form>
     </Form>
