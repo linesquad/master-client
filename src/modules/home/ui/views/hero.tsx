@@ -14,16 +14,19 @@ function Hero() {
   // } = useGetUsersCount();
   const navigate = useNavigate();
   return (
-    <div className="relative py-20 overflow-hidden bg-[#4846F8] dark:bg-[#242526]">
+    <div className="relative py-20 overflow-hidden bg-blue-100 dark:bg-[#242526]">
       <MainWrapper className="relative h-full">
-        <div className="flex items-center justify-between h-full px-8  py-24 lg:py-12">
-          <div className="flex flex-col items-start justify-center text-white space-y-6 max-w-md z-10">
-
-            <img src="/favicon.png" alt="favicon" className="w-50 h-50" />
+        <div className="flex items-center justify-between h-full px-8">
+          <div className="flex flex-col items-start justify-center text-gray-900 dark:text-white space-y-6 max-w-md z-10">
+            <img
+              src="/favicon.png"
+              alt="favicon"
+              className="md:w-100 md:h-100 w-50 h-50"
+            />
             {/* <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight break-words">
               {t("hero.title")}
             </h2> */}
-            <p className="text-lg text-gray-100 leading-relaxed">
+            <p className="text-lg text-gray-700 dark:text-gray-100 leading-relaxed">
               {t("hero.subtitle")}
             </p>
             <div className="space-y-2">
@@ -48,11 +51,11 @@ function Hero() {
               {t("hero.discoverNow")}
             </HomeButton>
           </div>
-          <div className="items-center justify-center hidden lg:flex">
+          <div className="items-center justify-center hidden xl:flex">
             <img
               src="/peopleimage.png"
               alt="hero"
-              className="max-w-lg h-auto"
+              className="max-w-3xl h-auto"
             />
             <img
               style={{
