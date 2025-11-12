@@ -1,6 +1,6 @@
 import MainWrapper from "@/components/MainWrapper";
 import LocationCard from "../components/find-locations/LocationCard";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { useGetRandomCities } from "../../hooks/use-get-random-cities";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -14,7 +14,7 @@ interface Location {
 function FindLocations() {
   const { data: locations, isLoading: isLocationsLoading } =
     useGetRandomCities();
-  const { t } = useTranslation("common");
+  // const { t } = useTranslation("common");
   const navigate = useNavigate();
 
   if (isLocationsLoading) {
@@ -44,14 +44,14 @@ function FindLocations() {
   return (
     <MainWrapper>
       <section className="container mx-auto px-4 py-20 dark:bg-[#18191A]">
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <h2 className="sm:text-4xl text-2xl font-bold mb-4 text-foreground">
             {t("findLocations.title")}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             {t("findLocations.description")}
           </p>
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {locations.map((location: Location) => (

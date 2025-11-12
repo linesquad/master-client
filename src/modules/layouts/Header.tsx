@@ -12,7 +12,7 @@ function Header() {
   }
 
   return (
-    <header className="bg-[#2C5BE3] dark:bg-[#18191A] shadow-lg transition-colors duration-300 sticky top-0 z-50">
+    <header className="bg-white dark:bg-[#18191A] shadow-lg transition-colors duration-300 sticky top-0 z-50">
       <div className=" px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -27,7 +27,7 @@ function Header() {
                     src="/projectlogo.webp"
                     alt="Logo"
                   />
-                  <span className="ml-3 text-xl font-bold text-white">
+                  <span className="ml-3 text-xl font-bold text-gray-900 dark:text-white">
                     IRKLE
                   </span>
                 </div>
