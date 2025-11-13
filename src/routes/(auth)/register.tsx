@@ -49,18 +49,14 @@ function Register() {
 
   return (
     <div
-      className="flex items-center justify-center py-4 md:py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray-300 dark:bg-gray-900 transition-colors duration-300"
-      style={{
-        backgroundImage: "url('/authbg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="flex items-center justify-center py-4 md:py-12 px-4 sm:px-6 lg:px-8 min-h-screen transition-colors duration-300"
+      style={{ backgroundColor: '#f0f9ff' }}
     >
       <title>Professionals | {t("navigation.register")}</title>
       <div className="max-w-md w-full space-y-4">
         <div className="flex items-center justify-center mr-10">
           <Link to="/">
-            <img className="w-30 h-30" src="/favicon.png" alt="Logo" />
+            <img className="w-56 h-56" src="/favicon.png" alt="Logo" />
           </Link>
         </div>
         <div className="relative mt-8 md:min-h-[560px]">
